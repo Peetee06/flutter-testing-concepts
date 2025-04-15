@@ -5,12 +5,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+    paths:
+      - 'bloc_app/**'
 
 jobs:
   semantic-pull-request:
@@ -22,6 +19,7 @@ jobs:
       flutter_channel: stable
       coverage_excludes: "**/*.g.dart **/*.freezed.dart **/mocks.mocks.dart"
       test_optimization: true
+      working_directory: bloc_app
 
   spell-check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
@@ -29,3 +27,4 @@ jobs:
       includes: |
         **/*.md
       modified_files_only: false
+      working_directory: bloc_app
