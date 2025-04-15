@@ -1,0 +1,270 @@
+[
+    {
+        "id": "concept1",
+        "title": {
+            "de": "Einführung zu Thema 1",
+            "en": "Introduction to Topic 1"
+        },
+        "sections": [
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 1 von Konzept 1",
+                            "en": "Content Section 1 of Concept 1"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "imageUri": "https://picsum.photos/200/300"
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 2 von Konzept 1",
+                            "en": "Content Section 2 of Concept 1"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 3 von Konzept 1",
+                            "en": "Content Section 3 of Concept 1"
+                        }
+                    }
+                ]
+            }
+        ],
+        "challengeIds": [
+            "challenge2",
+            "challenge1"
+        ]
+    },
+    {
+        "id": "concept2",
+        "title": {
+            "de": "Einführung zu Thema 2",
+            "en": "Introduction to Topic 2"
+        },
+        "sections": [
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 1 von Konzept 2",
+                            "en": "Content Section 1 of Concept 2"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 2 von Konzept 2",
+                            "en": "Content Section 2 of Concept 2"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "imageUri": "https://picsum.photos/300/200"
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 3 von Konzept 2",
+                            "en": "Content Section 3 of Concept 2"
+                        }
+                    }
+                ]
+            }
+        ],
+        "challengeIds": [
+            "challenge8",
+            "challenge9"
+        ]
+    },
+    {
+        "id": "concept3",
+        "title": {
+            "de": "Einführung zu Thema 3",
+            "en": "Introduction to Topic 3"
+        },
+        "sections": [
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 1 von Konzept 3",
+                            "en": "Content Section 1 of Concept 3"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 2 von Konzept 3",
+                            "en": "Content Section 2 of Concept 3"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 3 von Konzept 3",
+                            "en": "Content Section 3 of Concept 3"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "imageUri": "https://picsum.photos/300/300"
+                    }
+                ]
+            }
+        ],
+        "challengeIds": [
+            "challenge5",
+            "challenge10"
+        ]
+    },
+    {
+        "id": "concept4",
+        "title": {
+            "de": "Einführung zu Thema 4",
+            "en": "Introduction to Topic 4"
+        },
+        "sections": [
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 1 von Konzept 4",
+                            "en": "Content Section 1 of Concept 4"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "imageUri": "https://picsum.photos/400/300"
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 2 von Konzept 4",
+                            "en": "Content Section 2 of Concept 4"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 3 von Konzept 4",
+                            "en": "Content Section 3 of Concept 4"
+                        }
+                    }
+                ]
+            }
+        ],
+        "challengeIds": [
+            "challenge4",
+            "challenge6"
+        ]
+    },
+    {
+        "id": "concept5",
+        "title": {
+            "de": "Lektion ohne Aufgaben",
+            "en": "Concept Without ChallengeIds"
+        },
+        "sections": [
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 1 von Konzept 5",
+                            "en": "Content Section 1 of Concept 5"
+                        }
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 2 von Konzept 5",
+                            "en": "Content Section 2 of Concept 5"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "imageUri": "https://picsum.photos/500/300"
+                    }
+                ]
+            },
+            {
+                "content": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "de": "Inhalt Section 3 von Konzept 5",
+                            "en": "Content Section 3 of Concept 5"
+                        }
+                    }
+                ]
+            }
+        ],
+        "challengeIds": []
+    },
+    {
+        "id": "concept6",
+        "title": {
+            "de": "Lektion ohne Seiten",
+            "en": "Concept Without Sections"
+        },
+        "sections": [],
+        "challengeIds": [
+            "challenge2",
+            "challenge1"
+        ]
+    },
+    {
+        "id": "concept7",
+        "title": {
+            "de": "Leere Lektion",
+            "en": "Empty Concept"
+        },
+        "sections": [],
+        "challengeIds": []
+    }
+]

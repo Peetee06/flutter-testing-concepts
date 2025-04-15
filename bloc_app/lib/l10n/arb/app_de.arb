@@ -1,0 +1,55 @@
+{
+    "@@locale": "de",
+    "conceptsViewTitle": "Konzepte",
+    "@conceptsViewTitle": {
+        "description": "Titel der Konzepte-Seite"
+    },
+    "conceptsSections": "{count, plural, =0{keine Abschnitte} =1{ein Abschnitt} other{{count} Abschnitte}}",
+    "@conceptsSections": {
+        "description": "Anzahl der Abschnitte eines Konzepts",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "description": "Anzahl der Abschnitte"
+            }
+        }
+    },
+    "conceptsChallenges": "{count, plural, =0{keine Herausforderungen} =1{eine Herausforderung} other{{count} Herausforderungen}}",
+    "@conceptsChallenges": {
+        "description": "Anzahl der Herausforderungen eines Konzepts",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "description": "Anzahl der Herausforderungen"
+            }
+        }
+    },
+    "conceptsTryAgain": "Nochmal versuchen",
+    "@conceptsTryAgain": {
+        "description": "Text des Buttons zum erneuten Versuchen"
+    },
+    "conceptsEmpty": "Keine Konzepte gefunden",
+    "@conceptsEmpty": {
+          "description": "Text, der angezeigt wird, wenn keine Konzepte gefunden werden"
+    },
+    "conceptSectionEmpty": "Keine Abschnitte verfügbar",
+    "@conceptSectionEmpty": {
+        "description": "Text, der angezeigt wird, wenn keine Abschnitte verfügbar sind"
+    },
+    "conceptSectionForwardButtonLabel": "Weiter",
+    "@conceptSectionForwardButtonLabel": {
+        "description": "Text des Buttons zum Weitergehen"
+    },
+    "conceptSectionBackButtonLabel": "Zurück",
+    "@conceptSectionBackButtonLabel": {
+        "description": "Text des Buttons zum Zurückgehen"
+    },
+    "challengesEmpty": "Keine Herausforderungen verfügbar",
+    "@challengesEmpty": {
+        "description": "Text, der angezeigt wird, wenn keine Herausforderungen verfügbar sind"
+    },
+    "challengesDoneButtonLabel": "Fertig",
+    "@challengesDoneButtonLabel": {
+        "description": "Text des Buttons zum Beenden des Konzepts"
+    }
+}

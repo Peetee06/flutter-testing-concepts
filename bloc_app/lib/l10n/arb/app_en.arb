@@ -1,0 +1,55 @@
+{
+    "@@locale": "en",
+    "conceptsViewTitle": "Concepts",
+    "@conceptsViewTitle": {
+        "description": "Title of the concepts view"
+    },
+    "conceptsSections": "{count, plural, =0{no sections} =1{one section} other{{count} sections}}",
+    "@conceptsSections": {
+        "description": "Number of sections in a concept",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "description": "Number of sections"
+            }
+        }
+    },
+    "conceptsChallenges": "{count, plural, =0{no challenges} =1{one challenge} other{{count} challenges}}",
+    "@conceptsChallenges": {
+        "description": "Number of challenges in a concept",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "description": "Number of challenges"
+            }
+        }
+    },
+    "conceptsTryAgain": "Try again",
+    "@conceptsTryAgain": {
+        "description": "Text of the button to try again"
+    },
+    "conceptsEmpty": "No concepts found",
+    "@conceptsEmpty": {
+        "description": "Text shown when there are no concepts"
+    },
+    "conceptSectionEmpty": "No sections available",
+    "@conceptSectionEmpty": {
+        "description": "Text shown when there are no sections"
+    },
+    "conceptSectionForwardButtonLabel": "Forward",
+    "@conceptSectionForwardButtonLabel": {
+        "description": "Text of the button to go forward"
+    },
+    "conceptSectionBackButtonLabel": "Back",
+    "@conceptSectionBackButtonLabel": {
+        "description": "Text of the button to go back"
+    },
+    "challengesEmpty": "No challenges available",
+    "@challengesEmpty": {
+        "description": "Text shown when there are no challenges"
+    },
+    "challengesDoneButtonLabel": "Done",
+    "@challengesDoneButtonLabel": {
+        "description": "Text of the button to finish the concept"
+    }
+}
