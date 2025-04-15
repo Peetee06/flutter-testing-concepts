@@ -22,7 +22,7 @@ dependencies:
   intl: ^0.19.0
   json_annotation: ^4.9.0
   retrofit: ^4.4.2
-  smooth_page_indicator: ^1.2.0+3
+  smooth_page_indicator: ^1.2.1
 
 dev_dependencies:
   bloc_test: ^9.1.7
