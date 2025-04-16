@@ -1,3 +1,6 @@
 reviews:
   profile: "assertive"
   request_changes_workflow: true
+  path_instructions:
+    - path: "**.{freezed.dart,g.dart,mocks.dart}"
+      instructions: Please ignore generated files in reviews
