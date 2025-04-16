@@ -38,6 +38,7 @@ jobs:
     needs: check-changed-files
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/build
         if: >-
           needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
@@ -49,6 +50,7 @@ jobs:
     needs: check-changed-files
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/build
         if: >-
           needs.check-changed-files.outputs.bloc-app-changed == 'true' ||

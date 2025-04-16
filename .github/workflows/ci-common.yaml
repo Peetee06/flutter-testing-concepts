@@ -8,12 +8,9 @@ on:
   pull_request:
 
 jobs:
-  semantic-pull-request:
+  validate-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/semantic-pr
-
-  spell-check:
-    runs-on: ubuntu-latest
-    steps:
       - uses: ./.github/actions/spell-check
