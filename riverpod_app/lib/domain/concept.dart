@@ -7,6 +7,7 @@ part 'concept.g.dart';
 
 @freezed
 abstract class Concept with _$Concept {
+  /// Represents a learning concept containing multiple sections and challenges.
   const factory Concept({
     required String id,
     required Localizations title,
