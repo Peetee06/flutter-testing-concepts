@@ -37,10 +37,7 @@ runs:
 
     - name: Remove generated files from coverage report
       shell: bash
-      run: lcov --remove coverage/lcov.info \
-        'lib/**.g.dart' 'lib/**.freezed.dart' \
-        -o coverage/cleaned.info \
-        --ignore-errors unused
+      run: lcov --remove coverage/lcov.info '**.g.dart' '**.freezed.dart' -o coverage/cleaned.info --ignore-errors unused
       working-directory: ${{ inputs.working-directory }}
 
     - name: Set test results file
