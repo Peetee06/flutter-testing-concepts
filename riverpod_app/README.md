@@ -18,7 +18,7 @@ The domain model is defined in the `lib/domain` folder based on the following da
 - `challenges`: Displays the list of challenges for a concept.
 
 ## Core Packages
-- `riverpod`: Used for state management.
+- `flutter_riverpod`: Used for state management.
 - `retrofit` and `dio`: Used for the API client.
 - `freezed`: Used for the data models.
 - `go_router`: Used for typed navigation.
