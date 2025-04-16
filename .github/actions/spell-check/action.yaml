@@ -14,4 +14,3 @@ runs:
         includes: |
           **/*.md
         modified_files_only: false
-        working_directory: ${{ inputs.working-directory }}

@@ -1,4 +1,4 @@
-name: flutter_testing_concepts - BLoC
+name: Common Continuous Integration Workflow
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -13,16 +13,7 @@ jobs:
     steps:
       - uses: ./.github/actions/semantic-pr
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/actions/build
-        with:
-          working-directory: bloc_app
-
   spell-check:
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/actions/spell-check
-        with:
-          working-directory: bloc_app
