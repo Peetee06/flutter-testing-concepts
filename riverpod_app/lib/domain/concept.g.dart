@@ -6,8 +6,7 @@ part of 'concept.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ConceptImpl _$$ConceptImplFromJson(Map<String, dynamic> json) =>
-    _$ConceptImpl(
+_Concept _$ConceptFromJson(Map<String, dynamic> json) => _Concept(
       id: json['id'] as String,
       title: Map<String, String>.from(json['title'] as Map),
       sections: (json['sections'] as List<dynamic>)
@@ -18,10 +17,9 @@ _$ConceptImpl _$$ConceptImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ConceptImplToJson(_$ConceptImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ConceptToJson(_Concept instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'sections': instance.sections,
+      'sections': instance.sections.map((e) => e.toJson()).toList(),
       'challengeIds': instance.challengeIds,
     };

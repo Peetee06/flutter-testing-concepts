@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,105 +10,71 @@ part of 'concept.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Concept _$ConceptFromJson(Map<String, dynamic> json) {
-  return _Concept.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Concept {
-  String get id => throw _privateConstructorUsedError;
-  Map<String, String> get title => throw _privateConstructorUsedError;
-  List<Section> get sections => throw _privateConstructorUsedError;
-  List<String> get challengeIds => throw _privateConstructorUsedError;
-
-  /// Serializes this Concept to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  Localizations get title;
+  List<Section> get sections;
+  List<String> get challengeIds;
 
   /// Create a copy of Concept
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ConceptCopyWith<Concept> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ConceptCopyWith<$Res> {
-  factory $ConceptCopyWith(Concept value, $Res Function(Concept) then) =
-      _$ConceptCopyWithImpl<$Res, Concept>;
-  @useResult
-  $Res call(
-      {String id,
-      Map<String, String> title,
-      List<Section> sections,
-      List<String> challengeIds});
-}
-
-/// @nodoc
-class _$ConceptCopyWithImpl<$Res, $Val extends Concept>
-    implements $ConceptCopyWith<$Res> {
-  _$ConceptCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Concept
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ConceptCopyWith<Concept> get copyWith =>
+      _$ConceptCopyWithImpl<Concept>(this as Concept, _$identity);
+
+  /// Serializes this Concept to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? sections = null,
-    Object? challengeIds = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      sections: null == sections
-          ? _value.sections
-          : sections // ignore: cast_nullable_to_non_nullable
-              as List<Section>,
-      challengeIds: null == challengeIds
-          ? _value.challengeIds
-          : challengeIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Concept &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.sections, sections) &&
+            const DeepCollectionEquality()
+                .equals(other.challengeIds, challengeIds));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(sections),
+      const DeepCollectionEquality().hash(challengeIds));
+
+  @override
+  String toString() {
+    return 'Concept(id: $id, title: $title, sections: $sections, challengeIds: $challengeIds)';
   }
 }
 
 /// @nodoc
-abstract class _$$ConceptImplCopyWith<$Res> implements $ConceptCopyWith<$Res> {
-  factory _$$ConceptImplCopyWith(
-          _$ConceptImpl value, $Res Function(_$ConceptImpl) then) =
-      __$$ConceptImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ConceptCopyWith<$Res> {
+  factory $ConceptCopyWith(Concept value, $Res Function(Concept) _then) =
+      _$ConceptCopyWithImpl;
   @useResult
   $Res call(
       {String id,
-      Map<String, String> title,
+      Localizations title,
       List<Section> sections,
       List<String> challengeIds});
 }
 
 /// @nodoc
-class __$$ConceptImplCopyWithImpl<$Res>
-    extends _$ConceptCopyWithImpl<$Res, _$ConceptImpl>
-    implements _$$ConceptImplCopyWith<$Res> {
-  __$$ConceptImplCopyWithImpl(
-      _$ConceptImpl _value, $Res Function(_$ConceptImpl) _then)
-      : super(_value, _then);
+class _$ConceptCopyWithImpl<$Res> implements $ConceptCopyWith<$Res> {
+  _$ConceptCopyWithImpl(this._self, this._then);
+
+  final Concept _self;
+  final $Res Function(Concept) _then;
 
   /// Create a copy of Concept
   /// with the given fields replaced by the non-null parameter values.
@@ -119,21 +86,21 @@ class __$$ConceptImplCopyWithImpl<$Res>
     Object? sections = null,
     Object? challengeIds = null,
   }) {
-    return _then(_$ConceptImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
-          ? _value._title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Localizations,
       sections: null == sections
-          ? _value._sections
+          ? _self.sections
           : sections // ignore: cast_nullable_to_non_nullable
               as List<Section>,
       challengeIds: null == challengeIds
-          ? _value._challengeIds
+          ? _self.challengeIds
           : challengeIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -142,24 +109,23 @@ class __$$ConceptImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ConceptImpl implements _Concept {
-  const _$ConceptImpl(
+class _Concept implements Concept {
+  const _Concept(
       {required this.id,
-      required final Map<String, String> title,
+      required final Localizations title,
       required final List<Section> sections,
       required final List<String> challengeIds})
       : _title = title,
         _sections = sections,
         _challengeIds = challengeIds;
-
-  factory _$ConceptImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ConceptImplFromJson(json);
+  factory _Concept.fromJson(Map<String, dynamic> json) =>
+      _$ConceptFromJson(json);
 
   @override
   final String id;
-  final Map<String, String> _title;
+  final Localizations _title;
   @override
-  Map<String, String> get title {
+  Localizations get title {
     if (_title is EqualUnmodifiableMapView) return _title;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_title);
@@ -181,16 +147,26 @@ class _$ConceptImpl implements _Concept {
     return EqualUnmodifiableListView(_challengeIds);
   }
 
+  /// Create a copy of Concept
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Concept(id: $id, title: $title, sections: $sections, challengeIds: $challengeIds)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ConceptCopyWith<_Concept> get copyWith =>
+      __$ConceptCopyWithImpl<_Concept>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ConceptToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConceptImpl &&
+            other is _Concept &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._title, _title) &&
             const DeepCollectionEquality().equals(other._sections, _sections) &&
@@ -207,44 +183,61 @@ class _$ConceptImpl implements _Concept {
       const DeepCollectionEquality().hash(_sections),
       const DeepCollectionEquality().hash(_challengeIds));
 
-  /// Create a copy of Concept
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ConceptImplCopyWith<_$ConceptImpl> get copyWith =>
-      __$$ConceptImplCopyWithImpl<_$ConceptImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ConceptImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Concept(id: $id, title: $title, sections: $sections, challengeIds: $challengeIds)';
   }
 }
 
-abstract class _Concept implements Concept {
-  const factory _Concept(
-      {required final String id,
-      required final Map<String, String> title,
-      required final List<Section> sections,
-      required final List<String> challengeIds}) = _$ConceptImpl;
+/// @nodoc
+abstract mixin class _$ConceptCopyWith<$Res> implements $ConceptCopyWith<$Res> {
+  factory _$ConceptCopyWith(_Concept value, $Res Function(_Concept) _then) =
+      __$ConceptCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      Localizations title,
+      List<Section> sections,
+      List<String> challengeIds});
+}
 
-  factory _Concept.fromJson(Map<String, dynamic> json) = _$ConceptImpl.fromJson;
+/// @nodoc
+class __$ConceptCopyWithImpl<$Res> implements _$ConceptCopyWith<$Res> {
+  __$ConceptCopyWithImpl(this._self, this._then);
 
-  @override
-  String get id;
-  @override
-  Map<String, String> get title;
-  @override
-  List<Section> get sections;
-  @override
-  List<String> get challengeIds;
+  final _Concept _self;
+  final $Res Function(_Concept) _then;
 
   /// Create a copy of Concept
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ConceptImplCopyWith<_$ConceptImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? sections = null,
+    Object? challengeIds = null,
+  }) {
+    return _then(_Concept(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self._title
+          : title // ignore: cast_nullable_to_non_nullable
+              as Localizations,
+      sections: null == sections
+          ? _self._sections
+          : sections // ignore: cast_nullable_to_non_nullable
+              as List<Section>,
+      challengeIds: null == challengeIds
+          ? _self._challengeIds
+          : challengeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
+
+// dart format on

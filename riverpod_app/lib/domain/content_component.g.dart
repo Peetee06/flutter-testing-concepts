@@ -6,26 +6,25 @@ part of 'content_component.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ImageComponentImpl _$$ImageComponentImplFromJson(Map<String, dynamic> json) =>
-    _$ImageComponentImpl(
+ImageComponent _$ImageComponentFromJson(Map<String, dynamic> json) =>
+    ImageComponent(
       imageUri: const UriJsonConverter().fromJson(json['imageUri'] as String),
       $type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$ImageComponentImplToJson(
-        _$ImageComponentImpl instance) =>
+Map<String, dynamic> _$ImageComponentToJson(ImageComponent instance) =>
     <String, dynamic>{
       'imageUri': const UriJsonConverter().toJson(instance.imageUri),
       'type': instance.$type,
     };
 
-_$TextComponentImpl _$$TextComponentImplFromJson(Map<String, dynamic> json) =>
-    _$TextComponentImpl(
+TextComponent _$TextComponentFromJson(Map<String, dynamic> json) =>
+    TextComponent(
       text: Map<String, String>.from(json['text'] as Map),
       $type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$TextComponentImplToJson(_$TextComponentImpl instance) =>
+Map<String, dynamic> _$TextComponentToJson(TextComponent instance) =>
     <String, dynamic>{
       'text': instance.text,
       'type': instance.$type,
