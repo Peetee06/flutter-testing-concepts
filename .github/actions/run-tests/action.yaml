@@ -1,0 +1,30 @@
+name: 'Run Flutter Tests'
+description: 'Runs Flutter tests for the project'
+
+inputs:
+  working-directory:
+    description: 'Working directory'
+    required: true
+
+outputs:
+  test-results-file:
+    value: ${{ steps.set-outputs.outputs.test-results-file }}
+    description: 'Path to the test results file'
+  coverage-file:
+    value: ${{ steps.set-outputs.outputs.coverage-file }}
+    description: 'Path to the coverage file'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run tests
+      shell: bash
+      run: dart run very_good_cli:very_good test --coverage -- --file-reporter=json:reports/test_report.json
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Set test results file
+      shell: bash
+      id: set-outputs
+      run: |
+        echo "test-results-file=${{ inputs.working-directory }}/reports/test_report.json" >> $GITHUB_OUTPUT
+        echo "coverage-file=${{ inputs.working-directory }}/coverage/lcov.info" >> $GITHUB_OUTPUT

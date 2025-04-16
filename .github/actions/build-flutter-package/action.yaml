@@ -1,0 +1,37 @@
+name: 'Build Flutter Package'
+description: 'Sets up, checks, tests, and uploads results for a Flutter package'
+
+inputs:
+  working-directory:
+    description: 'Working directory of the Flutter package'
+    required: true
+  codecov-token:
+    description: 'Codecov token for uploading results'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Flutter package
+      uses: ./.github/actions/setup-flutter-package/action.yaml
+      with:
+        working-directory: ${{ inputs.working-directory }}
+
+    - name: Check Flutter package
+      uses: ./.github/actions/check-flutter-package/action.yaml
+      with:
+        working-directory: ${{ inputs.working-directory }}
+
+    - name: Run tests
+      id: tests
+      uses: ./.github/actions/run-tests/action.yaml
+      with:
+        working-directory: ${{ inputs.working-directory }}
+
+    - name: Upload test results
+      uses: ./.github/actions/upload-test-results/action.yaml
+      with:
+        token: ${{ inputs.codecov-token }}
+        package-name: ${{ inputs.working-directory }}
+        coverage-files: ${{ steps.tests.outputs.coverage-file }}
+        test-results-files: ${{ steps.tests.outputs.test-results-file }}

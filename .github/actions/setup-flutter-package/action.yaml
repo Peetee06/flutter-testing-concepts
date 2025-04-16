@@ -1,0 +1,26 @@
+name: 'Setup Flutter Package'
+description: 'Sets up Flutter package'
+
+inputs:
+  working-directory:
+    description: 'Working directory'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Get Flutter version
+      id: fvm-config-action
+      uses: kuhnroyal/flutter-fvm-config-action@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+        flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+        cache: true
+
+    - name: Install dependencies
+      shell: bash
+      run: flutter pub get
+      working-directory: ${{ inputs.working-directory }}

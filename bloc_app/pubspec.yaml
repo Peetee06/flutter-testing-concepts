@@ -39,6 +39,7 @@ dev_dependencies:
   mockito: ^5.4.5
   retrofit_generator: ^9.1.9
   very_good_analysis: ^7.0.0
+  very_good_cli: ^0.25.0
 
 flutter:
   uses-material-design: true
