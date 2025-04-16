@@ -23,7 +23,7 @@ runs:
 
     - name: Run tests
       shell: bash
-      run: dart run very_good_cli:very_good test --coverage -- --file-reporter=json:reports/test_report.json
+      run: very_good test --coverage -- --file-reporter=json:reports/test_report.json
       working-directory: ${{ inputs.working-directory }}
 
     - name: Convert to junit report
