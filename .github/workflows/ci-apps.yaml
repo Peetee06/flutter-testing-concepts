@@ -36,24 +36,24 @@ jobs:
 
   build-riverpod-app:
     needs: check-changed-files
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/build
-        if: >-
-          needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
-          needs.check-changed-files.outputs.common-files-changed == 'true'
-        with:
-          working-directory: riverpod_app
+    if: >-
+      needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_channel: stable
+      coverage_excludes: "**/*.g.dart **/*.freezed.dart **/mocks.mocks.dart"
+      test_optimization: true
+      working_directory: riverpod_app
 
   build-bloc-app:
     needs: check-changed-files
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/build
-        if: >-
-          needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
-          needs.check-changed-files.outputs.common-files-changed == 'true'
-        with:
-          working-directory: bloc_app
+    if: >-
+      needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_channel: stable
+      coverage_excludes: "**/*.g.dart **/*.freezed.dart **/mocks.mocks.dart"
+      test_optimization: true
+      working_directory: bloc_app
