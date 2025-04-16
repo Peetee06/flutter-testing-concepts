@@ -29,6 +29,12 @@ runs:
         dart pub global run junitreport:tojunit --input reports/test_report.json --output reports/junit_report.xml
       working-directory: ${{ inputs.working-directory }}
 
+    - name: Setup lcov
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install lcov
+
     - name: Remove generated files from coverage report
       shell: bash
       run: lcov --remove coverage/lcov.info \
