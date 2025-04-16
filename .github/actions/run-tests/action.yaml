@@ -22,9 +22,24 @@ runs:
       run: dart run very_good_cli:very_good test --coverage -- --file-reporter=json:reports/test_report.json
       working-directory: ${{ inputs.working-directory }}
 
+    - name: Convert to junit report
+      shell: bash
+      run: |
+        dart pub global activate junitreport
+        dart pub global run junitreport:tojunit --input reports/test_report.json --output reports/junit_report.xml
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Remove generated files from coverage report
+      shell: bash
+      run: lcov --remove coverage/lcov.info \
+        'lib/**.g.dart' 'lib/**.freezed.dart' \
+        -o coverage/cleaned.info \
+        --ignore-errors unused
+      working-directory: ${{ inputs.working-directory }}
+
     - name: Set test results file
       shell: bash
       id: set-outputs
       run: |
-        echo "test-results-file=${{ inputs.working-directory }}/reports/test_report.json" >> $GITHUB_OUTPUT
-        echo "coverage-file=${{ inputs.working-directory }}/coverage/lcov.info" >> $GITHUB_OUTPUT
+        echo "test-results-file=${{ inputs.working-directory }}/reports/junit_report.xml" >> $GITHUB_OUTPUT
+        echo "coverage-file=${{ inputs.working-directory }}/coverage/cleaned.info" >> $GITHUB_OUTPUT
