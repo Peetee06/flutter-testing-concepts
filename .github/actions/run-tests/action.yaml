@@ -17,6 +17,10 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Activate very_good_cli
+      shell: bash
+      run: dart pub global activate very_good_cli
+
     - name: Run tests
       shell: bash
       run: dart run very_good_cli:very_good test --coverage -- --file-reporter=json:reports/test_report.json
