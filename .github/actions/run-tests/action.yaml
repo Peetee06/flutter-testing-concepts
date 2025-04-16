@@ -19,7 +19,7 @@ runs:
   steps:
     - name: Activate very_good_cli
       shell: bash
-      run: dart pub global activate very_good_cli
+      run: dart pub global activate very_good_cli 0.25.0
 
     - name: Run tests
       shell: bash
