@@ -46,7 +46,6 @@ jobs:
         uses: ./.github/actions/build-flutter-package/action.yaml
         with:
           working-directory: riverpod_app
-          codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   build-bloc-app:
     needs: check-changed-files
@@ -60,7 +59,6 @@ jobs:
         uses: ./.github/actions/build-flutter-package/action.yaml
         with:
           working-directory: bloc_app
-          codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   check-build-results:
     runs-on: ubuntu-latest

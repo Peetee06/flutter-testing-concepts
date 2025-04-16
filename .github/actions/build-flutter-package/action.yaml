@@ -6,8 +6,8 @@ inputs:
     description: 'Working directory of the Flutter package'
     required: true
   codecov-token:
-    description: 'Codecov token for uploading results'
-    required: true
+    description: 'Codecov token for uploading results (optional for public repos)'
+    required: false
 
 runs:
   using: 'composite'

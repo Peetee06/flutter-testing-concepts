@@ -4,7 +4,7 @@ description: Uploads code coverage and test results to Codecov
 inputs:
   token:
     description: 'Codecov token'
-    required: true
+    required: false
   package-name:
     description: 'Flutter app/package name'
     required: true
