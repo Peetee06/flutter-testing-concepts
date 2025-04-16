@@ -23,6 +23,7 @@ dev_dependencies:
   build_runner: ^2.4.15
   flutter_test:
     sdk: flutter
+  freezed: ^3.0.6
   json_serializable: ^6.9.4
   mocktail: ^1.0.4
   retrofit_generator: ^9.1.9
