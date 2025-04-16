@@ -29,6 +29,7 @@ runs:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Upload test results
+      if: ${{ !cancelled() }}
       uses: ./.github/actions/upload-test-results
       with:
         token: ${{ inputs.codecov-token }}
