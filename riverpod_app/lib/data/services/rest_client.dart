@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_app/data/services/interceptors/json_interceptor.dart';
 import 'package:riverpod_app/domain/challenge.dart';
 import 'package:riverpod_app/domain/concept.dart';
 
@@ -19,4 +22,10 @@ abstract class RestClient {
 
   @GET('/mock_challenges.json')
   Future<List<Challenge>> getChallenges();
+}
+
+@riverpod
+RestClient restClient(Ref ref) {
+  final dio = Dio()..interceptors.add(JsonInterceptor());
+  return RestClient(dio);
 }
