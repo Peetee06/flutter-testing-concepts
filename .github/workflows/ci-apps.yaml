@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Riverpod App
-        uses: ./.github/actions/build-flutter-package/action.yaml
+        uses: ./.github/actions/build-flutter-package
         with:
           working-directory: riverpod_app
 
@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Bloc App
-        uses: ./.github/actions/build-flutter-package/action.yaml
+        uses: ./.github/actions/build-flutter-package
         with:
           working-directory: bloc_app
 
