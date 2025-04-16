@@ -9,10 +9,7 @@ part of 'rest_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _RestClient implements RestClient {
-  _RestClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??=
-        'https://raw.githubusercontent.com/Peetee06/flutter-testing-concepts/refs/heads/main/';
-  }
+  _RestClient(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -110,7 +107,7 @@ class _RestClient implements RestClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$restClientHash() => r'556ba549fe0a06a1aaba07a282b023dac81b9364';
+String _$restClientHash() => r'5d565aa78935dbc80f4f56277c35803ce5d68754';
 
 /// See also [restClient].
 @ProviderFor(restClient)
