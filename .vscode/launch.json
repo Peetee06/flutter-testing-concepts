@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch development",
+      "name": "Launch BLoC App development",
       "request": "launch",
       "type": "dart",
       "program": "bloc_app/lib/main_development.dart",
@@ -13,22 +13,22 @@
         "--flavor",
         "development",
         "--target",
-        "bloc_app/lib/main_development.dart"
+        "lib/main_development.dart"
       ]
     },
     {
-      "name": "Launch staging",
+      "name": "Launch BLoC App staging",
       "request": "launch",
       "type": "dart",
       "program": "bloc_app/lib/main_staging.dart",
-      "args": ["--flavor", "staging", "--target", "bloc_app/lib/main_staging.dart"]
+      "args": ["--flavor", "staging", "--target", "lib/main_staging.dart"]
     },
     {
-      "name": "Launch production",
+      "name": "Launch BLoC App production",
       "request": "launch",
       "type": "dart",
       "program": "bloc_app/lib/main_production.dart",
-      "args": ["--flavor", "production", "--target", "bloc_app/lib/main_production.dart"]
+      "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
     }
   ]
 }
