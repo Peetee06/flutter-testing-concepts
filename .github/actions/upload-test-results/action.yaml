@@ -1,0 +1,40 @@
+name: Upload Code Coverage and Test Results to Codecov
+description: Uploads code coverage and test results to Codecov
+
+inputs:
+  token:
+    description: 'Codecov token'
+    required: true
+  package-name:
+    description: 'Flutter app/package name'
+    required: true
+  coverage-files:
+    description: 'Comma separated list of paths to the coverage files'
+    required: true
+  test-results-files:
+    description: 'Comma separated list of paths to the test results files'
+    required: true
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ inputs.token }}
+        files: ${{ inputs.coverage-files }}
+        disable_search: true
+        name: ${{ inputs.package-name }}-coverage
+        fail_ci_if_error: true
+        report_type: coverage
+
+    - name: Upload test results to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ inputs.token }}
+        files: ${{ inputs.test-results-files }}
+        disable_search: true
+        name: ${{ inputs.package-name }}-tests
+        fail_ci_if_error: true
+        report_type: test_results

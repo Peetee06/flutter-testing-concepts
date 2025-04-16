@@ -1,0 +1,20 @@
+name: 'Check Flutter Package'
+description: 'Runs Flutter analyze and format verification on a package'
+
+inputs:
+  working-directory:
+    description: 'Working directory'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Flutter analyze
+      shell: bash
+      run: flutter analyze .
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Format Dart files
+      shell: bash
+      run: dart format . --set-exit-if-changed
+      working-directory: ${{ inputs.working-directory }}
