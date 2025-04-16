@@ -6,13 +6,12 @@ part of 'answer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AnswerImpl _$$AnswerImplFromJson(Map<String, dynamic> json) => _$AnswerImpl(
+_Answer _$AnswerFromJson(Map<String, dynamic> json) => _Answer(
       id: json['id'] as String,
       text: Map<String, String>.from(json['text'] as Map),
     );
 
-Map<String, dynamic> _$$AnswerImplToJson(_$AnswerImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AnswerToJson(_Answer instance) => <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
     };

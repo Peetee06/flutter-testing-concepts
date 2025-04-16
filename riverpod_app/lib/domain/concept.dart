@@ -6,7 +6,7 @@ part 'concept.freezed.dart';
 part 'concept.g.dart';
 
 @freezed
-class Concept with _$Concept {
+abstract class Concept with _$Concept {
   const factory Concept({
     required String id,
     required Localizations title,

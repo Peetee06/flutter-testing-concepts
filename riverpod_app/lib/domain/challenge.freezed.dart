@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,107 +10,71 @@ part of 'challenge.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Challenge _$ChallengeFromJson(Map<String, dynamic> json) {
-  return _Challenge.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Challenge {
-  String get id => throw _privateConstructorUsedError;
-  Map<String, String> get question => throw _privateConstructorUsedError;
-  List<Answer> get options => throw _privateConstructorUsedError;
-  List<String> get correctAnswerIds => throw _privateConstructorUsedError;
-
-  /// Serializes this Challenge to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  Localizations get question;
+  List<Answer> get options;
+  List<String> get correctAnswerIds;
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChallengeCopyWith<Challenge> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ChallengeCopyWith<$Res> {
-  factory $ChallengeCopyWith(Challenge value, $Res Function(Challenge) then) =
-      _$ChallengeCopyWithImpl<$Res, Challenge>;
-  @useResult
-  $Res call(
-      {String id,
-      Map<String, String> question,
-      List<Answer> options,
-      List<String> correctAnswerIds});
-}
-
-/// @nodoc
-class _$ChallengeCopyWithImpl<$Res, $Val extends Challenge>
-    implements $ChallengeCopyWith<$Res> {
-  _$ChallengeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Challenge
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ChallengeCopyWith<Challenge> get copyWith =>
+      _$ChallengeCopyWithImpl<Challenge>(this as Challenge, _$identity);
+
+  /// Serializes this Challenge to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? question = null,
-    Object? options = null,
-    Object? correctAnswerIds = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
-          ? _value.question
-          : question // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
-      correctAnswerIds: null == correctAnswerIds
-          ? _value.correctAnswerIds
-          : correctAnswerIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Challenge &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.question, question) &&
+            const DeepCollectionEquality().equals(other.options, options) &&
+            const DeepCollectionEquality()
+                .equals(other.correctAnswerIds, correctAnswerIds));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(question),
+      const DeepCollectionEquality().hash(options),
+      const DeepCollectionEquality().hash(correctAnswerIds));
+
+  @override
+  String toString() {
+    return 'Challenge(id: $id, question: $question, options: $options, correctAnswerIds: $correctAnswerIds)';
   }
 }
 
 /// @nodoc
-abstract class _$$ChallengeImplCopyWith<$Res>
-    implements $ChallengeCopyWith<$Res> {
-  factory _$$ChallengeImplCopyWith(
-          _$ChallengeImpl value, $Res Function(_$ChallengeImpl) then) =
-      __$$ChallengeImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ChallengeCopyWith<$Res> {
+  factory $ChallengeCopyWith(Challenge value, $Res Function(Challenge) _then) =
+      _$ChallengeCopyWithImpl;
   @useResult
   $Res call(
       {String id,
-      Map<String, String> question,
+      Localizations question,
       List<Answer> options,
       List<String> correctAnswerIds});
 }
 
 /// @nodoc
-class __$$ChallengeImplCopyWithImpl<$Res>
-    extends _$ChallengeCopyWithImpl<$Res, _$ChallengeImpl>
-    implements _$$ChallengeImplCopyWith<$Res> {
-  __$$ChallengeImplCopyWithImpl(
-      _$ChallengeImpl _value, $Res Function(_$ChallengeImpl) _then)
-      : super(_value, _then);
+class _$ChallengeCopyWithImpl<$Res> implements $ChallengeCopyWith<$Res> {
+  _$ChallengeCopyWithImpl(this._self, this._then);
+
+  final Challenge _self;
+  final $Res Function(Challenge) _then;
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
@@ -121,21 +86,21 @@ class __$$ChallengeImplCopyWithImpl<$Res>
     Object? options = null,
     Object? correctAnswerIds = null,
   }) {
-    return _then(_$ChallengeImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       question: null == question
-          ? _value._question
+          ? _self.question
           : question // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Localizations,
       options: null == options
-          ? _value._options
+          ? _self.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<Answer>,
       correctAnswerIds: null == correctAnswerIds
-          ? _value._correctAnswerIds
+          ? _self.correctAnswerIds
           : correctAnswerIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -144,24 +109,25 @@ class __$$ChallengeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ChallengeImpl implements _Challenge {
-  const _$ChallengeImpl(
+class _Challenge implements Challenge {
+  _Challenge(
       {required this.id,
-      required final Map<String, String> question,
+      required final Localizations question,
       required final List<Answer> options,
       required final List<String> correctAnswerIds})
-      : _question = question,
+      : assert(options.map((o) => o.id).toSet().containsAll(correctAnswerIds),
+            'Each correctAnswerId must match an id in options'),
+        _question = question,
         _options = options,
         _correctAnswerIds = correctAnswerIds;
-
-  factory _$ChallengeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChallengeImplFromJson(json);
+  factory _Challenge.fromJson(Map<String, dynamic> json) =>
+      _$ChallengeFromJson(json);
 
   @override
   final String id;
-  final Map<String, String> _question;
+  final Localizations _question;
   @override
-  Map<String, String> get question {
+  Localizations get question {
     if (_question is EqualUnmodifiableMapView) return _question;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_question);
@@ -184,16 +150,26 @@ class _$ChallengeImpl implements _Challenge {
     return EqualUnmodifiableListView(_correctAnswerIds);
   }
 
+  /// Create a copy of Challenge
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Challenge(id: $id, question: $question, options: $options, correctAnswerIds: $correctAnswerIds)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChallengeCopyWith<_Challenge> get copyWith =>
+      __$ChallengeCopyWithImpl<_Challenge>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChallengeToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChallengeImpl &&
+            other is _Challenge &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._question, _question) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
@@ -210,45 +186,63 @@ class _$ChallengeImpl implements _Challenge {
       const DeepCollectionEquality().hash(_options),
       const DeepCollectionEquality().hash(_correctAnswerIds));
 
-  /// Create a copy of Challenge
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ChallengeImplCopyWith<_$ChallengeImpl> get copyWith =>
-      __$$ChallengeImplCopyWithImpl<_$ChallengeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChallengeImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Challenge(id: $id, question: $question, options: $options, correctAnswerIds: $correctAnswerIds)';
   }
 }
 
-abstract class _Challenge implements Challenge {
-  const factory _Challenge(
-      {required final String id,
-      required final Map<String, String> question,
-      required final List<Answer> options,
-      required final List<String> correctAnswerIds}) = _$ChallengeImpl;
+/// @nodoc
+abstract mixin class _$ChallengeCopyWith<$Res>
+    implements $ChallengeCopyWith<$Res> {
+  factory _$ChallengeCopyWith(
+          _Challenge value, $Res Function(_Challenge) _then) =
+      __$ChallengeCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      Localizations question,
+      List<Answer> options,
+      List<String> correctAnswerIds});
+}
 
-  factory _Challenge.fromJson(Map<String, dynamic> json) =
-      _$ChallengeImpl.fromJson;
+/// @nodoc
+class __$ChallengeCopyWithImpl<$Res> implements _$ChallengeCopyWith<$Res> {
+  __$ChallengeCopyWithImpl(this._self, this._then);
 
-  @override
-  String get id;
-  @override
-  Map<String, String> get question;
-  @override
-  List<Answer> get options;
-  @override
-  List<String> get correctAnswerIds;
+  final _Challenge _self;
+  final $Res Function(_Challenge) _then;
 
   /// Create a copy of Challenge
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChallengeImplCopyWith<_$ChallengeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? question = null,
+    Object? options = null,
+    Object? correctAnswerIds = null,
+  }) {
+    return _then(_Challenge(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      question: null == question
+          ? _self._question
+          : question // ignore: cast_nullable_to_non_nullable
+              as Localizations,
+      options: null == options
+          ? _self._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
+      correctAnswerIds: null == correctAnswerIds
+          ? _self._correctAnswerIds
+          : correctAnswerIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
+
+// dart format on
