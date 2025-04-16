@@ -31,7 +31,7 @@ dev_dependencies:
   file: ^7.0.0
   flutter_test:
     sdk: flutter
-  freezed: ^2.5.7
+  freezed: ^3.0.0-0.0.dev
   go_router_builder: ^2.7.1
   integration_test:
     sdk: flutter
