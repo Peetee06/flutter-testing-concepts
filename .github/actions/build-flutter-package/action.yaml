@@ -13,23 +13,23 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Flutter package
-      uses: ./.github/actions/setup-flutter-package/action.yaml
+      uses: ./.github/actions/setup-flutter-package
       with:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Check Flutter package
-      uses: ./.github/actions/check-flutter-package/action.yaml
+      uses: ./.github/actions/check-flutter-package
       with:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Run tests
       id: tests
-      uses: ./.github/actions/run-tests/action.yaml
+      uses: ./.github/actions/run-tests
       with:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Upload test results
-      uses: ./.github/actions/upload-test-results/action.yaml
+      uses: ./.github/actions/upload-test-results
       with:
         token: ${{ inputs.codecov-token }}
         package-name: ${{ inputs.working-directory }}
