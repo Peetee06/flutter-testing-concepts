@@ -8,9 +8,7 @@ on:
   pull_request:
 
 jobs:
-  validate-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/semantic-pr
-      - uses: ./.github/actions/spell-check
+  semantic-pr:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+  spell-check:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1

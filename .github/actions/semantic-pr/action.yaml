@@ -1,7 +1,0 @@
-name: 'Semantic Pull Request Check'
-description: 'Runs semantic pull request check using Very Good Workflows'
-runs:
-  using: "composite"
-  steps:
-    - name: Run VGV Semantic Pull Request Workflow
-      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
