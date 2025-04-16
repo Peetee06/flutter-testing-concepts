@@ -107,7 +107,7 @@ class _RestClient implements RestClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$restClientHash() => r'5d565aa78935dbc80f4f56277c35803ce5d68754';
+String _$restClientHash() => r'f16bc9f292778af7c4ce688b5dedeeb8162c0e75';
 
 /// See also [restClient].
 @ProviderFor(restClient)
