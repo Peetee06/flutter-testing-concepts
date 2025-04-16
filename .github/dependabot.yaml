@@ -3,8 +3,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
   - package-ecosystem: "pub"
     directory: "bloc_app"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+  - package-ecosystem: "pub"
+    directory: "riverpod_app"
+    schedule:
+      interval: "weekly"
