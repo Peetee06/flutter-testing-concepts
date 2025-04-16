@@ -1,0 +1,17 @@
+name: 'Spell Check'
+description: 'Runs spell check using Very Good Workflows'
+inputs:
+  working-directory:
+    description: 'The working directory for spell check'
+    required: true
+    default: '.'
+runs:
+  using: "composite"
+  steps:
+    - name: Run VGV Spell Check Workflow
+      uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+      with:
+        includes: |
+          **/*.md
+        modified_files_only: false
+        working_directory: ${{ inputs.working-directory }}

@@ -6,25 +6,23 @@ concurrency:
 
 on:
   pull_request:
-    paths:
-      - 'bloc_app/**'
 
 jobs:
   semantic-pull-request:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/semantic-pr
 
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-    with:
-      flutter_channel: stable
-      coverage_excludes: "**/*.g.dart **/*.freezed.dart **/mocks.mocks.dart"
-      test_optimization: true
-      working_directory: bloc_app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/build
+        with:
+          working-directory: bloc_app
 
   spell-check:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
-    with:
-      includes: |
-        **/*.md
-      modified_files_only: false
-      working_directory: bloc_app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/spell-check
+        with:
+          working-directory: bloc_app
