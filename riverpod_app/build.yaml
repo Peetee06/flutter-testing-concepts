@@ -1,0 +1,18 @@
+targets:
+  $default:
+    sources:
+      - $package$
+      - lib/$lib$
+      - lib/**.dart
+      - test/**.dart
+      - integration_test/**.dart
+      - pubspec.yaml
+      - pubspec.lock
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: false
+      mockito|mockBuilder:
+        generate_for:
+          - test/**.dart
+          - integration_test/**.dart
