@@ -57,3 +57,20 @@ jobs:
       coverage_excludes: "**/*.g.dart **/*.freezed.dart **/mocks.mocks.dart"
       test_optimization: true
       working_directory: bloc_app
+
+  check-build-results:
+    runs-on: ubuntu-latest
+    needs: [build-riverpod-app, build-bloc-app]
+    # Always run this job, even if dependencies fail or are skipped
+    if: always()
+    steps:
+      - name: Check build job results
+        run: |
+          echo "Riverpod App Result: ${{ needs.build-riverpod-app.result }}"
+          echo "Bloc App Result: ${{ needs.build-bloc-app.result }}"
+          if [[ "${{ needs.build-riverpod-app.result }}" == "failure" || "${{ needs.build-bloc-app.result }}" == "failure" ]]; then
+            echo "One or more build jobs failed."
+            exit 1
+          else
+            echo "All required checks passed (either success or skipped)."
+          fi
