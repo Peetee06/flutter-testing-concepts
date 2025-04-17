@@ -22,6 +22,7 @@ runs:
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v5
       with:
+        working-directory: ${{ inputs.package-name }}
         token: ${{ inputs.token }}
         files: ${{ inputs.coverage-files }}
         disable_search: true
@@ -32,6 +33,7 @@ runs:
     - name: Upload test results to Codecov
       uses: codecov/codecov-action@v5
       with:
+        working-directory: ${{ inputs.package-name }}
         token: ${{ inputs.token }}
         files: ${{ inputs.test-results-files }}
         disable_search: true

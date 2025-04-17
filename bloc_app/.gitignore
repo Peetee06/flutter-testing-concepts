@@ -88,6 +88,9 @@ unlinked_spec.ds
 # Coverage
 coverage/
 
+# Test results
+reports/
+
 # Submodules
 packages/**/pubspec.lock
 
