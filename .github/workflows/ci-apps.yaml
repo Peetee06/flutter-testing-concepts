@@ -36,10 +36,9 @@ jobs:
 
   build-riverpod-app:
     needs: check-changed-files
-    if: false
-    # if: >-
-    #   needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
-    #   needs.check-changed-files.outputs.common-files-changed == 'true'
+    if: >-
+      needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +46,6 @@ jobs:
         uses: ./.github/actions/build-flutter-package
         with:
           working-directory: riverpod_app
-          codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   build-bloc-app:
     needs: check-changed-files
@@ -61,7 +59,6 @@ jobs:
         uses: ./.github/actions/build-flutter-package
         with:
           working-directory: bloc_app
-          codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
   check-build-results:
     runs-on: ubuntu-latest
