@@ -99,7 +99,7 @@ This section highlights specific testing scenarios demonstrated within the repos
 * **Mocking 🎭:** Usage of `mocktail` for creating mock ("fake") dependencies (like API clients or repositories) in tests. Crucial for isolating the code you want to test.
   * [Mock Definitions](bloc_app/test/mocks.dart)
   * (See various unit and widget tests for usage examples, e.g., Cubit tests)
-* **Setup and Teardown ⚙️:** Examples of using `setUp`, `tearDown`, `setUpAll`, and `tearDownAll` for setting up test conditions and cleaning up afterwards.
+* **Setup and Teardown ⚙️:** Examples of using `setUp`, `tearDown`, `setUpAll`, and `tearDownAll` for setting up test conditions and cleaning up afterward.
   * (Visible in most `_test.dart` files, e.g., [Concepts Page Test](bloc_app/test/features/concepts/view/concepts_page_test.dart))
 * **Integration Testing 🔗🚀:** End-to-end tests covering user flows across multiple screens, simulating real user interaction. These are great for verifying critical paths in your app.
   * [App Integration Test](bloc_app/integration_test/app_test.dart)
