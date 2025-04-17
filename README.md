@@ -123,4 +123,4 @@ Your feedback and contributions help improve this resource for everyone.
 
 ## Connect
 
-You can also connect with me on [LinkedIn](https://www.linkedin.com/feed/) if you have other questions or just want to chat! Always happy to help. 🤝
+You can also connect with me on [LinkedIn](https://www.linkedin.com/in/peter-trost-595a27173/) if you have other questions or just want to chat! Always happy to help. 🤝
