@@ -1,0 +1,34 @@
+---
+description: Follow these rules whenever the user requests to create a Pull Request, commit something or work with git or GitHub in general
+globs: 
+alwaysApply: false
+---
+
+# Git and GitHub rules
+
+Follow these rules closely when working with git and GitHub.
+
+## General Rules
+
+### Commit messages
+
+Prefix commit messages depending on the changes
+
+- features: `feat:`
+- refactorings: `refactor:`
+- only tests: `test:` - if tests are part of a feature addition, use `feat:`
+- Everything in the `.github` directory as well as configuration files related to continuous integration like `.coderabbit.yaml` or `codecov.yml`: `ci:`
+- Documentation: `docs:`
+- Cleanups, dependency updates, SDK updates, etc.: `chore:`
+
+## Pull Request creation
+
+When asked to open a Pull Request follow these steps
+
+1. Check if you are on a feature branch already. If not, create and publish one yourself with a fitting name and using a prefix like for commit messages and checkout the new branch you created.
+2. Stage all files if the user did not specify any specific files to commit
+3. Commit everything with a meaningful commit message
+4. Use the `get_me` github tool to get the user's name
+5. Get the repository name
+6. Assume `main` as the base if the user didn't specify one
+7. Create the Pull Request with a meaningful title using the same prefix as for commit messages and description containing a concise summary of the changes
