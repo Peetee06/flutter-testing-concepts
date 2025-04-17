@@ -16,19 +16,24 @@ Prefix commit messages depending on the changes
 
 - features: `feat:`
 - refactorings: `refactor:`
+- bug fixes: `fix:`
 - only tests: `test:` - if tests are part of a feature addition, use `feat:`
-- Everything in the `.github` directory as well as configuration files related to continuous integration like `.coderabbit.yaml` or `codecov.yml`: `ci:`
-- Documentation: `docs:`
-- Cleanups, dependency updates, SDK updates, etc.: `chore:`
+- everything in the `.github` directory as well as configuration files related to continuous integration like `.coderabbit.yaml` or `codecov.yml`: `ci:`
+- documentation: `docs:`
+- cleanups, dependency updates, SDK updates, etc.: `chore:`
 
 ## Pull Request creation
 
 When asked to open a Pull Request follow these steps
 
-1. Check if you are on a feature branch already. If not, create and publish one yourself with a fitting name and using a prefix like for commit messages and checkout the new branch you created.
+1. Verify if you are on the `main` branch using `git rev-parse --abbrev-ref HEAD | cat` command
+   1. If you are on `main`:
+      1. create a new branch with a fitting name and using a prefix like for commit messages
+      2. checkout the new branch you created
+      3. publish the new branch
+   2. If you are on another branch, continue with the next step
 2. Stage all files if the user did not specify any specific files to commit
 3. Commit everything with a meaningful commit message
 4. Use the `get_me` github tool to get the user's name
-5. Get the repository name
-6. Assume `main` as the base if the user didn't specify one
-7. Create the Pull Request with a meaningful title using the same prefix as for commit messages and description containing a concise summary of the changes
+5. Get the repository name using `git remote get-url origin`
+6. Create the Pull Request with a meaningful title using the same prefix as for commit messages and description containing a concise summary of the changes
