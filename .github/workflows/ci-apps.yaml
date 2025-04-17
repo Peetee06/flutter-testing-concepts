@@ -36,9 +36,10 @@ jobs:
 
   build-riverpod-app:
     needs: check-changed-files
-    if: >-
-      needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
-      needs.check-changed-files.outputs.common-files-changed == 'true'
+    if: false
+    # if: >-
+    #   needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
+    #   needs.check-changed-files.outputs.common-files-changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -50,10 +51,9 @@ jobs:
 
   build-bloc-app:
     needs: check-changed-files
-    if: false
-    # if: >-
-    #   needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
-    #   needs.check-changed-files.outputs.common-files-changed == 'true'
+    if: >-
+      needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
