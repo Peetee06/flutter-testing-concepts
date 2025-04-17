@@ -17,7 +17,7 @@ This repository is designed for a wide range of Flutter developers:
 
 *   **AI-assisted Coders ("Vibe Coders"):** If you leverage AI for development, understanding testing basics can help you guide the AI more effectively and verify its output. Start with the basic Widget Testing examples!
 *   **Junior Developers:** New to Flutter or testing? Find simple, clear examples of unit and widget tests to get started. Look for the "Getting Started" pointers below.
-*   **Experienced Flutter Developers (New to Testing):** Comfortable with Flutter but want to add testing to your skillset? Explore practical examples for testing state management (BLoC/Cubit, Riverpod), routing, and mocking dependencies.
+*   **Experienced Flutter Developers (New to Testing):** Comfortable with Flutter but want to add testing to your skill set? Explore practical examples for testing state management (BLoC/Cubit, Riverpod), routing, and mocking dependencies.
 *   **Experienced Testers:** Already familiar with Flutter testing? Discover different approaches, review patterns, and consider contributing your expertise!
 
 ## Repository Structure 📁
