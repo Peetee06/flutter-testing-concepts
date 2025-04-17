@@ -15,7 +15,7 @@ class _RestClient implements RestClient {
     this.errorLogger,
   }) {
     baseUrl ??=
-        'https://raw.githubusercontent.com/Peetee06/flutter-testing-concepts/refs/heads/main/bloc_app/';
+        'https://raw.githubusercontent.com/Peetee06/flutter-testing-concepts/refs/heads/main/';
   }
 
   final Dio _dio;
