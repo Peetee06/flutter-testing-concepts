@@ -3,6 +3,7 @@
 
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Peetee06/flutter-testing-concepts?utm_source=oss&utm_medium=github&utm_campaign=Peetee06%2Fflutter-testing-concepts&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 [![codecov](https://codecov.io/github/Peetee06/flutter-testing-concepts/graph/badge.svg?token=OLSRHUU808)](https://codecov.io/github/Peetee06/flutter-testing-concepts)
+[License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg))
 
 This repository showcases practical examples of Flutter testing concepts, aiming to empower developers to embrace Test-Driven Development (TDD) 💡. It provides hands-on examples for building a simple Flutter application with 100% test coverage using unit, widget, and integration tests.
 
@@ -12,7 +13,7 @@ Writing tests might seem like extra work, but it offers significant benefits:
 
 * **Confidence:** Ensures your app works as expected and prevents regressions (breaking existing features) when you make changes.
 * **Better Design:** Thinking about how to test your code often leads to more modular and maintainable designs.
-* **Clearer Requirements (even for AI):** Tests act as executable specifications. Writing tests first (TDD) helps clarify requirements, which can lead to more accurate results, even when using AI code generation tools. Tests confirm the AI understood the task correctly.
+* **Clearer Requirements (especially when using AI):** Tests act as executable specifications. Writing tests first (TDD) helps clarify requirements, which can lead to more accurate results, even when using AI code generation tools. Tests confirm the AI understood the task correctly.
 * **Collaboration:** Tests serve as documentation for how components are supposed to behave.
 
 ## Who is this Repository For? 👥
@@ -40,7 +41,7 @@ Follow these steps to get the project running locally and execute the tests:
    ```
 
 **3. Choose an App & Install Dependencies:**
-   Navigate into the directory of the app implementation you want to explore (`bloc_app` or `riverpod_app`) and fetch the dependencies.
+   Navigate into the directory of the app implementation you'd like to explore (`bloc_app` or `riverpod_app`) and fetch the dependencies.
 
    *For the BLoC/Cubit version:*
 
@@ -118,7 +119,7 @@ This section highlights specific testing scenarios demonstrated within the repos
 
 This repository aims to be a community resource! Contributions are highly welcome.
 
-* **Questions & Suggestions:** Got questions, spotted an error, or have ideas for more testing concepts to cover? Please **open an issue**!
+* **Questions & Suggestions:** Got questions, spotted an error, or have ideas for more testing concepts to cover? Please **[open an issue](https://github.com/Peetee06/flutter-testing-concepts/issues/new)**!
 * **Adding Riverpod Tests:** The `riverpod_app` needs its tests! Feel free to contribute examples for testing Riverpod providers, widgets, and integration scenarios.
 * **Improving Examples:** See a way to make existing tests clearer or more effective? Suggestions and Pull Requests are welcome.
 * **Sharing Knowledge:** Experienced testers, feel free to share best practices or suggest advanced patterns via issues or discussions.
