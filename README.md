@@ -1,4 +1,8 @@
+
 # Flutter Testing Concepts 🧪🎯
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Peetee06/flutter-testing-concepts?utm_source=oss&utm_medium=github&utm_campaign=Peetee06%2Fflutter-testing-concepts&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+[![codecov](https://codecov.io/github/Peetee06/flutter-testing-concepts/graph/badge.svg?token=OLSRHUU808)](https://codecov.io/github/Peetee06/flutter-testing-concepts)
 
 This repository showcases practical examples of Flutter testing concepts, aiming to empower developers to embrace Test-Driven Development (TDD) 💡. It provides hands-on examples for building a simple Flutter application with 100% test coverage using unit, widget, and integration tests.
 
