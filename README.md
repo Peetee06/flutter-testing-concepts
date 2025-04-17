@@ -20,6 +20,54 @@ This repository is designed for a wide range of Flutter developers:
 * **Experienced Flutter Developers (New to Testing):** Comfortable with Flutter but want to add testing to your skill set? Explore practical examples for testing state management (BLoC/Cubit, Riverpod), routing, and mocking dependencies.
 * **Experienced Testers:** Already familiar with Flutter testing? Discover different approaches, review patterns, and consider contributing your expertise!
 
+## Getting Started 🚀
+
+Follow these steps to get the project running locally and execute the tests:
+
+**1. Prerequisites:**
+
+* Ensure you have `fvm` or the [Flutter SDK](https://docs.flutter.dev/get-started/install) version 3.29.x installed on your system.
+
+**2. Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/Peetee06/flutter-testing-concepts.git
+   cd flutter-testing-concepts
+   ```
+
+**3. Choose an App & Install Dependencies:**
+   Navigate into the directory of the app implementation you want to explore (`bloc_app` or `riverpod_app`) and fetch the dependencies.
+
+   *For the BLoC/Cubit version:*
+
+   ```bash
+   cd bloc_app
+   flutter pub get
+   ```
+
+   *For the Riverpod version:*
+
+   ```bash
+   cd riverpod_app
+   flutter pub get 
+   ```
+
+**4. Run Tests:**
+
+* **Unit & Widget Tests:** Run all tests within the `test` directory (Make sure you are inside the `bloc_app` or `riverpod_app` directory):
+
+  ```bash
+  flutter test
+  ```
+
+* **Integration Tests:** Run the end-to-end tests located in the `integration_test` directory. You may need a running simulator/emulator or a connected device (Make sure you are inside the `bloc_app` or `riverpod_app` directory).
+
+  ```bash
+  flutter test integration_test
+  ```
+
+Now you're ready to explore the code and run the various test examples!
+
 ## Repository Structure 📁
 
 The repository contains two implementations of the same sample application, each utilizing a different state management solution:
