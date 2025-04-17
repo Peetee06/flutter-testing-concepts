@@ -8,7 +8,7 @@ Writing tests might seem like extra work, but it offers significant benefits:
 
 * **Confidence:** Ensures your app works as expected and prevents regressions (breaking existing features) when you make changes.
 * **Better Design:** Thinking about how to test your code often leads to more modular and maintainable designs.
-* **Clearer Requirements (even for AI!):** Tests act as executable specifications. Writing tests first (TDD) helps clarify requirements, which can lead to more accurate results, even when using AI code generation tools. Tests confirm the AI understood the task correctly.
+* **Clearer Requirements (even for AI):** Tests act as executable specifications. Writing tests first (TDD) helps clarify requirements, which can lead to more accurate results, even when using AI code generation tools. Tests confirm the AI understood the task correctly.
 * **Collaboration:** Tests serve as documentation for how components are supposed to behave.
 
 ## Who is this Repository For? 👥
