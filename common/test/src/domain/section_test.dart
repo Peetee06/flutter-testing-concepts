@@ -48,5 +48,11 @@ void main() {
         throwsA(isA<TypeError>()),
       );
     });
+
+    test('should handle empty content list', () {
+      const json = {'content': <ContentComponent>[]};
+      final section = Section.fromJson(json);
+      expect(section.content, isEmpty);
+    });
   });
 }

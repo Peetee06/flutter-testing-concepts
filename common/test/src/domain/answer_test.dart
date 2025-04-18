@@ -18,6 +18,32 @@ void main() {
       expect(answer, expected);
     });
 
+    test('should be serialized to JSON correctly', () {
+      const answer = Answer(
+        id: 'answer1',
+        text: {'en': 'Yes', 'de': 'Ja'},
+      );
+
+      final json = answer.toJson();
+
+      expect(json, {
+        'id': 'answer1',
+        'text': {'en': 'Yes', 'de': 'Ja'},
+      });
+    });
+
+    test('should maintain Answer equality after conversion cycle', () {
+      const originalAnswer = Answer(
+        id: 'answer1',
+        text: {'en': 'Yes', 'de': 'Ja'},
+      );
+
+      final json = originalAnswer.toJson();
+      final deserializedAnswer = Answer.fromJson(json);
+
+      expect(deserializedAnswer, originalAnswer);
+    });
+
     test('should throw an exception if id is missing', () {
       const json = {
         'text': {'en': 'Yes', 'de': 'Ja'},
