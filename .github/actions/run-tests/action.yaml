@@ -26,6 +26,13 @@ runs:
       run: dart pub global run very_good_cli:very_good test --coverage -- --file-reporter=json:reports/test_report.json
       working-directory: ${{ inputs.working-directory }}
 
+    - name: Convert to junit report
+      shell: bash
+      run: |
+        dart pub global activate junitreport
+        dart pub global run junitreport:tojunit --input reports/test_report.json --output reports/junit_report.xml
+      working-directory: ${{ inputs.working-directory }}
+
     - name: Setup lcov
       shell: bash
       run: |
@@ -42,22 +49,6 @@ runs:
       run: |
         awk -v prefix="${{ inputs.working-directory }}" '/^SF:/ { $0 = "SF:" prefix "/" substr($0, 4) } { print }' coverage/cleaned.info > coverage/cleaned.info.tmp && \
         mv coverage/cleaned.info.tmp coverage/cleaned.info
-      working-directory: ${{ inputs.working-directory }}
-
-    - name: Prefix working directory to test report paths
-      shell: bash
-      run: |
-        jq --arg prefix "${{ inputs.working-directory }}" \
-           'if (.test.name? and (.test.name | test("^/") | not) and (.test.name | test("^file://") | not)) then .test.name = ($prefix + "/" + .test.name) elif (.group.name? and (.group.name | test("^/") | not) and (.group.name | test("^file://") | not)) then .group.name = ($prefix + "/" + .group.name) else . end' \
-           reports/test_report.json > reports/test_report.json.tmp && \
-        mv reports/test_report.json.tmp reports/test_report.json
-      working-directory: ${{ inputs.working-directory }}
-
-    - name: Convert to junit report
-      shell: bash
-      run: |
-        dart pub global activate junitreport
-        dart pub global run junitreport:tojunit --input reports/test_report.json --output reports/junit_report.xml
       working-directory: ${{ inputs.working-directory }}
 
     - name: Set test results file
