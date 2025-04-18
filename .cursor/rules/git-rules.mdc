@@ -36,4 +36,4 @@ When asked to open a Pull Request follow these steps
 3. Commit everything with a meaningful commit message
 4. Use the `get_me` github tool to get the user's name
 5. Get the repository name using `git remote get-url origin`
-6. Create the Pull Request with a meaningful title using the same prefix as for commit messages and description containing a concise summary of the changes
+6. Create the Pull Request with a meaningful title using the same prefix as for commit messages and use the [PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md) for the description containing a concise summary of the changes
