@@ -99,5 +99,27 @@ void main() {
         throwsA(isA<TypeError>()),
       );
     });
+
+    test('should maintain equality after serialization round-trip', () {
+      const concept = Concept(
+        id: 'concept1',
+        title: {'en': 'Concept 1', 'de': 'Konzept 1'},
+        sections: [
+          Section(
+            content: [
+              TextComponent(
+                text: {'de': 'Hallo', 'en': 'Hello'},
+              ),
+            ],
+          ),
+        ],
+        challengeIds: ['challenge1', 'challenge2'],
+      );
+
+      final json = concept.toJson();
+      final deserializedConcept = Concept.fromJson(json);
+
+      expect(deserializedConcept, concept);
+    });
   });
 }
