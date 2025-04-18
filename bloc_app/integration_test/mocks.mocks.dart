@@ -28,27 +28,27 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeConfig_0 extends _i1.SmartFake implements _i2.Config {
   _FakeConfig_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeCacheStore_1 extends _i1.SmartFake implements _i3.CacheStore {
   _FakeCacheStore_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeWebHelper_2 extends _i1.SmartFake implements _i4.WebHelper {
   _FakeWebHelper_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeFile_3 extends _i1.SmartFake implements _i5.File {
   _FakeFile_3(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeFileInfo_4 extends _i1.SmartFake implements _i2.FileInfo {
   _FakeFileInfo_4(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [CacheManager].
@@ -60,28 +60,22 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
   }
 
   @override
-  _i2.Config get config =>
-      (super.noSuchMethod(
-            Invocation.getter(#config),
-            returnValue: _FakeConfig_0(this, Invocation.getter(#config)),
-          )
-          as _i2.Config);
+  _i2.Config get config => (super.noSuchMethod(
+        Invocation.getter(#config),
+        returnValue: _FakeConfig_0(this, Invocation.getter(#config)),
+      ) as _i2.Config);
 
   @override
-  _i3.CacheStore get store =>
-      (super.noSuchMethod(
-            Invocation.getter(#store),
-            returnValue: _FakeCacheStore_1(this, Invocation.getter(#store)),
-          )
-          as _i3.CacheStore);
+  _i3.CacheStore get store => (super.noSuchMethod(
+        Invocation.getter(#store),
+        returnValue: _FakeCacheStore_1(this, Invocation.getter(#store)),
+      ) as _i3.CacheStore);
 
   @override
-  _i4.WebHelper get webHelper =>
-      (super.noSuchMethod(
-            Invocation.getter(#webHelper),
-            returnValue: _FakeWebHelper_2(this, Invocation.getter(#webHelper)),
-          )
-          as _i4.WebHelper);
+  _i4.WebHelper get webHelper => (super.noSuchMethod(
+        Invocation.getter(#webHelper),
+        returnValue: _FakeWebHelper_2(this, Invocation.getter(#webHelper)),
+      ) as _i4.WebHelper);
 
   @override
   _i6.Future<_i5.File> getSingleFile(
@@ -90,23 +84,22 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     Map<String, String>? headers,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #getSingleFile,
+          [url],
+          {#key: key, #headers: headers},
+        ),
+        returnValue: _i6.Future<_i5.File>.value(
+          _FakeFile_3(
+            this,
             Invocation.method(
               #getSingleFile,
               [url],
               {#key: key, #headers: headers},
             ),
-            returnValue: _i6.Future<_i5.File>.value(
-              _FakeFile_3(
-                this,
-                Invocation.method(
-                  #getSingleFile,
-                  [url],
-                  {#key: key, #headers: headers},
-                ),
-              ),
-            ),
-          )
-          as _i6.Future<_i5.File>);
+          ),
+        ),
+      ) as _i6.Future<_i5.File>);
 
   @override
   _i6.Stream<_i2.FileInfo> getFile(
@@ -115,10 +108,9 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     Map<String, String>? headers,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#getFile, [url], {#key: key, #headers: headers}),
-            returnValue: _i6.Stream<_i2.FileInfo>.empty(),
-          )
-          as _i6.Stream<_i2.FileInfo>);
+        Invocation.method(#getFile, [url], {#key: key, #headers: headers}),
+        returnValue: _i6.Stream<_i2.FileInfo>.empty(),
+      ) as _i6.Stream<_i2.FileInfo>);
 
   @override
   _i6.Stream<_i2.FileResponse> getFileStream(
@@ -128,14 +120,13 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     bool? withProgress = false,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #getFileStream,
-              [url],
-              {#key: key, #headers: headers, #withProgress: withProgress},
-            ),
-            returnValue: _i6.Stream<_i2.FileResponse>.empty(),
-          )
-          as _i6.Stream<_i2.FileResponse>);
+        Invocation.method(
+          #getFileStream,
+          [url],
+          {#key: key, #headers: headers, #withProgress: withProgress},
+        ),
+        returnValue: _i6.Stream<_i2.FileResponse>.empty(),
+      ) as _i6.Stream<_i2.FileResponse>);
 
   @override
   _i6.Future<_i2.FileInfo> downloadFile(
@@ -145,23 +136,22 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     bool? force = false,
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #downloadFile,
+          [url],
+          {#key: key, #authHeaders: authHeaders, #force: force},
+        ),
+        returnValue: _i6.Future<_i2.FileInfo>.value(
+          _FakeFileInfo_4(
+            this,
             Invocation.method(
               #downloadFile,
               [url],
               {#key: key, #authHeaders: authHeaders, #force: force},
             ),
-            returnValue: _i6.Future<_i2.FileInfo>.value(
-              _FakeFileInfo_4(
-                this,
-                Invocation.method(
-                  #downloadFile,
-                  [url],
-                  {#key: key, #authHeaders: authHeaders, #force: force},
-                ),
-              ),
-            ),
-          )
-          as _i6.Future<_i2.FileInfo>);
+          ),
+        ),
+      ) as _i6.Future<_i2.FileInfo>);
 
   @override
   _i6.Future<_i2.FileInfo?> getFileFromCache(
@@ -169,22 +159,20 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     bool? ignoreMemCache = false,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(
-              #getFileFromCache,
-              [key],
-              {#ignoreMemCache: ignoreMemCache},
-            ),
-            returnValue: _i6.Future<_i2.FileInfo?>.value(),
-          )
-          as _i6.Future<_i2.FileInfo?>);
+        Invocation.method(
+          #getFileFromCache,
+          [key],
+          {#ignoreMemCache: ignoreMemCache},
+        ),
+        returnValue: _i6.Future<_i2.FileInfo?>.value(),
+      ) as _i6.Future<_i2.FileInfo?>);
 
   @override
   _i6.Future<_i2.FileInfo?> getFileFromMemory(String? key) =>
       (super.noSuchMethod(
-            Invocation.method(#getFileFromMemory, [key]),
-            returnValue: _i6.Future<_i2.FileInfo?>.value(),
-          )
-          as _i6.Future<_i2.FileInfo?>);
+        Invocation.method(#getFileFromMemory, [key]),
+        returnValue: _i6.Future<_i2.FileInfo?>.value(),
+      ) as _i6.Future<_i2.FileInfo?>);
 
   @override
   _i6.Future<_i5.File> putFile(
@@ -196,6 +184,19 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     String? fileExtension = 'file',
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #putFile,
+          [url, fileBytes],
+          {
+            #key: key,
+            #eTag: eTag,
+            #maxAge: maxAge,
+            #fileExtension: fileExtension,
+          },
+        ),
+        returnValue: _i6.Future<_i5.File>.value(
+          _FakeFile_3(
+            this,
             Invocation.method(
               #putFile,
               [url, fileBytes],
@@ -206,23 +207,9 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
                 #fileExtension: fileExtension,
               },
             ),
-            returnValue: _i6.Future<_i5.File>.value(
-              _FakeFile_3(
-                this,
-                Invocation.method(
-                  #putFile,
-                  [url, fileBytes],
-                  {
-                    #key: key,
-                    #eTag: eTag,
-                    #maxAge: maxAge,
-                    #fileExtension: fileExtension,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i6.Future<_i5.File>);
+          ),
+        ),
+      ) as _i6.Future<_i5.File>);
 
   @override
   _i6.Future<_i5.File> putFileStream(
@@ -234,6 +221,19 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
     String? fileExtension = 'file',
   }) =>
       (super.noSuchMethod(
+        Invocation.method(
+          #putFileStream,
+          [url, source],
+          {
+            #key: key,
+            #eTag: eTag,
+            #maxAge: maxAge,
+            #fileExtension: fileExtension,
+          },
+        ),
+        returnValue: _i6.Future<_i5.File>.value(
+          _FakeFile_3(
+            this,
             Invocation.method(
               #putFileStream,
               [url, source],
@@ -244,48 +244,28 @@ class MockCacheManager extends _i1.Mock implements _i2.CacheManager {
                 #fileExtension: fileExtension,
               },
             ),
-            returnValue: _i6.Future<_i5.File>.value(
-              _FakeFile_3(
-                this,
-                Invocation.method(
-                  #putFileStream,
-                  [url, source],
-                  {
-                    #key: key,
-                    #eTag: eTag,
-                    #maxAge: maxAge,
-                    #fileExtension: fileExtension,
-                  },
-                ),
-              ),
-            ),
-          )
-          as _i6.Future<_i5.File>);
+          ),
+        ),
+      ) as _i6.Future<_i5.File>);
 
   @override
-  _i6.Future<void> removeFile(String? key) =>
-      (super.noSuchMethod(
-            Invocation.method(#removeFile, [key]),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
+  _i6.Future<void> removeFile(String? key) => (super.noSuchMethod(
+        Invocation.method(#removeFile, [key]),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> emptyCache() =>
-      (super.noSuchMethod(
-            Invocation.method(#emptyCache, []),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
+  _i6.Future<void> emptyCache() => (super.noSuchMethod(
+        Invocation.method(#emptyCache, []),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 
   @override
-  _i6.Future<void> dispose() =>
-      (super.noSuchMethod(
-            Invocation.method(#dispose, []),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
-          )
-          as _i6.Future<void>);
+  _i6.Future<void> dispose() => (super.noSuchMethod(
+        Invocation.method(#dispose, []),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
