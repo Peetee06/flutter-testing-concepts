@@ -47,6 +47,28 @@ void main() {
       expect(challenge, expected);
     });
 
+    test('toJson includes serialized options', () {
+      const mockAnswer = Answer(id: 'a1', text: {'en': 'foo', 'de': 'foo'});
+      final challenge = Challenge(
+        id: 'c1',
+        question: {'en': 'q', 'de': 'q'},
+        options: [mockAnswer],
+        correctAnswerIds: ['a1'],
+      );
+      final json = challenge.toJson();
+      expect(json, {
+        'id': 'c1',
+        'question': {'en': 'q', 'de': 'q'},
+        'options': [
+          {
+            'id': 'a1',
+            'text': {'en': 'foo', 'de': 'foo'},
+          },
+        ],
+        'correctAnswerIds': ['a1'],
+      });
+    });
+
     test('should throw an exception if id is missing', () {
       const json = {
         'question': {

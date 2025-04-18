@@ -13,5 +13,5 @@ _Section _$SectionFromJson(Map<String, dynamic> json) => _Section(
     );
 
 Map<String, dynamic> _$SectionToJson(_Section instance) => <String, dynamic>{
-      'content': instance.content,
+      'content': instance.content.map((e) => e.toJson()).toList(),
     };

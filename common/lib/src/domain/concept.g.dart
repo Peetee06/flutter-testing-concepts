@@ -20,6 +20,6 @@ _Concept _$ConceptFromJson(Map<String, dynamic> json) => _Concept(
 Map<String, dynamic> _$ConceptToJson(_Concept instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'sections': instance.sections,
+      'sections': instance.sections.map((e) => e.toJson()).toList(),
       'challengeIds': instance.challengeIds,
     };
