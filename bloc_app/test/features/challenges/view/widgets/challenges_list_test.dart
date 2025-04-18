@@ -1,9 +1,8 @@
-import 'package:bloc_app/domain/answer.dart';
-import 'package:bloc_app/domain/challenge.dart';
 import 'package:bloc_app/features/challenges/view/widgets/challenge_card.dart';
 import 'package:bloc_app/features/challenges/view/widgets/challenges_list.dart';
 import 'package:bloc_app/features/concepts/concepts_route.dart';
 import 'package:bloc_app/l10n/l10n.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -21,26 +20,32 @@ void main() {
   });
 
   final challenges = [
-    const Challenge(
+    Challenge(
       id: '1',
       question: {
         'en': 'What is Flutter?',
         'de': 'Was ist Flutter?',
       },
       options: [
-        Answer(id: 'a1', text: {'en': 'A framework', 'de': 'Ein Framework'}),
+        const Answer(
+          id: 'a1',
+          text: {'en': 'A framework', 'de': 'Ein Framework'},
+        ),
       ],
       correctAnswerIds: ['a1'],
     ),
-    const Challenge(
+    Challenge(
       id: '2',
       question: {
         'en': 'What is Dart?',
         'de': 'Was ist Dart?',
       },
       options: [
-        Answer(id: 'a1', text: {'en': 'A language', 'de': 'Eine Sprache'}),
-        Answer(id: 'a2', text: {'en': 'A tool', 'de': 'Ein Werkzeug'}),
+        const Answer(
+          id: 'a1',
+          text: {'en': 'A language', 'de': 'Eine Sprache'},
+        ),
+        const Answer(id: 'a2', text: {'en': 'A tool', 'de': 'Ein Werkzeug'}),
       ],
       correctAnswerIds: ['a1', 'a2'],
     ),

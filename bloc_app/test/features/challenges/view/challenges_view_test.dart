@@ -1,9 +1,8 @@
-import 'package:bloc_app/domain/answer.dart';
-import 'package:bloc_app/domain/challenge.dart';
 import 'package:bloc_app/features/challenges/cubit/challenges_cubit.dart';
 import 'package:bloc_app/features/challenges/cubit/challenges_state.dart';
 import 'package:bloc_app/features/challenges/view/challenges_view.dart';
 import 'package:bloc_app/features/challenges/view/widgets/challenges_list.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -48,14 +47,14 @@ void main() {
     testWidgets('passes challenges to ChallengesList',
         (WidgetTester tester) async {
       final challenges = [
-        const Challenge(
+        Challenge(
           id: '1',
           question: {
             'en': 'Test Challenge',
             'de': 'Test Herausforderung',
           },
           options: [
-            Answer(
+            const Answer(
               id: '1',
               text: {
                 'en': 'Test Option',

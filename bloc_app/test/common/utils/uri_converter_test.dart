@@ -1,4 +1,4 @@
-import 'package:bloc_app/common/utils/uri_converter.dart';
+import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

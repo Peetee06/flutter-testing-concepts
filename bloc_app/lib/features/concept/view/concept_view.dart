@@ -1,7 +1,7 @@
-import 'package:bloc_app/common/extensions/localizations_extension.dart';
 import 'package:bloc_app/features/concept/cubit/concept_cubit.dart';
 import 'package:bloc_app/features/concept/cubit/concept_state.dart';
 import 'package:bloc_app/features/concept/view/widgets/sections_view.dart';
+import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

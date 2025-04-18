@@ -1,4 +1,4 @@
-import 'package:bloc_app/domain/challenge.dart';
+import 'package:common/common.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'challenges_state.freezed.dart';

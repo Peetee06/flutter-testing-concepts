@@ -1,5 +1,4 @@
-import 'package:bloc_app/common/extensions/localizations_extension.dart';
-import 'package:bloc_app/domain/challenge.dart';
+import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 
 class ChallengeCard extends StatelessWidget {

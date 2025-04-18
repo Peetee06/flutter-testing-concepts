@@ -1,4 +1,4 @@
-import 'package:bloc_app/domain/content_component.dart';
+import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

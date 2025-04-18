@@ -1,7 +1,7 @@
-import 'package:bloc_app/domain/challenge.dart';
 import 'package:bloc_app/features/challenges/view/widgets/challenge_card.dart';
 import 'package:bloc_app/features/concepts/concepts_route.dart';
 import 'package:bloc_app/l10n/l10n.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesList extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:bloc_app/common/extensions/localizations_extension.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

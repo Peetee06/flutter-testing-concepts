@@ -1,5 +1,4 @@
-import 'package:bloc_app/domain/challenge.dart';
-import 'package:bloc_app/domain/concept.dart';
+import 'package:common/common.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 

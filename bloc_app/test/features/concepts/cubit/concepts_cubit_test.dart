@@ -1,9 +1,7 @@
-import 'package:bloc_app/domain/concept.dart';
-import 'package:bloc_app/domain/content_component.dart';
-import 'package:bloc_app/domain/section.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_cubit.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_state.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

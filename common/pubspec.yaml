@@ -1,0 +1,25 @@
+name: common
+description: Common domain logic for Flutter testing concepts apps
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  build_runner: ^2.4.15
+  flutter_test:
+    sdk: flutter
+  freezed: ^3.0.6
+  json_serializable: ^6.9.5
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
