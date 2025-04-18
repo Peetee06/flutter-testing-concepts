@@ -41,7 +41,14 @@ runs:
 
     - name: Remove generated files from coverage report
       shell: bash
-      run: lcov --remove coverage/lcov.info '**.g.dart' '**.freezed.dart' -o coverage/cleaned.info --ignore-errors unused
+      run: lcov --remove coverage/lcov.info '**.g.dart' -o coverage/cleaned.info --ignore-errors unused
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Prefix working directory to coverage paths
+      shell: bash
+      run: |
+        awk -v prefix="${{ inputs.working-directory }}" '/^SF:/ { $0 = "SF:" prefix "/" substr($0, 4) } { print }' coverage/cleaned.info > coverage/cleaned.info.tmp && \
+        mv coverage/cleaned.info.tmp coverage/cleaned.info
       working-directory: ${{ inputs.working-directory }}
 
     - name: Set test results file

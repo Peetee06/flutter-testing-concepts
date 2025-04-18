@@ -5,3 +5,9 @@
 .packages
 build/
 pubspec.lock
+
+# Coverage files
+coverage/
+
+# Test reports
+reports/
