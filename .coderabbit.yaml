@@ -4,16 +4,16 @@ reviews:
   path_instructions:
     - path: "lib/**/*.dart"
       instructions: |
-        Review the Dart code. Confirm that:
+        "Review the Dart code. Confirm that:
         - The docstrings are up-to-date with the implementations. Please highlight the outdated ones.
         - When an API in a module changes, ensure that all modules that depend on the changed module are updated accordingly.
-        - When seeing a TODO comment, try to write code to complete the TODO.
-    - path: "test/**/*"
+        - When seeing a TODO comment, try to write code to complete the TODO."
+    - path: "test/**/*.dart"
       instructions: |
-        Assess the unit test code employing the Flutter test framework. Confirm that:
+        "Assess the unit test code employing the Flutter test framework. Confirm that:
         - The tests adhere to Dart & Flutter test's established best practices.
         - Test descriptions are sufficiently detailed to clarify the purpose of each test.
-        - The tests cover all methods, classes, and errors.
+        - The tests cover all methods, classes, and errors."
   path_filters:
     - "!**/*.freezed.dart"
     - "!**/*.g.dart"
