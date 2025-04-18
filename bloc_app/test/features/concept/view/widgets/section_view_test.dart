@@ -1,7 +1,6 @@
-import 'package:bloc_app/domain/content_component.dart';
-import 'package:bloc_app/domain/section.dart';
 import 'package:bloc_app/features/concept/view/widgets/section_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_test/flutter_test.dart';

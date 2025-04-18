@@ -1,0 +1,95 @@
+name: Packages Continuous Integration Workflow
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+
+jobs:
+  check-changed-files:
+    runs-on: ubuntu-latest
+    outputs:
+      riverpod-app-changed: ${{ steps.changed-files.outputs.riverpod_app_any_modified }}
+      bloc-app-changed: ${{ steps.changed-files.outputs.bloc_app_any_modified }}
+      common-changed: ${{ steps.changed-files.outputs.common_any_modified }}
+      common-files-changed: ${{ steps.changed-files.outputs.common_files_any_modified }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v46
+        with:
+          files_yaml: |
+            riverpod_app:
+              - 'riverpod_app/**'
+            bloc_app:
+              - 'bloc_app/**'
+            common_files:
+              - '.fvmrc'
+              - '.github/actions/build/action.yaml'
+              - '.github/workflows/ci-apps.yaml'
+              - 'mock_challenges.json'
+              - 'mock_concepts.json'
+            common:
+              - 'common/**'
+
+  build-riverpod-app:
+    needs: check-changed-files
+    if: >-
+      needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Riverpod App
+        uses: ./.github/actions/build-flutter-package
+        with:
+          working-directory: riverpod_app
+
+  build-bloc-app:
+    needs: check-changed-files
+    if: >-
+      needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Bloc App
+        uses: ./.github/actions/build-flutter-package
+        with:
+          working-directory: bloc_app
+
+  build-common:
+    needs: check-changed-files
+    if: >-
+      needs.check-changed-files.outputs.common-changed == 'true' ||
+      needs.check-changed-files.outputs.common-files-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Common Package
+        uses: ./.github/actions/build-flutter-package
+        with:
+          working-directory: common
+
+  check-build-results:
+    runs-on: ubuntu-latest
+    needs: [build-riverpod-app, build-bloc-app, build-common]
+    # Always run this job, even if dependencies fail or are skipped
+    if: always()
+    steps:
+      - name: Check build job results
+        run: |
+          echo "Riverpod App Result: ${{ needs.build-riverpod-app.result }}"
+          echo "Bloc App Result: ${{ needs.build-bloc-app.result }}"
+          echo "Common Package Result: ${{ needs.build-common.result }}"
+          if [[ "${{ needs.build-riverpod-app.result }}" == "failure" || "${{ needs.build-bloc-app.result }}" == "failure" || "${{ needs.build-common.result }}" == "failure" ]]; then
+            echo "One or more build jobs failed."
+            exit 1
+          else
+            echo "All required checks passed (either success or skipped)."
+          fi

@@ -1,7 +1,7 @@
 import 'package:bloc_app/data/repositories/challenges/challenges_repository.dart';
 import 'package:bloc_app/data/repositories/concepts/concepts_repository.dart';
-import 'package:bloc_app/domain/challenge.dart';
 import 'package:bloc_app/features/challenges/cubit/challenges_state.dart';
+import 'package:common/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChallengesCubit extends Cubit<ChallengesState> {

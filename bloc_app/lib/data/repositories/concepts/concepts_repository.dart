@@ -1,5 +1,5 @@
 import 'package:bloc_app/data/services/rest_client.dart';
-import 'package:bloc_app/domain/concept.dart';
+import 'package:common/common.dart';
 
 class ConceptsRepository {
   ConceptsRepository({

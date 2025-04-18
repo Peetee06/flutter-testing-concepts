@@ -1,12 +1,10 @@
-import 'package:bloc_app/domain/concept.dart';
-import 'package:bloc_app/domain/content_component.dart';
-import 'package:bloc_app/domain/section.dart';
 import 'package:bloc_app/features/concept/concept_route.dart';
 import 'package:bloc_app/features/concepts/concepts_route.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_cubit.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_state.dart';
 import 'package:bloc_app/features/concepts/view/concepts_view.dart';
 import 'package:bloc_app/l10n/l10n.dart';
+import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';

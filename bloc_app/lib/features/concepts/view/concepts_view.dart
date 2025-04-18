@@ -1,9 +1,9 @@
-import 'package:bloc_app/common/extensions/localizations_extension.dart';
 import 'package:bloc_app/features/concept/concept_route.dart';
 import 'package:bloc_app/features/concepts/concepts_route.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_cubit.dart';
 import 'package:bloc_app/features/concepts/cubit/concepts_state.dart';
 import 'package:bloc_app/l10n/l10n.dart';
+import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

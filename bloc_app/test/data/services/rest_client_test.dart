@@ -1,9 +1,5 @@
 import 'package:bloc_app/data/services/rest_client.dart';
-import 'package:bloc_app/domain/answer.dart';
-import 'package:bloc_app/domain/challenge.dart';
-import 'package:bloc_app/domain/concept.dart';
-import 'package:bloc_app/domain/content_component.dart';
-import 'package:bloc_app/domain/section.dart';
+import 'package:common/common.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -140,15 +136,15 @@ void main() {
         expect(
           result,
           [
-            const Challenge(
+            Challenge(
               id: '1',
               question: {'en': 'Challenge 1', 'de': 'Herausforderung 1'},
               options: [
-                Answer(
+                const Answer(
                   id: 'a1',
                   text: {'en': 'Option 1', 'de': 'Option 1'},
                 ),
-                Answer(
+                const Answer(
                   id: 'a2',
                   text: {'en': 'Option 2', 'de': 'Option 2'},
                 ),

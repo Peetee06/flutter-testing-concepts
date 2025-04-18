@@ -1,9 +1,7 @@
-import 'package:bloc_app/domain/answer.dart';
-import 'package:bloc_app/domain/challenge.dart';
-import 'package:bloc_app/domain/concept.dart';
 import 'package:bloc_app/features/challenges/cubit/challenges_cubit.dart';
 import 'package:bloc_app/features/challenges/cubit/challenges_state.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -19,27 +17,27 @@ void main() {
   });
 
   final challenges = [
-    const Challenge(
+    Challenge(
       id: '1',
       question: {
         'en': 'What is 2+2?',
         'de': 'Was ist 2+2?',
       },
       options: [
-        Answer(id: 'a1', text: {'en': 'Four', 'de': 'Vier'}),
-        Answer(id: 'a2', text: {'en': 'Five', 'de': 'Fünf'}),
+        const Answer(id: 'a1', text: {'en': 'Four', 'de': 'Vier'}),
+        const Answer(id: 'a2', text: {'en': 'Five', 'de': 'Fünf'}),
       ],
       correctAnswerIds: ['a1'],
     ),
-    const Challenge(
+    Challenge(
       id: '2',
       question: {
         'en': 'What is the capital of France?',
         'de': 'Was ist die Hauptstadt von Frankreich?',
       },
       options: [
-        Answer(id: 'b1', text: {'en': 'Paris', 'de': 'Paris'}),
-        Answer(id: 'b2', text: {'en': 'London', 'de': 'London'}),
+        const Answer(id: 'b1', text: {'en': 'Paris', 'de': 'Paris'}),
+        const Answer(id: 'b2', text: {'en': 'London', 'de': 'London'}),
       ],
       correctAnswerIds: ['b1'],
     ),

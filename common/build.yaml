@@ -1,0 +1,13 @@
+targets:
+  $default:
+    sources:
+      - $package$
+      - lib/$lib$
+      - lib/**.dart
+      - test/**.dart
+      - pubspec.yaml
+      - pubspec.lock
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: false

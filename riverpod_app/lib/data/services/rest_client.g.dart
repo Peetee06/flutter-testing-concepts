@@ -18,12 +18,12 @@ class _RestClient implements RestClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Concept>> getConcepts() async {
+  Future<List<InvalidType>> getConcepts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Concept>>(
+    final _options = _setStreamType<List<InvalidType>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -34,10 +34,12 @@ class _RestClient implements RestClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Concept> _value;
+    late List<InvalidType> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => Concept.fromJson(i as Map<String, dynamic>))
+          .map(
+            (dynamic i) => InvalidType.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -47,12 +49,12 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<List<Challenge>> getChallenges() async {
+  Future<List<InvalidType>> getChallenges() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Challenge>>(
+    final _options = _setStreamType<List<InvalidType>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -63,10 +65,12 @@ class _RestClient implements RestClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Challenge> _value;
+    late List<InvalidType> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => Challenge.fromJson(i as Map<String, dynamic>))
+          .map(
+            (dynamic i) => InvalidType.fromJson(i as Map<String, dynamic>),
+          )
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

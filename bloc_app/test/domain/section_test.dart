@@ -1,5 +1,4 @@
-import 'package:bloc_app/domain/content_component.dart';
-import 'package:bloc_app/domain/section.dart';
+import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -22,6 +22,10 @@ component_management:
       name: BLoC App
       paths:
         - bloc_app/**/*
+    - component_id: common
+      name: Common Package
+      paths:
+        - common/**/*
 
   default_rules:
     statuses:

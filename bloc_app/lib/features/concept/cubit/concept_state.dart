@@ -1,4 +1,4 @@
-import 'package:bloc_app/domain/concept.dart';
+import 'package:common/common.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'concept_state.freezed.dart';

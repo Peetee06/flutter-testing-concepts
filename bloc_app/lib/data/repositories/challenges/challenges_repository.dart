@@ -1,5 +1,5 @@
 import 'package:bloc_app/data/services/rest_client.dart';
-import 'package:bloc_app/domain/challenge.dart';
+import 'package:common/common.dart';
 
 class ChallengesRepository {
   ChallengesRepository({
