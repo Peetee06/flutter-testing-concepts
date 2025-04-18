@@ -124,5 +124,11 @@ void main() {
         throwsFormatException,
       );
     });
+
+    test('fromJson should not double-encode already encoded URIs', () {
+      const urlString = 'https://example.com/path%20with%20spaces';
+      final expectedUri = Uri.parse('https://example.com/path%20with%20spaces');
+      expect(converter.fromJson(urlString), expectedUri);
+    });
   });
 }
