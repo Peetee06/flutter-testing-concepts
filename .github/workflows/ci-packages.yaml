@@ -11,10 +11,10 @@ jobs:
   check-changed-files:
     runs-on: ubuntu-latest
     outputs:
-      riverpod-app-changed: ${{ steps.changed-files.outputs.riverpod_app_any_modified }}
-      bloc-app-changed: ${{ steps.changed-files.outputs.bloc_app_any_modified }}
-      common-changed: ${{ steps.changed-files.outputs.common_any_modified }}
-      common-files-changed: ${{ steps.changed-files.outputs.common_files_any_modified }}
+      riverpod_app_changed: ${{ steps.changed-files.outputs.riverpod_app_any_modified }}
+      bloc_app_changed: ${{ steps.changed-files.outputs.bloc_app_any_modified }}
+      common_changed: ${{ steps.changed-files.outputs.common_any_modified }}
+      common_files_changed: ${{ steps.changed-files.outputs.common_files_any_modified }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,8 +40,8 @@ jobs:
   build-riverpod-app:
     needs: check-changed-files
     if: >-
-      needs.check-changed-files.outputs.riverpod-app-changed == 'true' ||
-      needs.check-changed-files.outputs.common-files-changed == 'true'
+      needs.check-changed-files.outputs.riverpod_app_changed == 'true' ||
+      needs.check-changed-files.outputs.common_files_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,8 +53,8 @@ jobs:
   build-bloc-app:
     needs: check-changed-files
     if: >-
-      needs.check-changed-files.outputs.bloc-app-changed == 'true' ||
-      needs.check-changed-files.outputs.common-files-changed == 'true'
+      needs.check-changed-files.outputs.bloc_app_changed == 'true' ||
+      needs.check-changed-files.outputs.common_files_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -66,8 +66,8 @@ jobs:
   build-common:
     needs: check-changed-files
     if: >-
-      needs.check-changed-files.outputs.common-changed == 'true' ||
-      needs.check-changed-files.outputs.common-files-changed == 'true'
+      needs.check-changed-files.outputs.common_changed == 'true' ||
+      needs.check-changed-files.outputs.common_files_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
