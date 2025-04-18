@@ -21,6 +21,6 @@ Map<String, dynamic> _$ChallengeToJson(_Challenge instance) =>
     <String, dynamic>{
       'id': instance.id,
       'question': instance.question,
-      'options': instance.options,
+      'options': instance.options.map((e) => e.toJson()).toList(),
       'correctAnswerIds': instance.correctAnswerIds,
     };
