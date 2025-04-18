@@ -41,7 +41,8 @@ jobs:
     needs: check-changed-files
     if: >-
       needs.check-changed-files.outputs.riverpod_app_changed == 'true' ||
-      needs.check-changed-files.outputs.common_files_changed == 'true'
+      needs.check-changed-files.outputs.common_files_changed == 'true' ||
+      needs.check-changed-files.outputs.common_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,7 +55,8 @@ jobs:
     needs: check-changed-files
     if: >-
       needs.check-changed-files.outputs.bloc_app_changed == 'true' ||
-      needs.check-changed-files.outputs.common_files_changed == 'true'
+      needs.check-changed-files.outputs.common_files_changed == 'true' ||
+      needs.check-changed-files.outputs.common_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
