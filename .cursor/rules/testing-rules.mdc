@@ -1,0 +1,324 @@
+---
+description: Use these rules when writing or updating tests
+globs: 
+alwaysApply: false
+---
+## General
+
+- When testing a class, wrap all its tests in a `group` with the description being the direct reference of `ClassName`. This ensures that when renaming the class, the description is updated automatically
+
+## Overriding Riverpod Providers
+Use the following convention for overriding the different providers. All examples apply to the `overrides` in `ProviderScope`, as well as `ProviderContainer`:
+
+### Value Providers
+```dart
+overrides: [
+  someValueProvider.overrideWithValue(someValue),
+],
+```
+
+### Future Providers
+Use the Builder pattern to create a value so we can test data, loading and error states of the provider.
+The Builder's signature is `FutureOr<ReturnTypeProvider> Function(FutureProviderRef<ReturnTypeOfProvider>)`.
+```dart
+overrides: [
+  someFutureProvider.overrideWith(valueBuilder),
+],
+```
+
+Examples:  
+  
+Complete with value:
+
+```dart
+FutureOr<String> usernameBuilder(FutureProviderRef<String> ref) => 'username';
+// ...
+overrides: [
+  usernameProvider.overrideWith(usernameBuilder),
+],
+/// ...
+```
+
+Complete with error:
+
+```dart
+final error = Exception();
+FutureOr<String> usernameBuilder(FutureProviderRef<String> ref) => throw error;
+// ...
+overrides: [
+  usernameProvider.overrideWith(usernameBuilder),
+],
+/// expect `error` to be thrown
+```
+
+Do not complete:
+
+```dart
+FutureOr<String> usernameBuilder(FutureProviderRef<String> ref) => Completer<String>().future;
+// ...
+overrides: [
+  usernameProvider.overrideWith(usernameBuilder),
+],
+/// ...
+```
+
+### Notifier Providers
+For notifier providers we need to use fakes. If the respective fake doesn't exist yet, please create one.
+Given the following notifier provider:
+```dart
+@riverpod
+class UsernameController extends _$UsernameController {
+  @override
+  Future<String> build() async {
+    // fetch `username` from backend
+    return username;
+  }
+
+  Future<void> updateUsername(String username) {
+    // update `username˚ in backend
+    state = AsyncData(username);
+  }
+}
+```
+
+We create this fake:
+```dart
+class FakeUsernameController extends UsernameController {
+  FakeUsernameController({
+    required this.username,
+    this.behavior,
+  });
+
+  String username;
+  FutureBehavior? behavior;
+
+  final List<String> usernameUpdates;
+
+  @override
+  Future<String> build() async {
+    behavior?.simulate();
+    return username;
+  }
+
+  @override
+  Future<void> updateUsername(String username) {
+    usernameUpdates.append(username);
+  }
+
+  void updateMock({
+    String? username,
+    FutureBehavior? behavior,
+  }) {
+    if (username != null) {
+      this.username = username;
+    }
+    this.behavior = behavior;
+  }
+}
+```
+
+Examples:  
+With a value:
+
+```dart
+overrides: [
+  usernameControllerProvider.overrideWith(
+    () => FakeUsernameController(
+      username: 'username',
+    ),
+  ),
+];
+```
+
+With an error:
+
+```dart
+final error = Exception();
+// ...
+overrides: [
+  usernameControllerProvider.overrideWith(
+    () => FakeUsernameController(
+      username: 'username',
+      behavior: FutureBehavior(
+        error: error,
+      )
+    ),
+  ),
+];
+// ...
+// expect `error` to be thrown
+```
+
+With a delay:
+
+```dart
+overrides: [
+  usernameControllerProvider.overrideWith(
+    () => FakeUsernameController(
+      username: 'username',
+      behavior: FutureBehavior(
+        delay: Future<void>.delayed(seconds: 1),
+      )
+    ),
+  ),
+];
+```
+
+Not completing = infinitely in loading state:
+
+```dart
+overrides: [
+  usernameControllerProvider.overrideWith(
+    () => FakeUsernameController(
+      username: 'username',
+      behavior: FutureBehavior(
+        loading: true,
+      )
+    ),
+  ),
+];
+```
+
+### Testing Riverpod family providers
+Family providers are tested similarly to other providers. But instead of `container.read(provider)` we have to do `container.read(provider(parameter))`.
+For overriding, we do `provider(parameter).overrideWith[...]`. The same goes for `container.listen`.
+
+## Unit Tests
+
+### Testing Riverpod value providers
+
+Create a helper method that reads and returns the value of the provider.  
+Example:
+
+```dart
+String getUsername({required User user}) {
+  final container = ProviderContainer(
+    overrides: [
+      userProvider.overrideWithValue(user),
+    ],
+  );
+  addTearDown(container.dispose);
+  return container.read(usernameProvider);
+}
+
+test('some test', () {
+  final username = getUsername(User());
+  expect(username, 'username');
+});
+```
+
+### Testing Riverpod future providers
+
+Create a helper method that reads and returns the value of the provider.  
+Example:
+
+```dart
+Future<String> getUsername({required User user}) async {
+  final container = ProviderContainer(
+    overrides: [
+      userProvider.overrideWithValue(user),
+    ],
+  );
+  addTearDown(container.dispose);
+  return container.read(usernameFutureProvider);
+}
+
+test('some test', () async {
+  final username = await getUsername(User());
+  expect(username, 'username');
+});
+```
+
+### Testing Riverpod notifier providers
+
+Create a helper method that reads and returns a subscription on the provider.  
+Example:
+
+```dart
+ProviderSubscription<UsernameController> listenToController({required User user}) {
+  final container = ProviderContainer(
+    overrides: [
+      userProvider.overrideWithValue(user),
+    ],
+  );
+  addTearDown(container.dispose);
+  return container.listen(usernameFutureProvider.notifier, (_, __) {});
+}
+
+test('some test', () {
+  final subscription = listenToController(User());
+  expect(subscription.read().state.username, 'username');
+  fakeAsync((async) {
+    subscription.read().updateUsername('updated username');
+    async.flushMicrotasks();
+    expect(subscription.read().state.username, 'updated username');
+  });
+});
+```
+
+## Widget Tests
+
+### Helper method
+
+Create a helper method to pump the test widget. Pass any parameters needed for testing to it as named parameters.  
+Example:
+
+```dart
+Future<void> createTestWidget(
+  WidgetTester tester, {
+  required String userName,
+  }) async {
+  await tester.pumpWidget(
+    WidgetUnderTest(
+      name: userName,
+    ),
+  );
+}
+```
+
+### Getting the context
+
+```dart
+final context = tester.element(find.byType(WidgetUnderTest));
+```
+
+### Riverpod provider overrides
+
+To override providers, use the `createTestWidget` method and pass any required parameters to it.  
+Example:
+
+```dart
+Future<void> createTestWidget(
+  WidgetTester tester, {
+  required String username,
+  }) async {
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [
+        userNameProvider.overrideWithValue(username),
+      ]
+      child: WidgetUnderTest(
+        name: username,
+      ),
+    )
+  );
+}
+```
+
+### Accessing Riverpod providers
+
+Use the following to get a provider within a test, for example to check on its state value
+
+```dart
+final container = ProviderScope.containerOf(context);
+final username = container.read(usernameProvider);
+```
+
+### Accessing Riverpod notifiers
+
+Use the following to get a notifier within a test, for example to call a method on it
+
+```dart
+final container = ProviderScope.containerOf(context);
+await container.read(usernameProvider.notifier).updateUsername('Updated Username');
+```
