@@ -157,7 +157,7 @@ overrides: [
     () => FakeUsernameController(
       username: 'username',
       behavior: FutureBehavior(
-        delay: Future<void>.delayed(seconds: 1),
+        delay: Future<void>.delayed(Duration(seconds: 1)),
       )
     ),
   ),
