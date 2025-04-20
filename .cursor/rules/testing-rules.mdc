@@ -5,7 +5,15 @@ alwaysApply: false
 ---
 ## General
 
-- When testing a class, wrap all its tests in a `group` with the description being the direct reference of `ClassName`. This ensures that when renaming the class, the description is updated automatically
+- When testing a class, wrap all its tests in a `group` with the description being the direct reference of `ClassName`. This ensures that when renaming the class, the description is updated automatically  
+Example:
+```dart
+group(MyClass, () {
+  test('should do something', () {
+    // Test implementation
+  });
+});
+```
 
 ## Overriding Riverpod Providers
 Use the following convention for overriding the different providers. All examples apply to the `overrides` in `ProviderScope`, as well as `ProviderContainer`:
@@ -92,7 +100,7 @@ class FakeUsernameController extends UsernameController {
   String username;
   FutureBehavior? behavior;
 
-  final List<String> usernameUpdates;
+  final List<String> usernameUpdates = [];
 
   @override
   Future<String> build() async {
@@ -102,7 +110,7 @@ class FakeUsernameController extends UsernameController {
 
   @override
   Future<void> updateUsername(String username) {
-    usernameUpdates.append(username);
+    usernameUpdates.add(username);
   }
 
   void updateMock({
@@ -181,7 +189,7 @@ overrides: [
 
 ### Testing Riverpod family providers
 Family providers are tested similarly to other providers. But instead of `container.read(provider)` we have to do `container.read(provider(parameter))`.
-For overriding, we do `provider(parameter).overrideWith[...]`. The same goes for `container.listen`.
+For overriding, we do `provider(parameter).overrideWith(...)`. The same goes for `container.listen`.
 
 ## Unit Tests
 
@@ -202,7 +210,7 @@ String getUsername({required User user}) {
 }
 
 test('some test', () {
-  final username = getUsername(User());
+  final username = getUsername(user: User());
   expect(username, 'username');
 });
 ```
@@ -220,11 +228,11 @@ Future<String> getUsername({required User user}) async {
     ],
   );
   addTearDown(container.dispose);
-  return container.read(usernameFutureProvider);
+  return container.read(usernameFutureProvider.future);
 }
 
 test('some test', () async {
-  final username = await getUsername(User());
+  final username = await getUsername(user: User());
   expect(username, 'username');
 });
 ```
@@ -246,7 +254,7 @@ ProviderSubscription<UsernameController> listenToController({required User user}
 }
 
 test('some test', () {
-  final subscription = listenToController(User());
+  final subscription = listenToController(user: User());
   expect(subscription.read().state.username, 'username');
   fakeAsync((async) {
     subscription.read().updateUsername('updated username');
@@ -266,11 +274,11 @@ Example:
 ```dart
 Future<void> createTestWidget(
   WidgetTester tester, {
-  required String userName,
+  required String name,
   }) async {
   await tester.pumpWidget(
     WidgetUnderTest(
-      name: userName,
+      name: name,
     ),
   );
 }
@@ -296,7 +304,7 @@ Future<void> createTestWidget(
     ProviderScope(
       overrides: [
         userNameProvider.overrideWithValue(username),
-      ]
+      ],
       child: WidgetUnderTest(
         name: username,
       ),
