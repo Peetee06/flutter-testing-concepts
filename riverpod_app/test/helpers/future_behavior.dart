@@ -1,5 +1,52 @@
 import 'dart:async';
 
+/// A utility class for simulating different behaviors of asynchronous
+/// operations in tests.
+///
+/// This is useful for fake future notifier providers.
+///
+/// Example usage:
+/// ```dart
+/// class FakeUsernameController extends UsernameController {
+///   FakeUsernameController({
+///     required this.username,
+///     this.behavior,
+///   });
+///
+///   String username;
+///   FutureBehavior? behavior;
+///
+///   final List<String> usernameUpdates = [];
+
+///   @override
+///   Future<String> build() async {
+///     behavior?.simulate();
+///     return username;
+///   }
+
+///   @override
+///   Future<void> updateUsername(String username) {
+///     usernameUpdates.add(username);
+///   }
+/// }
+///
+/// testWidgets('test', (tester) async {
+///   tester.pumpWidget(
+///     ProviderScope(
+///       overrides: [
+///         usernameControllerProvider.overrideWith(() =>
+///           FakeUsernameController(
+///             username: 'John Doe',
+///             behavior: FutureBehavior(loading: true),
+///           ),
+///         ),
+///       ],
+///       child: WidgetUnderTest(),
+///     ),
+///   );
+///   // rest of test
+/// });
+/// ```
 class FutureBehavior {
   FutureBehavior({
     this.loading = false,
@@ -22,30 +69,12 @@ class FutureBehavior {
   final Duration? delay;
 
   Future<void> simulate() async {
-    await _maybeSimulateDelay();
-    await _maybeSimulateLoading();
-    _maybeThrowError();
-  }
+    if (delay != null) await Future<void>.delayed(delay!);
 
-  Future<void> _maybeSimulateDelay() async {
-    final delay = this.delay;
-    if (delay != null) {
-      await Future<void>.delayed(delay);
-    }
-  }
+    if (loading) await Completer<void>().future;
 
-  Future<void> _maybeSimulateLoading() async {
-    if (loading) {
-      await Completer<void>().future;
-    }
-  }
-
-  void _maybeThrowError() {
-    final error = this.error;
-    if (error != null) {
-      // ignored, because we want to be able to throw anything for testing
-      // ignore: only_throw_errors
-      throw error;
-    }
+    // ignored, because we want to be able to throw anything for testing
+    // ignore: only_throw_errors
+    if (error != null) throw error!;
   }
 }
