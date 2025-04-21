@@ -21,6 +21,11 @@ abstract class RestClient {
 
 @riverpod
 RestClient restClient(Ref ref) {
+  return RestClient(ref.watch(dioProvider));
+}
+
+@riverpod
+Dio dio(Ref ref) {
   final baseUrl = ref.watch(appConfigProvider.select((value) => value.baseUrl));
   final options = BaseOptions(
     baseUrl: baseUrl,
@@ -29,5 +34,5 @@ RestClient restClient(Ref ref) {
     ..interceptors.addAll(
       [JsonInterceptor()],
     );
-  return RestClient(dio);
+  return dio;
 }

@@ -107,7 +107,7 @@ class _RestClient implements RestClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$restClientHash() => r'f16bc9f292778af7c4ce688b5dedeeb8162c0e75';
+String _$restClientHash() => r'421c9030ec1ad72eb91bdea0bd2d7732b345839b';
 
 /// See also [restClient].
 @ProviderFor(restClient)
@@ -123,5 +123,21 @@ final restClientProvider = AutoDisposeProvider<RestClient>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef RestClientRef = AutoDisposeProviderRef<RestClient>;
+String _$dioHash() => r'37ea2c927c5150a58ad6ef2a9a1971aaea720a92';
+
+/// See also [dio].
+@ProviderFor(dio)
+final dioProvider = AutoDisposeProvider<Dio>.internal(
+  dio,
+  name: r'dioProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DioRef = AutoDisposeProviderRef<Dio>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
