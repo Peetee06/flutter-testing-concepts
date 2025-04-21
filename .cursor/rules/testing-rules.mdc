@@ -3,10 +3,13 @@ description: Use these rules when writing or updating tests
 globs: 
 alwaysApply: false
 ---
+# Testing Rules
+
 ## General
 
 - When testing a class, wrap all its tests in a `group` with the description being the direct reference of `ClassName`. This ensures that when renaming the class, the description is updated automatically  
 Example:
+
 ```dart
 group(MyClass, () {
   test('should do something', () {
@@ -15,10 +18,55 @@ group(MyClass, () {
 });
 ```
 
+- Avoid using instances of class for the group description like `usernameProvider`. Instead, wrap them in quotes for readability of the output
+- ALWAYS write helper methods for pumping the widget under test or reading/listening to providers
+- Avoid structural or obvious comments like "Arrange, Act, Assert", "verify xyz"
+
+## Mocking
+
+We're using the `mockito` package for mocking.
+
+### Creating mocks
+
+1. Look at the `mocks.dart` file if the class already has a mock
+   1. If yes, use it
+   2. If no, add it and run the dart build runner to generate it
+
+If the file does not exist, yet, create it and follow this structure:
+
+```dart
+
+@GenerateMocks([
+  SomeClass,
+])
+class GeneratedMocks {}
+
+```
+
+Avoid adding the mocks to the respective test files. ONLY add them to the `mocks.dart` file.
+
+### Using mocks
+
+Follow this outline to use mocks:
+
+```dart
+void main() {
+  late MockRestClient client;
+
+  setUp(() {
+    client = MockRestClient();
+
+    when(client.someMethod('someParameter')).thenAnswer((_) => 'some result');
+  });
+}
+```
+
 ## Overriding Riverpod Providers
+
 Use the following convention for overriding the different providers. All examples apply to the `overrides` in `ProviderScope`, as well as `ProviderContainer`:
 
 ### Value Providers
+
 ```dart
 overrides: [
   someValueProvider.overrideWithValue(someValue),
@@ -26,8 +74,10 @@ overrides: [
 ```
 
 ### Future Providers
+
 Use the Builder pattern to create a value so we can test data, loading and error states of the provider.
 The Builder's signature is `FutureOr<ReturnTypeProvider> Function(FutureProviderRef<ReturnTypeOfProvider>)`.
+
 ```dart
 overrides: [
   someFutureProvider.overrideWith(valueBuilder),
@@ -71,8 +121,10 @@ overrides: [
 ```
 
 ### Notifier Providers
+
 For notifier providers we need to use fakes. If the respective fake doesn't exist yet, please create one.
 Given the following notifier provider:
+
 ```dart
 @riverpod
 class UsernameController extends _$UsernameController {
@@ -90,6 +142,7 @@ class UsernameController extends _$UsernameController {
 ```
 
 We create this fake:
+
 ```dart
 class FakeUsernameController extends UsernameController {
   FakeUsernameController({
@@ -188,6 +241,7 @@ overrides: [
 ```
 
 ### Testing Riverpod family providers
+
 Family providers are tested similarly to other providers. But instead of `container.read(provider)` we have to do `container.read(provider(parameter))`.
 For overriding, we do `provider(parameter).overrideWith(...)`. The same goes for `container.listen`.
 
