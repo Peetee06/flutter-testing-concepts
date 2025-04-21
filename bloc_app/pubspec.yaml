@@ -7,14 +7,14 @@ environment:
   sdk: ^3.6.0
 
 dependencies:
-  bloc: ^8.1.4
+  bloc: ^9.0.0
   cached_network_image: ^3.4.1
   common:
     path: ../common
   dio: ^5.8.0+1
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.0
   flutter_cache_manager: ^3.4.1
   flutter_localizations:
     sdk: flutter
@@ -28,7 +28,7 @@ dependencies:
 
 dev_dependencies:
   analyzer: 7.3.0
-  bloc_test: ^9.1.7
+  bloc_test: ^10.0.0
   build_runner: ^2.4.15
   build_verify: ^3.1.0
   file: ^7.0.0
