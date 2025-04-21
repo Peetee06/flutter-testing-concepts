@@ -7,10 +7,12 @@ coverage:
       default:
         target: auto
         base: auto
+        if_not_found: "success"
     patch:
       default:
         target: auto
         base: auto
+        if_not_found: "success"
 
 component_management:
   individual_components:
