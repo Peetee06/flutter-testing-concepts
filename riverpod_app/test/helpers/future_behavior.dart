@@ -10,7 +10,11 @@ class FutureBehavior {
           'delay must be null or greater than zero',
         );
 
+  /// If true, the future will never complete, simulating a perpetual
+  /// loading state.
   final bool loading;
+
+  /// If set, the future will throw this error, simulating a failure state.
   final Object? error;
 
   /// If set, the future will be simulated to take this amount of time
