@@ -15,7 +15,9 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const Placeholder(),
+      home: Placeholder(
+        child: Text(context.l10n.counterAppBarTitle),
+      ),
     );
   }
 }
