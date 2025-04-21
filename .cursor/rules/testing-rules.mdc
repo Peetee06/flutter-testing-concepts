@@ -7,18 +7,8 @@ alwaysApply: false
 
 ## General
 
-- When testing a class, wrap all its tests in a `group` with the description being the direct reference of `ClassName`. This ensures that when renaming the class, the description is updated automatically  
-Example:
-
-```dart
-group(MyClass, () {
-  test('should do something', () {
-    // Test implementation
-  });
-});
-```
-
-- Avoid using instances of class for the group description like `usernameProvider`. Instead, wrap them in quotes for readability of the output
+- Use direct class references for group descriptions (e.g., `group(MyClass, () {...})`).
+- For provider instances or other objects (e.g., `usernameProvider`), use quoted strings instead (e.g., `group('usernameProvider', () {...})`), as they would otherwise display as "Instance of [...]" in test output.
 - ALWAYS write helper methods for pumping the widget under test or reading/listening to providers
 - Avoid structural or obvious comments like "Arrange, Act, Assert", "verify xyz"
 
