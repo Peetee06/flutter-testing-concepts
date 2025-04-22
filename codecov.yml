@@ -1,5 +1,6 @@
 comment:
   layout: "header, diff, components"
+  show_carryforward_flags: true
 
 coverage:
   status:
@@ -11,6 +12,20 @@ coverage:
       default:
         target: auto
         base: auto
+
+flags:
+  riverpod_app:
+    paths:
+      - riverpod_app/**/*
+    carryforward: true
+  bloc_app:
+    paths:
+      - bloc_app/**/*
+    carryforward: true
+  common:
+    paths:
+      - common/**/*
+    carryforward: true
 
 component_management:
   individual_components:
