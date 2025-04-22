@@ -91,7 +91,13 @@ void main() {
         final restClient = getRestClient();
 
         when(
-          dio.fetch<List<dynamic>>(any),
+          dio.fetch<List<dynamic>>(
+            argThat(
+              predicate<RequestOptions>(
+                (options) => options.path.contains('/mock_concepts.json'),
+              ),
+            ),
+          ),
         ).thenAnswer(
           (_) async => Response(
             data: responseData,
@@ -128,7 +134,13 @@ void main() {
 
       test('throws exception on error response', () async {
         when(
-          dio.fetch<List<dynamic>>(any),
+          dio.fetch<List<dynamic>>(
+            argThat(
+              predicate<RequestOptions>(
+                (options) => options.path.contains('/mock_concepts.json'),
+              ),
+            ),
+          ),
         ).thenThrow(
           DioException(
             requestOptions: RequestOptions(),
@@ -168,7 +180,13 @@ void main() {
         ];
 
         when(
-          dio.fetch<List<dynamic>>(any),
+          dio.fetch<List<dynamic>>(
+            argThat(
+              predicate<RequestOptions>(
+                (options) => options.path.contains('/mock_challenges.json'),
+              ),
+            ),
+          ),
         ).thenAnswer(
           (_) async => Response(
             data: responseData,
@@ -204,7 +222,13 @@ void main() {
 
       test('throws exception on error response', () async {
         when(
-          dio.fetch<List<dynamic>>(any),
+          dio.fetch<List<dynamic>>(
+            argThat(
+              predicate<RequestOptions>(
+                (options) => options.path.contains('/mock_challenges.json'),
+              ),
+            ),
+          ),
         ).thenThrow(
           DioException(
             requestOptions: RequestOptions(),
