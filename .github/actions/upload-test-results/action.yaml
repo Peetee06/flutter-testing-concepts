@@ -26,6 +26,7 @@ runs:
         files: ${{ inputs.coverage-files }}
         disable_search: true
         name: ${{ inputs.package-name }}-coverage
+        flags: ${{ inputs.package-name }}
         fail_ci_if_error: true
         report_type: coverage
 
@@ -36,5 +37,6 @@ runs:
         files: ${{ inputs.test-results-files }}
         disable_search: true
         name: ${{ inputs.package-name }}-tests
+        flags: ${{ inputs.package-name }}
         fail_ci_if_error: true
         report_type: test_results
