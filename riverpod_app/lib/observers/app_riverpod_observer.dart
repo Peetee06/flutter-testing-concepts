@@ -10,8 +10,11 @@ class AppRiverpodObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
+    final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod] \\${provider.name ?? provider.runtimeType} updated: \\$previousValue -> \\$newValue',
+      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} updated:\n'
+      'Previous: $previousValue\n'
+      'New: $newValue',
     );
     super.didUpdateProvider(
       provider,
@@ -27,8 +30,14 @@ class AppRiverpodObserver extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
-    log('[Riverpod] \\${provider.name ?? provider.runtimeType} added: \\$value');
-    super.didAddProvider(provider, value, container);
+    log(
+      '[Riverpod] ${provider.name ?? provider.runtimeType} added: $value',
+    );
+    super.didAddProvider(
+      provider,
+      value,
+      container,
+    );
   }
 
   @override
@@ -36,8 +45,13 @@ class AppRiverpodObserver extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
-    log('[Riverpod] \\${provider.name ?? provider.runtimeType} disposed');
-    super.didDisposeProvider(provider, container);
+    log(
+      '[Riverpod] ${provider.name ?? provider.runtimeType} disposed',
+    );
+    super.didDisposeProvider(
+      provider,
+      container,
+    );
   }
 
   @override
@@ -48,9 +62,14 @@ class AppRiverpodObserver extends ProviderObserver {
     ProviderContainer container,
   ) {
     log(
-      '[Riverpod] \\${provider.name ?? provider.runtimeType} error: \\$error',
+      '[Riverpod] ${provider.name ?? provider.runtimeType} error: $error',
       stackTrace: stackTrace,
     );
-    super.providerDidFail(provider, error, stackTrace, container);
+    super.providerDidFail(
+      provider,
+      error,
+      stackTrace,
+      container,
+    );
   }
 }
