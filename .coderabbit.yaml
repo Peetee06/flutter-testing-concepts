@@ -7,7 +7,50 @@ reviews:
         "Review the Dart code. Confirm that:
         - The docstrings are up-to-date with the implementations. Please highlight the outdated ones.
         - When an API in a module changes, ensure that all modules that depend on the changed module are updated accordingly.
-        - When seeing a TODO comment, try to write code to complete the TODO."
+        - When seeing a TODO comment, try to write code to complete the TODO.
+        - Docstrings for properties and parameters should be placed right above the property declaration or parameter.
+        Examples:
+
+        ```dart
+        /// A user.
+        class User {
+          /// Creates a new user.
+          const User({
+            required this.name,
+            required this.lastName,
+
+            /// The full name of the user.
+            ///
+            /// If not provided, it will be calculated from [name] and [lastName].
+            String? fullName,
+          }) : fullName ??= '$name $lastName';
+
+          /// The name of the user.
+          final String name;
+
+          /// The last name of the user.
+          final String lastName;
+
+          /// The full name of the user.
+          ///
+          /// If not provided, it will be calculated from [name] and [lastName].
+          final String fullName;
+        }
+        ```
+
+        ```dart
+        /// Returns the full name of the user.
+        String getFullName(
+          /// The name of the user.
+          String name,
+
+          /// The last name of the user.
+          String lastName,
+        ) {
+          return '$name $lastName';
+        }
+        ```
+        "
     - path: "test/**/*.dart"
       instructions: |
         "Assess the unit test code employing the Flutter test framework. Confirm that:
