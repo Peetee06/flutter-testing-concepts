@@ -31,8 +31,10 @@ class AppRiverpodObserver extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
+    final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod] ${provider.name ?? provider.runtimeType} added: $value',
+      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      'added: $value',
     );
     super.didAddProvider(
       provider,
@@ -46,8 +48,10 @@ class AppRiverpodObserver extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
+    final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod] ${provider.name ?? provider.runtimeType} disposed',
+      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      'disposed',
     );
     super.didDisposeProvider(
       provider,
@@ -62,8 +66,12 @@ class AppRiverpodObserver extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
+    final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod] ${provider.name ?? provider.runtimeType} error: $error',
+      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      'error:\n'
+      'Error: $error\n'
+      'Provider ID: ${provider.name ?? provider.runtimeType}',
       stackTrace: stackTrace,
     );
     super.providerDidFail(
