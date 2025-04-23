@@ -8,7 +8,7 @@ reviews:
         - The docstrings are up-to-date with the implementations. Please highlight the outdated ones.
         - When an API in a module changes, ensure that all modules that depend on the changed module are updated accordingly.
         - When seeing a TODO comment, try to write code to complete the TODO.
-        - Generally follow the Effective Dart guides at https://dart.dev/effective-dart.
+        - Generally follow the Effective Dart guides at https://dart.dev/effective-dart."
     - path: "test/**/*.dart"
       instructions: |
         "Assess the unit test code employing the Flutter test framework. Confirm that:
