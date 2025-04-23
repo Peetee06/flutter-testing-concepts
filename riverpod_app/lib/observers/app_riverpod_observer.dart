@@ -12,7 +12,8 @@ class AppRiverpodObserver extends ProviderObserver {
   ) {
     final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} updated:\n'
+      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      'updated:\n'
       'Previous: $previousValue\n'
       'New: $newValue',
     );

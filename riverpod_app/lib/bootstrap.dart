@@ -5,11 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Bootstraps the application with Riverpod integration.
-///
-/// [builder] Creates the root widget of the application.
-/// [observers] Optional list of [ProviderObserver]s for monitoring Riverpod providers.
 Future<void> bootstrap(
+  /// Creates the root widget of the application.
   FutureOr<Widget> Function() builder, {
+  /// Optional list of [ProviderObserver]s for monitoring Riverpod providers.
   List<ProviderObserver>? observers,
 }) async {
   FlutterError.onError = (details) {
