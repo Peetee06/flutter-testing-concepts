@@ -5,6 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Bootstraps the application with Riverpod integration.
+///
+/// Example:
+/// ```dart
+/// await bootstrap(
+///   () => const App(),
+///   observers: [AppRiverpodObserver()],
+/// );
+/// ```
 Future<void> bootstrap(
   /// Creates the root widget of the application.
   FutureOr<Widget> Function() builder, {
