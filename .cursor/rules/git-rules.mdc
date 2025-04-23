@@ -1,7 +1,7 @@
 ---
-description: Follow these rules whenever the user requests to create a Pull Request, commit something or work with git or GitHub in general
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Git and GitHub rules
@@ -9,6 +9,14 @@ alwaysApply: false
 Follow these rules closely when working with git and GitHub.
 
 ## General Rules
+
+- before committing anything, make sure to run `dart format` and `dart analyze` and fix any issues you find, make sure to stage any files changed in this process
+
+### GitHub
+
+- The owner of this repository is `Peetee06`
+- The repository is called `flutter-testing-concepts`
+- The default branch is `main` - use it as the base branch when creating new branches if not otherwise specified
 
 ### Commit messages
 
@@ -34,6 +42,4 @@ When asked to open a Pull Request follow these steps
    2. If you are on another branch, continue with the next step
 2. Stage all files if the user did not specify any specific files to commit
 3. Commit everything with a meaningful commit message
-4. Use the `get_me` github tool to get the user's name
-5. Get the repository name using `git remote get-url origin`
-6. Create the Pull Request with a meaningful title using the same prefix as for commit messages and use the [PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md) for the description containing a concise summary of the changes
+4. Create the Pull Request with a meaningful title using the same prefix as for commit messages and use the [PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md) for the description containing a concise summary of the changes
