@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i9;
 
+import 'package:common/common.dart' as _i14;
 import 'package:dio/src/adapter.dart' as _i3;
 import 'package:dio/src/cancel_token.dart' as _i10;
 import 'package:dio/src/dio.dart' as _i7;
@@ -16,6 +17,7 @@ import 'package:dio/src/redirect_record.dart' as _i12;
 import 'package:dio/src/response.dart' as _i6;
 import 'package:dio/src/transformer.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:riverpod_app/data/services/rest_client.dart' as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -945,4 +947,27 @@ class MockResponse<T> extends _i1.Mock implements _i6.Response<T> {
         Invocation.getter(#realUri),
         returnValue: _FakeUri_9(this, Invocation.getter(#realUri)),
       ) as Uri);
+}
+
+/// A class which mocks [RestClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRestClient extends _i1.Mock implements _i13.RestClient {
+  MockRestClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.Future<List<_i14.Concept>> getConcepts() => (super.noSuchMethod(
+        Invocation.method(#getConcepts, []),
+        returnValue: _i9.Future<List<_i14.Concept>>.value(<_i14.Concept>[]),
+      ) as _i9.Future<List<_i14.Concept>>);
+
+  @override
+  _i9.Future<List<_i14.Challenge>> getChallenges() => (super.noSuchMethod(
+        Invocation.method(#getChallenges, []),
+        returnValue: _i9.Future<List<_i14.Challenge>>.value(
+          <_i14.Challenge>[],
+        ),
+      ) as _i9.Future<List<_i14.Challenge>>);
 }
