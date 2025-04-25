@@ -3,5 +3,31 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "conceptsViewTitle": "Concepts",
+    "@conceptsViewTitle": {
+        "description": "Text shown in the AppBar of the Concepts screen"
+    },
+    "conceptsSections": "{count, plural, =0{no sections} =1{one section} other{{count} sections}}",
+    "@conceptsSections": {
+        "description": "Number of sections in a concept",
+        "placeholders": {
+            "count": {"type": "int", "description": "Number of sections"}
+        }
+    },
+    "conceptsChallenges": "{count, plural, =0{no challenges} =1{one challenge} other{{count} challenges}}",
+    "@conceptsChallenges": {
+        "description": "Number of challenges in a concept",
+        "placeholders": {
+            "count": {"type": "int", "description": "Number of challenges"}
+        }
+    },
+    "conceptsTryAgain": "Try again",
+    "@conceptsTryAgain": {
+        "description": "Text of the button to try again"
+    },
+    "conceptsEmpty": "No concepts found",
+    "@conceptsEmpty": {
+        "description": "Text shown when there are no concepts"
     }
 }
