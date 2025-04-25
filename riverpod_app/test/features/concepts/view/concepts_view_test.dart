@@ -78,11 +78,12 @@ void main() {
       expect(find.text(context.l10n.conceptsEmpty), findsOneWidget);
     });
 
+    final conceptsLocaleVariant = ConceptsLocaleVariant();
     testWidgets(
       'renders list of concepts with correct info',
-      variant: ConceptsLocaleVariant(),
+      variant: conceptsLocaleVariant,
       (tester) async {
-        final config = ConceptsLocaleVariant().currentValue!;
+        final config = conceptsLocaleVariant.currentValue!;
         final concepts = [
           const Concept(
             id: '1',
