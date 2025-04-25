@@ -376,17 +376,19 @@ final container = ProviderScope.containerOf(context);
 await container.read(usernameProvider.notifier).updateUsername('Updated Username');
 ```
 
-## Using ValueVariants
+### Using ValueVariants
 
 ValueVariants allow you to run the same test multiple times with different input values, which enables more thorough testing with less code duplication.
 
-### Simple ValueVariants
+
+IMPORTANT: The variants need to be instantiated OUTSIDE of the test method and only its reference may be passed to the `variant` parameter and referenced inside the test.
+
+#### Simple ValueVariants
 
 Simple variants use a basic type like `bool`, `int`, or `String` and are useful for testing behavior across different conditions:
 
 ```dart
-final ValueVariant<bool> isDarkModeVariant = 
-    ValueVariant<bool>(<bool>{true, false});
+final ValueVariant<bool> isDarkModeVariant = ValueVariant<bool>(<bool>{true, false});
 
 testWidgets(
   'ColoredBox changes color based on theme mode',
@@ -411,7 +413,7 @@ testWidgets(
 );
 ```
 
-### Complex ValueVariants
+#### Complex ValueVariants
 
 For more complex test cases, create a custom class that extends `ValueVariant<T>` with a custom type.
 IMPORTANT: The custom class should be at the END of the file.
@@ -480,14 +482,11 @@ testWidgets(
       ),
     );
     
-    // Find the button text
     expect(find.text(config.label), findsOneWidget);
     
-    // Check if the button is enabled/disabled
     final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
     expect(button.onPressed != null, equals(config.isEnabled));
     
-    // Verify the button color
     final Material material = tester.widget<Material>(
       find.descendant(
         of: find.byType(ElevatedButton),
@@ -498,12 +497,3 @@ testWidgets(
   },
 );
 ```
-
-IMPORTANT: The variant needs to be instantiated OUTSIDE of the test method and only its reference may be passed to the `variant` parameter and referenced inside the test.
-
-### Benefits of ValueVariants
-
-- Reduce code duplication by running the same test logic with different values
-- Get better test output with descriptive variant names
-- Ensure consistent test coverage across multiple conditions
-- Make edge case testing more thorough and systematic
