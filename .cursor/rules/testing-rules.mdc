@@ -7,6 +7,7 @@ alwaysApply: false
 
 ## General
 
+- Use the `flutter test` command to run tests
 - Use direct class references for group descriptions (e.g., `group(MyClass, () {...})`).
 - For provider instances or other objects (e.g., `usernameProvider`), use quoted strings instead (e.g., `group('usernameProvider', () {...})`), as they would otherwise display as "Instance of [...]" in test output.
 - ALWAYS write helper methods for pumping the widget under test or reading/listening to providers
@@ -374,3 +375,133 @@ Use the following to get a notifier within a test, for example to call a method 
 final container = ProviderScope.containerOf(context);
 await container.read(usernameProvider.notifier).updateUsername('Updated Username');
 ```
+
+## Using ValueVariants
+
+ValueVariants allow you to run the same test multiple times with different input values, which enables more thorough testing with less code duplication.
+
+### Simple ValueVariants
+
+Simple variants use a basic type like `bool`, `int`, or `String` and are useful for testing behavior across different conditions:
+
+```dart
+final ValueVariant<bool> isDarkModeVariant = 
+    ValueVariant<bool>(<bool>{true, false});
+
+testWidgets(
+  'ColoredBox changes color based on theme mode',
+  variant: isDarkModeVariant,
+  (final WidgetTester tester) async {
+    final bool isDarkMode = isDarkModeVariant.currentValue!;
+    
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData(brightness: isDarkMode ? Brightness.dark : Brightness.light),
+        home: const ThemedColoredBox(),
+      ),
+    );
+
+    final ColoredBox coloredBox = tester.widget(find.byType(ColoredBox));
+    
+    expect(
+      coloredBox.color,
+      isDarkMode ? Colors.grey[800] : Colors.white,
+    );
+  },
+);
+```
+
+### Complex ValueVariants
+
+For more complex test cases, create a custom class that extends `ValueVariant<T>` with a custom type.
+IMPORTANT: The custom class should be at the END of the file.
+
+1. First, define a type that captures all test parameters:
+
+```dart
+typedef ButtonVariantSignature = ({
+  String label,
+  Color color,
+  bool isEnabled,
+});
+```
+
+2. Create your custom variant class:
+
+```dart
+class ButtonVariant extends ValueVariant<ButtonVariantSignature> {
+  ButtonVariant()
+      : super(<ButtonVariantSignature>{
+          (
+            label: 'Primary Button',
+            color: Colors.blue,
+            isEnabled: true,
+          ),
+          (
+            label: 'Disabled Button',
+            color: Colors.blue,
+            isEnabled: false,
+          ),
+          (
+            label: 'Danger Button',
+            color: Colors.red,
+            isEnabled: true,
+          ),
+        });
+
+  @override
+  String describeValue(final ButtonVariantSignature value) {
+    return '${value.label} (${value.isEnabled ? 'enabled' : 'disabled'})';
+  }
+}
+```
+
+3. Use the complex variant in your test:
+
+```dart
+final ButtonVariant buttonVariant = ButtonVariant();
+
+testWidgets(
+  'CustomButton renders correctly with different configurations',
+  variant: buttonVariant,
+  (final WidgetTester tester) async {
+    final ButtonVariantSignature config = buttonVariant.currentValue!;
+    
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: CustomButton(
+            label: config.label,
+            color: config.color,
+            isEnabled: config.isEnabled,
+            onPressed: config.isEnabled ? () {} : null,
+          ),
+        ),
+      ),
+    );
+    
+    // Find the button text
+    expect(find.text(config.label), findsOneWidget);
+    
+    // Check if the button is enabled/disabled
+    final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
+    expect(button.onPressed != null, equals(config.isEnabled));
+    
+    // Verify the button color
+    final Material material = tester.widget<Material>(
+      find.descendant(
+        of: find.byType(ElevatedButton),
+        matching: find.byType(Material),
+      ),
+    );
+    expect(material.color, equals(config.color));
+  },
+);
+```
+
+### Benefits of ValueVariants
+
+- Reduce code duplication by running the same test logic with different values
+- Get better test output with descriptive variant names
+- Ensure consistent test coverage across multiple conditions
+- Make edge case testing more thorough and systematic
