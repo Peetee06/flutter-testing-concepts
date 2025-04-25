@@ -499,6 +499,8 @@ testWidgets(
 );
 ```
 
+IMPORTANT: The variant needs to be instantiated OUTSIDE of the test method and only its reference may be passed to the `variant` parameter and referenced inside the test.
+
 ### Benefits of ValueVariants
 
 - Reduce code duplication by running the same test logic with different values
