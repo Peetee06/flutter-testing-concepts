@@ -1,0 +1,33 @@
+{
+    "@@locale": "de",
+    "counterAppBarTitle": "Zähler",
+    "@counterAppBarTitle": {
+        "description": "Text, der in der AppBar der Zähler-Seite angezeigt wird"
+    },
+    "conceptsViewTitle": "Konzepte",
+    "@conceptsViewTitle": {
+        "description": "Text, der in der AppBar des Konzepte-Bildschirms angezeigt wird"
+    },
+    "conceptsSections": "{count, plural, =0{keine Abschnitte} =1{ein Abschnitt} other{{count} Abschnitte}}",
+    "@conceptsSections": {
+        "description": "Anzahl der Abschnitte eines Konzepts",
+        "placeholders": {
+            "count": {"type": "int", "description": "Anzahl der Abschnitte"}
+        }
+    },
+    "conceptsChallenges": "{count, plural, =0{keine Herausforderungen} =1{eine Herausforderung} other{{count} Herausforderungen}}",
+    "@conceptsChallenges": {
+        "description": "Anzahl der Herausforderungen eines Konzepts",
+        "placeholders": {
+            "count": {"type": "int", "description": "Anzahl der Herausforderungen"}
+        }
+    },
+    "conceptsTryAgain": "Nochmal versuchen",
+    "@conceptsTryAgain": {
+        "description": "Text des Buttons zum erneuten Versuchen"
+    },
+    "conceptsEmpty": "Keine Konzepte gefunden",
+    "@conceptsEmpty": {
+        "description": "Text, der angezeigt wird, wenn keine Konzepte gefunden werden"
+    }
+}

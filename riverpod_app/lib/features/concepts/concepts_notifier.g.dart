@@ -6,7 +6,7 @@ part of 'concepts_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$conceptsNotifierHash() => r'a92dff392587b3dcd35a52f86e915e7db83e08ec';
+String _$conceptsNotifierHash() => r'7fa6554adde9f1a13dfe6396b4d06de247eddf7c';
 
 /// See also [ConceptsNotifier].
 @ProviderFor(ConceptsNotifier)
