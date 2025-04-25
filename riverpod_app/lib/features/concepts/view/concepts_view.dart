@@ -1,3 +1,4 @@
+import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
@@ -23,20 +24,18 @@ class ConceptsContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final conceptsAsync = ref.watch(conceptsNotifierProvider);
-    return conceptsAsync.when(
-      data: (concepts) => concepts.isEmpty
+    return switch (conceptsAsync) {
+      AsyncData(:final value) => value.isEmpty
           ? Center(child: Text(context.l10n.conceptsEmpty))
           : ListView.separated(
               physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: concepts.length,
+              itemCount: value.length,
               separatorBuilder: (context, index) => const SizedBox(height: 8),
               itemBuilder: (context, index) {
-                final concept = concepts[index];
+                final concept = value[index];
                 return ListTile(
                   title: Text(
-                    concept.title[
-                            Localizations.localeOf(context).languageCode] ??
-                        concept.title.values.first,
+                    concept.title.localizedTo(Localizations.localeOf(context)),
                   ),
                   subtitle: Text(
                     context.l10n.conceptsSections(concept.sections.length),
@@ -50,20 +49,20 @@ class ConceptsContent extends ConsumerWidget {
                 );
               },
             ),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(error.toString()),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              ref.invalidate(conceptsNotifierProvider);
-            },
-            child: Text(context.l10n.conceptsTryAgain),
-          ),
-        ],
-      ),
-    );
+      AsyncError(:final error) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(error.toString()),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                ref.invalidate(conceptsNotifierProvider);
+              },
+              child: Text(context.l10n.conceptsTryAgain),
+            ),
+          ],
+        ),
+      _ => const Center(child: CircularProgressIndicator()),
+    };
   }
 }

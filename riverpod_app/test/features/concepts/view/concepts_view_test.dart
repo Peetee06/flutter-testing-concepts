@@ -78,81 +78,47 @@ void main() {
       expect(find.text(context.l10n.conceptsEmpty), findsOneWidget);
     });
 
-    testWidgets('renders list of concepts with correct info (en)',
-        (tester) async {
-      final concepts = [
-        const Concept(
-          id: '1',
-          title: {'en': 'Test Concept', 'de': 'Test Konzept'},
-          sections: [
-            Section(
-              content: [
-                ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
-              ],
-            ),
-          ],
-          challengeIds: ['1'],
-        ),
-        const Concept(
-          id: '2',
-          title: {'en': 'Test Concept 2', 'de': 'Test Konzept 2'},
-          sections: [],
-          challengeIds: [],
-        ),
-      ];
-      await pumpConceptsView(
-        tester,
-        concepts: concepts,
-        locale: const Locale('en'),
-      );
-      await tester.pumpAndSettle();
-      final context = tester.element(find.byType(ConceptsView));
-      expect(find.byType(ListView), findsOneWidget);
-      expect(find.text('Test Concept'), findsOneWidget);
-      expect(find.text(context.l10n.conceptsSections(1)), findsOneWidget);
-      expect(find.text(context.l10n.conceptsChallenges(1)), findsOneWidget);
-      expect(find.text('Test Concept 2'), findsOneWidget);
-      expect(find.text(context.l10n.conceptsSections(0)), findsOneWidget);
-      expect(find.text(context.l10n.conceptsChallenges(0)), findsOneWidget);
-    });
-
-    testWidgets('renders list of concepts with correct info (de)',
-        (tester) async {
-      final concepts = [
-        const Concept(
-          id: '1',
-          title: {'en': 'Test Concept', 'de': 'Test Konzept'},
-          sections: [
-            Section(
-              content: [
-                ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
-              ],
-            ),
-          ],
-          challengeIds: ['1'],
-        ),
-        const Concept(
-          id: '2',
-          title: {'en': 'Test Concept 2', 'de': 'Test Konzept 2'},
-          sections: [],
-          challengeIds: [],
-        ),
-      ];
-      await pumpConceptsView(
-        tester,
-        concepts: concepts,
-        locale: const Locale('de'),
-      );
-      await tester.pumpAndSettle();
-      final context = tester.element(find.byType(ConceptsView));
-      expect(find.byType(ListView), findsOneWidget);
-      expect(find.text('Test Konzept'), findsOneWidget);
-      expect(find.text(context.l10n.conceptsSections(1)), findsOneWidget);
-      expect(find.text(context.l10n.conceptsChallenges(1)), findsOneWidget);
-      expect(find.text('Test Konzept 2'), findsOneWidget);
-      expect(find.text(context.l10n.conceptsSections(0)), findsOneWidget);
-      expect(find.text(context.l10n.conceptsChallenges(0)), findsOneWidget);
-    });
+    testWidgets(
+      'renders list of concepts with correct info',
+      variant: ConceptsLocaleVariant(),
+      (tester) async {
+        final config = ConceptsLocaleVariant().currentValue!;
+        final concepts = [
+          const Concept(
+            id: '1',
+            title: {'en': 'Test Concept', 'de': 'Test Konzept'},
+            sections: [
+              Section(
+                content: [
+                  ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
+                ],
+              ),
+            ],
+            challengeIds: ['1'],
+          ),
+          const Concept(
+            id: '2',
+            title: {'en': 'Test Concept 2', 'de': 'Test Konzept 2'},
+            sections: [],
+            challengeIds: [],
+          ),
+        ];
+        await pumpConceptsView(
+          tester,
+          concepts: concepts,
+          locale: config.locale,
+        );
+        await tester.pumpAndSettle();
+        final context = tester.element(find.byType(ConceptsView));
+        expect(find.byType(ListView), findsOneWidget);
+        expect(find.text(config.expectedTitle1), findsOneWidget);
+        expect(find.text(context.l10n.conceptsSections(1)), findsOneWidget);
+        expect(find.text(context.l10n.conceptsChallenges(1)), findsOneWidget);
+        expect(find.text(config.expectedTitle2), findsOneWidget);
+        expect(find.text(context.l10n.conceptsSections(0)), findsOneWidget);
+        expect(find.text(context.l10n.conceptsChallenges(0)), findsOneWidget);
+      },
+    );
 
     testWidgets(
       'navigates to concept details when tapping a concept',
@@ -162,4 +128,32 @@ void main() {
       skip: true,
     );
   });
+}
+
+typedef ConceptsLocaleVariantSignature = ({
+  Locale locale,
+  String expectedTitle1,
+  String expectedTitle2,
+});
+
+class ConceptsLocaleVariant
+    extends ValueVariant<ConceptsLocaleVariantSignature> {
+  ConceptsLocaleVariant()
+      : super(<ConceptsLocaleVariantSignature>{
+          (
+            locale: const Locale('en'),
+            expectedTitle1: 'Test Concept',
+            expectedTitle2: 'Test Concept 2',
+          ),
+          (
+            locale: const Locale('de'),
+            expectedTitle1: 'Test Konzept',
+            expectedTitle2: 'Test Konzept 2',
+          ),
+        });
+
+  @override
+  String describeValue(ConceptsLocaleVariantSignature value) {
+    return "locale: '${value.locale.languageCode}'";
+  }
 }
