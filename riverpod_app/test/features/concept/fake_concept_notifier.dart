@@ -18,7 +18,7 @@ class FakeConceptNotifier extends ConceptNotifier {
     return concept;
   }
 
-  void updateMock({
+  void updateFake({
     Concept? concept,
     FutureBehavior? behavior,
   }) {
