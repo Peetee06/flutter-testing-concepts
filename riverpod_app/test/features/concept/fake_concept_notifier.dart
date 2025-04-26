@@ -14,6 +14,9 @@ class FakeConceptNotifier extends ConceptNotifier {
 
   @override
   Future<Concept> build(String id) async {
+    if (concept.id != id) {
+      throw AssertionError('Concept id mismatch');
+    }
     await behavior?.simulate();
     return concept;
   }
