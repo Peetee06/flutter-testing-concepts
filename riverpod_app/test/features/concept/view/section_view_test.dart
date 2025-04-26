@@ -62,7 +62,9 @@ void main() {
         ),
       );
       expect(find.byType(CachedNetworkImage), findsOneWidget);
-      final cachedImage = tester.widget<CachedNetworkImage>(find.byType(CachedNetworkImage));
+      final cachedImage = tester.widget<CachedNetworkImage>(
+        find.byType(CachedNetworkImage),
+      );
       expect(cachedImage.imageUrl, 'https://example.com/image.jpg');
     });
 
