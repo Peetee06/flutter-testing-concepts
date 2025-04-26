@@ -24,57 +24,59 @@ void main() {
     ).thenAnswer((_) => const Stream<FileResponse>.empty());
   });
 
+  Future<void> pumpSectionView(
+    WidgetTester tester, {
+    required Section section,
+  }) async {
+    await tester.pumpApp(
+      widget: SectionView(section: section),
+      overrides: [
+        cacheManagerProvider.overrideWith((_) => cacheManager),
+      ],
+    );
+  }
+
   group(SectionView, () {
     testWidgets('renders text component', (tester) async {
-      await tester.pumpApp(
-        widget: const SectionView(
-          section: Section(
-            content: [
-              ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
-            ],
-          ),
+      await pumpSectionView(
+        tester,
+        section: const Section(
+          content: [
+            ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
+          ],
         ),
-        overrides: [
-          cacheManagerProvider.overrideWith((ref) => cacheManager),
-        ],
       );
+      // default locale is de
       expect(find.text('Hallo'), findsOneWidget);
     });
 
     testWidgets('renders image component', (tester) async {
-      await tester.pumpApp(
-        widget: SectionView(
-          section: Section(
-            content: [
-              ContentComponent.image(
-                imageUri: Uri.parse('https://example.com/image.jpg'),
-              ),
-            ],
-          ),
+      await pumpSectionView(
+        tester,
+        section: Section(
+          content: [
+            ContentComponent.image(
+              imageUri: Uri.parse('https://example.com/image.jpg'),
+            ),
+          ],
         ),
-        overrides: [
-          cacheManagerProvider.overrideWith((ref) => cacheManager),
-        ],
       );
       expect(find.byType(CachedNetworkImage), findsOneWidget);
     });
 
     testWidgets('renders multiple components', (tester) async {
-      await tester.pumpApp(
-        widget: SectionView(
-          section: Section(
-            content: [
-              const ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
-              ContentComponent.image(
-                imageUri: Uri.parse('https://example.com/image.jpg'),
-              ),
-            ],
-          ),
+      await pumpSectionView(
+        tester,
+        section: Section(
+          content: [
+            const ContentComponent.text(text: {'en': 'Hello', 'de': 'Hallo'}),
+            ContentComponent.image(
+              imageUri: Uri.parse('https://example.com/image.jpg'),
+            ),
+          ],
         ),
-        overrides: [
-          cacheManagerProvider.overrideWith((ref) => cacheManager),
-        ],
       );
+      // default locale is de
       expect(find.text('Hallo'), findsOneWidget);
       expect(find.byType(CachedNetworkImage), findsOneWidget);
     });
