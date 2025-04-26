@@ -80,5 +80,14 @@ void main() {
       expect(find.text('Hallo'), findsOneWidget);
       expect(find.byType(CachedNetworkImage), findsOneWidget);
     });
+
+    testWidgets('handles empty content gracefully', (tester) async {
+      await pumpSectionView(
+        tester,
+        section: const Section(content: []),
+      );
+
+      expect(find.byType(SectionView), findsOneWidget);
+    });
   });
 }
