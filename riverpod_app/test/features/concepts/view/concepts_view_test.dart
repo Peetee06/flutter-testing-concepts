@@ -1,21 +1,32 @@
 import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mockito/mockito.dart';
+import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
+import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
 import 'package:riverpod_app/l10n/l10n.dart';
 
 import '../../../helpers/helpers.dart';
+import '../../../mocks.mocks.dart';
 import '../fake_concepts_notifier.dart';
 
 void main() {
   late FakeConceptsNotifier fakeConceptsNotifier;
+  late MockGoRouter router;
+
+  setUp(() {
+    router = MockGoRouter();
+    when(router.go(any)).thenAnswer((_) {});
+  });
 
   Future<void> pumpConceptsView(
     WidgetTester tester, {
     required List<Concept> concepts,
     FutureBehavior? behavior,
-    Locale? locale,
+    Locale locale = const Locale('de'),
   }) async {
     fakeConceptsNotifier = FakeConceptsNotifier(
       concepts: concepts,
@@ -27,11 +38,10 @@ void main() {
           () => fakeConceptsNotifier,
         ),
       ],
-      widget: MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        locale: locale,
-        home: const ConceptsView(),
+      locale: locale,
+      widget: InheritedGoRouter(
+        goRouter: router,
+        child: const ConceptsView(),
       ),
     );
   }
@@ -124,9 +134,31 @@ void main() {
     testWidgets(
       'navigates to concept details when tapping a concept',
       (tester) async {
-        // TODO(Peetee06): Implement this test once ConceptRoute is implemented
+        final concepts = [
+          const Concept(
+            id: '1',
+            title: {'en': 'Test Concept', 'de': 'Test Konzept'},
+            sections: [],
+            challengeIds: [],
+          ),
+        ];
+        await pumpConceptsView(
+          tester,
+          concepts: concepts,
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Test Konzept'));
+        await tester.pumpAndSettle();
+        verify(
+          router.go(
+            argThat(
+              equals(
+                const ConceptRoute(id: '1').location,
+              ),
+            ),
+          ),
+        ).called(1);
       },
-      skip: true,
     );
   });
 }

@@ -1,7 +1,9 @@
 import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
+import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/l10n/l10n.dart';
 
 class ConceptsView extends StatelessWidget {
@@ -46,6 +48,7 @@ class ConceptsContent extends ConsumerWidget {
                           .conceptsChallenges(concept.challengeIds.length),
                     ),
                   ),
+                  onTap: () => ConceptRoute(id: concept.id).go(context),
                 );
               },
             ),

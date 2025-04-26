@@ -29,5 +29,9 @@
     "conceptsEmpty": "No concepts found",
     "@conceptsEmpty": {
         "description": "Text shown when there are no concepts"
+    },
+    "sectionsEmpty": "No sections",
+    "@sectionsEmpty": {
+        "description": "Text shown when there are no sections in a concept"
     }
 }

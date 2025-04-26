@@ -29,5 +29,9 @@
     "conceptsEmpty": "Keine Konzepte gefunden",
     "@conceptsEmpty": {
         "description": "Text, der angezeigt wird, wenn keine Konzepte gefunden werden"
+    },
+    "sectionsEmpty": "Keine Abschnitte",
+    "@sectionsEmpty": {
+        "description": "Text, der angezeigt wird, wenn es keine Abschnitte in einem Konzept gibt"
     }
 }
