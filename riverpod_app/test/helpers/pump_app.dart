@@ -13,7 +13,7 @@ extension PumpApp on WidgetTester {
   Future<void> pumpApp({
     required Widget widget,
     List<Override> overrides = const [],
-    Locale? locale = _defaultLocale,
+    Locale locale = _defaultLocale,
   }) {
     return pumpWidget(
       ProviderScope(
@@ -31,7 +31,7 @@ extension PumpApp on WidgetTester {
   Future<void> pumpAppWithRouter({
     required GoRouter router,
     List<Override> overrides = const [],
-    Locale? locale = _defaultLocale,
+    Locale locale = _defaultLocale,
   }) {
     return pumpWidget(
       ProviderScope(
