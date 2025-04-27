@@ -189,7 +189,7 @@ alwaysApply: false
 
 # Common Flutter Errors
 
-1. If you get a "`RenderFlex overflowed`" error, check if a `Row` or `Column` contains unconstrained widgets. Fix by wrapping children in `Flexible`, `Expanded`, or by setting constraints.
+1. If you get a "`A RenderFlex overflowed`" error, check if a `Row` or `Column` contains unconstrained widgets. Fix by wrapping children in `Flexible`, `Expanded`, or by setting constraints.
 2. If you get "`Vertical viewport was given unbounded height`", ensure `ListView` or similar scrollable widgets inside a `Column` have a bounded height (e.g., wrap with `Expanded` or `SizedBox`).
 3. If you get "`An InputDecorator...cannot have an unbounded width`", constrain the width of widgets like `TextField` using `Expanded`, `SizedBox`, or by placing them in a parent with width constraints.
 4. If you get a "`setState called during build`" error, do not call `setState` or `showDialog` directly inside the build method. Trigger dialogs or state changes in response to user actions or after the build completes (e.g., using `addPostFrameCallback`).
@@ -285,7 +285,7 @@ alwaysApply: false
    - `didDisposeProvider`: called when a provider is disposed.
    - `providerDidFail`: called when a synchronous provider throws an error.
 3. Register your observer(s) by passing them to the `observers` parameter of `ProviderScope` (for Flutter apps) or `ProviderContainer` (for pure Dart).
-4. You can register multiple observers if needed by providing a list to the `observers` parameter. See the [official `ProviderObserver` docs](https://riverpod.dev/docs/api/providerscope) for full API details.
+4. You can register multiple observers if needed by providing a list to the `observers` parameter. See the [official `ProviderObserver` docs](https://riverpod.dev/docs/concepts/provider_observer) for full API details.
 5. Use observers to integrate with remote error reporting services, log provider state changes, or trigger custom analytics.
 
 ### Performing Side Effects
