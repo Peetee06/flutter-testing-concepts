@@ -80,23 +80,18 @@ void main() {
     });
 
     testWidgets('renders smooth page indicator', (WidgetTester tester) async {
+      final sections = [
+        const Section(content: []),
+        const Section(content: []),
+      ];
       await pumpTestWidget(
         tester,
-        sections: [
-          const Section(content: []),
-          const Section(content: []),
-        ],
+        sections: sections,
       );
       final smoothIndicator = tester.widget<SmoothIndicator>(
         find.byType(SmoothIndicator),
       );
-      expect(
-        smoothIndicator.count,
-        [
-          const Section(content: []),
-          const Section(content: []),
-        ].length,
-      );
+      expect(smoothIndicator.count, sections.length);
       expect(smoothIndicator.offset, 0);
       await tester.tap(find.byKey(ConceptSectionsView.forwardButtonKey));
       await tester.pumpAndSettle();

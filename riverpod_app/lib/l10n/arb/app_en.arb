@@ -33,5 +33,13 @@
     "sectionsEmpty": "No sections",
     "@sectionsEmpty": {
         "description": "Text shown when there are no sections in a concept"
+    },
+    "challengesEmpty": "No challenges available for this concept.",
+    "@challengesEmpty": {
+        "description": "Text shown when a concept has no challenges"
+    },
+    "challengesDoneButtonLabel": "Done",
+    "@challengesDoneButtonLabel": {
+        "description": "Label for the button to finish the challenges and return"
     }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_app/features/challenges/view/challenges_route.dart';
 import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
 
@@ -12,6 +13,12 @@ part 'concepts_route.g.dart';
     TypedGoRoute<ConceptRoute>(
       path: ':id',
       name: 'concept',
+      routes: [
+        TypedGoRoute<ChallengesRoute>(
+          path: 'challenges',
+          name: 'challenges',
+        ),
+      ],
     ),
   ],
 )
