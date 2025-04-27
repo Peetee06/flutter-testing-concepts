@@ -96,8 +96,8 @@ void main() {
             find.byType(ChallengeCard),
           )
           .toList();
-      expect(cards[0].challenge.id, equals(challenges[0].id));
-      expect(cards[1].challenge.id, equals(challenges[1].id));
+      expect(cards[0].challenge.id, challenges[0].id);
+      expect(cards[1].challenge.id, challenges[1].id);
     });
 
     testWidgets(
