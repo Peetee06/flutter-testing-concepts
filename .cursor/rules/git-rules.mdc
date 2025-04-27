@@ -16,7 +16,7 @@ Follow these rules closely when working with git and GitHub.
    - You can check for staged `.dart` files using this command:
 
      ```bash
-     git diff --name-only --staged HEAD | grep '\.dart$'
+     git diff --name-only --staged | grep '\.dart$'
      ```
 
 2. Fix all infos, warnings issues and errors the commands surface
