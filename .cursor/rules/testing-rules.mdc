@@ -1,5 +1,5 @@
 ---
-description: Use these rules when writing or updating tests
+description: Use these rules when writing or updating tests or working with mocks
 globs: 
 alwaysApply: false
 ---
@@ -51,6 +51,8 @@ void main() {
   });
 }
 ```
+
+IMPORTANT: Put any helper methods you create in the same scope as the mocks so we don't have to pass them in separately.
 
 ## Overriding Riverpod Providers
 
@@ -157,7 +159,7 @@ class FakeUsernameController extends UsernameController {
     usernameUpdates.add(username);
   }
 
-  void updateMock({
+  void updateFake({
     String? username,
     FutureBehavior? behavior,
   }) {
@@ -314,6 +316,9 @@ test('some test', () {
 ### Helper method
 
 Create a helper method to pump the test widget. Pass any parameters needed for testing to it as named parameters.  
+See [pump_app.dart](mdc:bloc_app/test/helpers/pump_app.dart) for API of `pumpApp` in `bloc_app`.
+See [pump_app.dart](mdc:riverpod_app/test/helpers/pump_app.dart) for API of `pumpApp` in `riverpod_app`.
+
 Example:
 
 ```dart
@@ -321,8 +326,8 @@ Future<void> createTestWidget(
   WidgetTester tester, {
   required String name,
   }) async {
-  await tester.pumpWidget(
-    WidgetUnderTest(
+  await tester.pumpApp(
+    widget: WidgetUnderTest(
       name: name,
     ),
   );
@@ -345,15 +350,13 @@ Future<void> createTestWidget(
   WidgetTester tester, {
   required String username,
   }) async {
-  await tester.pumpWidget(
-    ProviderScope(
-      overrides: [
-        userNameProvider.overrideWithValue(username),
-      ],
-      child: WidgetUnderTest(
-        name: username,
-      ),
-    )
+  await tester.pumpApp(
+    overrides: [
+      userNameProvider.overrideWithValue(username),
+    ],
+    widget: WidgetUnderTest(
+      name: username,
+    ),
   );
 }
 ```
@@ -388,26 +391,22 @@ IMPORTANT: The variants need to be instantiated OUTSIDE of the test method and o
 Simple variants use a basic type like `bool`, `int`, or `String` and are useful for testing behavior across different conditions:
 
 ```dart
-final ValueVariant<bool> isDarkModeVariant = ValueVariant<bool>(<bool>{true, false});
+final ValueVariant<bool> isGermanLocale = ValueVariant<bool>(<bool>{true, false});
 
 testWidgets(
-  'ColoredBox changes color based on theme mode',
-  variant: isDarkModeVariant,
+  'renders correct text based on locale',
+  variant: isGermanLocale,
   (final WidgetTester tester) async {
-    final bool isDarkMode = isDarkModeVariant.currentValue!;
-    
-    await tester.pumpWidget(
-      MaterialApp(
-        theme: ThemeData(brightness: isDarkMode ? Brightness.dark : Brightness.light),
-        home: const ThemedColoredBox(),
-      ),
+    final bool isGerman = isGermanLocale.currentValue!;
+
+    await tester.pumpApp(
+      locale: isGerman ? const Locale('de') : null,
+      widget: const LocalizedTextWidget(),
     );
 
-    final ColoredBox coloredBox = tester.widget(find.byType(ColoredBox));
-    
     expect(
-      coloredBox.color,
-      isDarkMode ? Colors.grey[800] : Colors.white,
+      find.text(isGerman ? 'Hallo' : 'Hello'),
+      findsOneWidget,
     );
   },
 );
@@ -469,23 +468,19 @@ testWidgets(
   (final WidgetTester tester) async {
     final ButtonVariantSignature config = buttonVariant.currentValue!;
     
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: CustomButton(
-            label: config.label,
-            color: config.color,
-            isEnabled: config.isEnabled,
-            onPressed: config.isEnabled ? () {} : null,
-          ),
-        ),
+    await tester.pumpApp(
+      widget: CustomButton(
+        label: config.label,
+        color: config.color,
+        isEnabled: config.isEnabled,
+        onPressed: config.isEnabled ? () {} : null,
       ),
     );
     
     expect(find.text(config.label), findsOneWidget);
     
     final ElevatedButton button = tester.widget(find.byType(ElevatedButton));
-    expect(button.onPressed != null, equals(config.isEnabled));
+    expect(button.onPressed != null, config.isEnabled);
     
     final Material material = tester.widget<Material>(
       find.descendant(
