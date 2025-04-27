@@ -91,6 +91,13 @@ void main() {
         router: router,
       );
       expect(find.byType(ChallengeCard), findsNWidgets(2));
+      final cards = tester
+          .widgetList<ChallengeCard>(
+            find.byType(ChallengeCard),
+          )
+          .toList();
+      expect(cards[0].challenge.id, equals(challenges[0].id));
+      expect(cards[1].challenge.id, equals(challenges[1].id));
     });
 
     testWidgets(
