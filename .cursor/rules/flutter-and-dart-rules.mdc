@@ -10,11 +10,11 @@ alwaysApply: false
 ### Naming Conventions
 1. Use terms consistently throughout your code.
 2. Follow existing mnemonic conventions when naming type parameters (e.g., `E` for element, `K`/`V` for key/value, `T`/`S`/`U` for generic types).
-3. Name types using `UpperCamelCase` (classes, enums, typedefs, type parameters).
+3. Name types (classes, enums, typedefs, type parameters) using `UpperCamelCase` (also known as `PascalCase`, especially for classes).
 4. Name extensions using `UpperCamelCase`.
 5. Name packages, directories, and source files using `lowercase_with_underscores`.
 6. Name import prefixes using `lowercase_with_underscores`.
-7. Name other identifiers (variables, functions, parameters, named parameters) using `lowerCamelCase`.
+7. Name other identifiers (variables, parameters, named parameters) using `lowerCamelCase`.
 8. Capitalize acronyms and abbreviations longer than two letters like words.
 9. Avoid abbreviations unless the abbreviation is more common than the unabbreviated term.
 10. Prefer putting the most descriptive noun last in names.
@@ -23,8 +23,8 @@ alwaysApply: false
 13. Prefer a non-imperative verb phrase for boolean properties or variables.
 14. Prefer the positive form for boolean property and variable names.
 15. Consider omitting the verb for named boolean parameters.
-16. Use PascalCase for class names.
-17. Use snake_case for file names.
+16. Use `lowerCamelCase` for function names.
+17. Use `snake_case` for file names.
 
 ### Types and Functions
 1. Use class modifiers to control if your class can be extended or used as an interface.
@@ -152,7 +152,7 @@ alwaysApply: false
 13. Use logical-or patterns with guards (`when`) to share a body or guard between cases.
 14. Guard clauses (`when`) evaluate a condition after matching; if false, execution proceeds to the next case.
 15. Patterns can be used in for and for-in loops to destructure collection elements (e.g., destructuring `MapEntry` in map iteration).
-16. Object patterns match named object types and destructure their data using getters. Example: `var Foo(:one, :two) = myFoo;`
+16. Object patterns (`ClassName(field1: subpattern1, field2: subpattern2)`) match named object types and destructure their data using getters. Extra fields in the object are ignored. Example: `var Foo(:one, :two) = myFoo;`
 17. Constant patterns match if the value is equal to a constant (number, string, bool, named constant, const constructor, const collection, etc.). Use parentheses and `const` for complex expressions.
 18. Variable patterns (`var name`, `final Type name`) bind new variables to matched/destructured values. Typed variable patterns only match if the value has the declared type.
 19. Identifier patterns (`foo`, `_`) act as variable or constant patterns depending on context. `_` always acts as a wildcard and matches/discards any value.
@@ -161,9 +161,8 @@ alwaysApply: false
 22. Rest elements (`...`, `...rest`) in list patterns match arbitrary-length lists or collect unmatched elements into a new list.
 23. Map patterns (`{"key": subpattern}`) match maps and destructure by key. Only specified keys are matched; missing keys throw a `StateError`.
 24. Record patterns (`(subpattern1, subpattern2)`, `(x: subpattern1, y: subpattern2)`) match records by shape and destructure positional/named fields. Field names can be omitted if inferred from variable or identifier patterns.
-25. Object patterns (`ClassName(field1: subpattern1, field2: subpattern2)`) match objects by type and destructure using getters. Extra fields in the object are ignored.
-26. Wildcard patterns (`_`, `Type _`) match any value without binding. Useful for ignoring values or type-checking without binding.
-27. All pattern types can be nested and combined for expressive and precise matching and destructuring.
+25. Wildcard patterns (`_`, `Type _`) match any value without binding. Useful for ignoring values or type-checking without binding.
+26. All pattern types can be nested and combined for expressive and precise matching and destructuring.
 
 ### Records
 1. Records are anonymous, immutable, aggregate types that bundle multiple objects into a single value.
