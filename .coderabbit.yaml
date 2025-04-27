@@ -1,5 +1,5 @@
 reviews:
-  profile: "assertive"
+  profile: "chill"
   request_changes_workflow: true
   path_instructions:
     - path: "lib/**/*.dart"
