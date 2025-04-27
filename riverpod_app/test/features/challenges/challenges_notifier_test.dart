@@ -12,7 +12,6 @@ import '../../mocks.mocks.dart';
 void main() {
   late MockChallengesRepository mockChallengesRepository;
   late MockConceptsRepository mockConceptsRepository;
-
   late List<AsyncValue<List<Challenge>>> states;
 
   final challenges = [
@@ -44,7 +43,7 @@ void main() {
 
   final concepts = [
     Concept(
-      id: 'c1',
+      id: '1',
       title: {'en': 'Concept 1', 'de': 'Konzept 1'},
       sections: [],
       challengeIds: [challenges.first.id],
@@ -53,7 +52,7 @@ void main() {
       id: 'conceptWithMissingChallenge',
       title: {'en': 'Concept 2', 'de': 'Konzept 2'},
       sections: [],
-      challengeIds: ['3'], // This challenge ID does not exist in `challenges`
+      challengeIds: ['3'], // Missing challenge ID
     ),
   ];
 
@@ -71,10 +70,12 @@ void main() {
       ],
     );
     addTearDown(container.dispose);
+
+    states = [];
     return container.listen<AsyncValue<List<Challenge>>>(
       challengesNotifierProvider(conceptId),
       (_, next) => states.add(next),
-      fireImmediately: true,
+      fireImmediately: true, // Capture the initial loading state
     );
   }
 
@@ -86,26 +87,24 @@ void main() {
         .thenAnswer((_) async => concepts);
     when(mockChallengesRepository.getChallenges())
         .thenAnswer((_) async => challenges);
-
-    states = [];
   });
 
   group('ChallengesNotifier', () {
     test('initial state is loading', () {
-      listenToNotifier('c1');
+      listenToNotifier('1');
       expect(states, [const AsyncLoading<List<Challenge>>()]);
     });
 
     test(
-      'emits data when fetchChallenges succeeds',
+      'emits [loading, data] when build succeeds',
       () => fakeAsync((async) {
-        listenToNotifier('c1');
+        listenToNotifier('1');
         async.flushMicrotasks();
 
         expect(states, [
-          const AsyncLoading<List<Challenge>>(),
+          isA<AsyncLoading<List<Challenge>>>(),
           isA<AsyncData<List<Challenge>>>()
-              .having((d) => d.value, 'value', equals([challenges.first])),
+              .having((d) => d.value, 'value', [challenges.first]),
         ]);
 
         verify(mockConceptsRepository.getConcepts()).called(1);
@@ -114,13 +113,13 @@ void main() {
     );
 
     test(
-      'emits error when requested challenge is not found for concept',
+      'emits [loading, error] when requested challenge is not found',
       () => fakeAsync((async) {
         listenToNotifier('conceptWithMissingChallenge');
         async.flushMicrotasks();
 
         expect(states, [
-          const AsyncLoading<List<Challenge>>(),
+          isA<AsyncLoading<List<Challenge>>>(),
           isA<AsyncError<List<Challenge>>>().having(
             (e) => e.error.toString(),
             'error message',
@@ -134,57 +133,62 @@ void main() {
     );
 
     test(
-      'emits error when concept is not found',
+      'emits [loading, error] when concept is not found',
       () => fakeAsync((async) {
         when(mockConceptsRepository.getConcepts()).thenAnswer((_) async => []);
+
         listenToNotifier('missingConcept');
         async.flushMicrotasks();
 
         expect(states, [
-          const AsyncLoading<List<Challenge>>(),
+          isA<AsyncLoading<List<Challenge>>>(),
           isA<AsyncError<List<Challenge>>>().having(
             (e) => e.error.toString(),
             'error message',
             'Exception: Concept with id missingConcept not found',
           ),
         ]);
+
+        verify(mockConceptsRepository.getConcepts()).called(1);
+        verifyNever(mockChallengesRepository.getChallenges());
       }),
     );
 
     test(
-      'emits error when fetchChallenges fails',
+      'emits [loading, error] when getChallenges fails',
       () => fakeAsync((async) {
         when(mockChallengesRepository.getChallenges()).thenThrow(testException);
-        listenToNotifier('c1');
+
+        listenToNotifier('1');
         async.flushMicrotasks();
 
         expect(states, [
-          const AsyncLoading<List<Challenge>>(),
-          isA<AsyncError<List<Challenge>>>().having(
-            (e) => e.error,
-            'error object',
-            testException,
-          ),
+          isA<AsyncLoading<List<Challenge>>>(),
+          isA<AsyncError<List<Challenge>>>()
+              .having((e) => e.error, 'error object', testException),
         ]);
+
         verify(mockConceptsRepository.getConcepts()).called(1);
+        verify(mockChallengesRepository.getChallenges()).called(1);
       }),
     );
 
     test(
-      'emits error when fetchConcepts fails',
+      'emits [loading, error] when getConcepts fails',
       () => fakeAsync((async) {
         when(mockConceptsRepository.getConcepts()).thenThrow(testException);
-        listenToNotifier('c1');
+
+        listenToNotifier('1');
         async.flushMicrotasks();
 
         expect(states, [
-          const AsyncLoading<List<Challenge>>(),
-          isA<AsyncError<List<Challenge>>>().having(
-            (e) => e.error,
-            'error object',
-            testException,
-          ),
+          isA<AsyncLoading<List<Challenge>>>(),
+          isA<AsyncError<List<Challenge>>>()
+              .having((e) => e.error, 'error object', testException),
         ]);
+
+        verify(mockConceptsRepository.getConcepts()).called(1);
+        verifyNever(mockChallengesRepository.getChallenges());
       }),
     );
   });

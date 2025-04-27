@@ -1,10 +1,10 @@
 import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:riverpod_app/features/concept/concept_notifier.dart';
 import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concept/view/concept_view.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
+import 'package:riverpod_app/routing/go_router.dart';
 
 import '../../helpers/pump_app.dart';
 import 'fake_concept_notifier.dart';
@@ -27,12 +27,10 @@ void main() {
         ],
         challengeIds: ['1', '2'],
       );
-      final router = GoRouter(
-        initialLocation: const ConceptRoute(id: 'test-id').location,
-        routes: $appRoutes,
-      );
       await tester.pumpAppWithRouter(
-        router: router,
+        router: router(
+          initialLocation: const ConceptRoute(id: 'test-id').location,
+        ),
         overrides: [
           conceptNotifierProvider(concept.id).overrideWith(
             () => FakeConceptNotifier(concept: concept),

@@ -33,5 +33,13 @@
     "sectionsEmpty": "Keine Abschnitte",
     "@sectionsEmpty": {
         "description": "Text, der angezeigt wird, wenn es keine Abschnitte in einem Konzept gibt"
+    },
+    "challengesEmpty": "Keine Herausforderungen für dieses Konzept verfügbar.",
+    "@challengesEmpty": {
+        "description": "Text, der angezeigt wird, wenn ein Konzept keine Herausforderungen hat"
+    },
+    "challengesDoneButtonLabel": "Fertig",
+    "@challengesDoneButtonLabel": {
+        "description": "Beschriftung für den Button, um die Herausforderungen abzuschließen und zurückzukehren"
     }
 }
