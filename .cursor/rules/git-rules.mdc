@@ -12,7 +12,7 @@ Follow these rules closely when working with git and GitHub.
 
 ### Before committing
 
-1. Run `dart format` and `dart analyze`
+1. Run `dart format` and `dart analyze` if there are any `*.dart` files to be committed
 2. Fix all infos, warnings issues and errors the commands surface
 3. Repeat step 1. and 2. until all issues are resolved
 4. Stage any files that were changed in this process
