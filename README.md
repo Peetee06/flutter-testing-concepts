@@ -1,4 +1,3 @@
-
 # Flutter Testing Concepts 🧪🎯
 
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Peetee06/flutter-testing-concepts?utm_source=oss&utm_medium=github&utm_campaign=Peetee06%2Fflutter-testing-concepts&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
@@ -78,7 +77,7 @@ Now you're ready to explore the code and run the various test examples!
 The repository contains two implementations of the same sample application, each utilizing a different state management solution:
 
 * `bloc_app/`: An implementation using the BLoC/Cubit pattern for state management 🧱.
-* `riverpod_app/`: An implementation using Riverpod for state management 💧 (Tests coming soon!).
+* `riverpod_app/`: An implementation using Riverpod for state management 💧.
 
 Both applications demonstrate comprehensive testing strategies relevant to their respective state management approaches.
 
@@ -111,7 +110,24 @@ This section highlights specific testing scenarios demonstrated within the repos
 
 ### `riverpod_app` (Riverpod)
 
-* Coming soon! 🚧 Examples for Riverpod testing will be added here.
+* **Unit Testing (Providers/Notifiers) 🧩:** Examples of testing Riverpod providers and notifiers, including state emissions, dependency mocking, and asynchronous operations.
+  * [Concepts Notifier Test](riverpod_app/test/features/concepts/concepts_notifier_test.dart): Test basic asynchronous state fetching.
+  * [Concept Notifier Test](riverpod_app/test/features/concept/concept_notifier_test.dart): Test a notifier dependent on parameters (`FamilyAsyncNotifier`).
+  * [Challenges Notifier Test](riverpod_app/test/features/challenges/challenges_notifier_test.dart): Test a more complex state machine using `AsyncNotifier`.
+* **Widget Testing (Pages/Widgets) 🖼️:** Demonstrations of testing UI components that interact with Riverpod providers, including overriding providers for test scenarios and verifying UI based on state.
+  * [Concepts View Test](riverpod_app/test/features/concepts/view/concepts_view_test.dart): Test list rendering, loading/error states, and navigation triggered by provider state.
+  * [Concept View Test](riverpod_app/test/features/concept/view/concept_view_test.dart): Test widget rendering based on provider state and interactions within the view.
+  * [Challenge Card Test](riverpod_app/test/features/challenges/view/widgets/challenge_card_test.dart): Test interaction within a specific widget and how it affects provider state.
+  * [PumpApp Helper](riverpod_app/test/helpers/pump_app.dart): Helper extension for wrapping widgets in `ProviderScope` and `MaterialApp` for testing.
+* **Routing (go_router with Providers) 🗺️:** Testing navigation managed by `go_router` where routes might depend on Riverpod providers.
+  * [Concept Route Test](riverpod_app/test/features/concept/concept_route_test.dart): Test that the correct view is rendered for a specific route and that providers are correctly overridden/accessed within the route's widget.
+  * [Challenges Route Test](riverpod_app/test/features/challenges/challenges_route_test.dart): Similar example for the challenges route.
+* **Mocking 🎭:** Usage of `mockito` (via build_runner) for creating mock dependencies (like repositories or services) used within providers.
+  * [Mock Definitions](riverpod_app/test/mocks.dart)
+  * [Mock Generation Command](riverpod_app/build.yaml) (Configuration for `build_runner`)
+  * (See various notifier and repository tests for usage examples)
+* **Integration Testing 🔗🚀:** End-to-end tests simulating user flows through the Riverpod app, ensuring different features connected via providers and routing work together correctly.
+  * [App Integration Test](riverpod_app/integration_test/app_test.dart): Covers navigating from the concepts list, through concept details, to challenges, and back.
 
 ---
 
@@ -120,7 +136,6 @@ This section highlights specific testing scenarios demonstrated within the repos
 This repository aims to be a community resource! Contributions are highly welcome.
 
 * **Questions & Suggestions:** Got questions, spotted an error, or have ideas for more testing concepts to cover? Please **[open an issue](https://github.com/Peetee06/flutter-testing-concepts/issues/new)**!
-* **Adding Riverpod Tests:** The `riverpod_app` needs its tests! Feel free to contribute examples for testing Riverpod providers, widgets, and integration scenarios.
 * **Improving Examples:** See a way to make existing tests clearer or more effective? Suggestions and Pull Requests are welcome.
 * **Sharing Knowledge:** Experienced testers, feel free to share best practices or suggest advanced patterns via issues or discussions.
 
