@@ -9,19 +9,18 @@ import '../../mocks.mocks.dart';
 
 void main() {
   late MockConceptsRepository mockRepository;
-  late ProviderContainer container;
 
   setUp(() {
     mockRepository = MockConceptsRepository();
-    container = ProviderContainer(
+  });
+
+  Future<List<Concept>> readConcepts() async {
+    final container = ProviderContainer(
       overrides: [
         conceptsRepositoryProvider.overrideWithValue(mockRepository),
       ],
     );
     addTearDown(container.dispose);
-  });
-
-  Future<List<Concept>> readConcepts() async {
     return await container.read(conceptsNotifierProvider.future);
   }
 
