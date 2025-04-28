@@ -37,7 +37,6 @@ void main() {
       ],
       locale: locale,
     );
-    await tester.pumpAndSettle();
   }
 
   group('ConceptView', () {
@@ -46,6 +45,7 @@ void main() {
         tester,
         concept: testConcept,
       );
+      await tester.pump();
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.text('Test Konzept'), findsOneWidget);
     });
@@ -87,6 +87,7 @@ void main() {
 
     testWidgets('passes sections to SectionsView', (tester) async {
       await pumpTestWidget(tester, concept: testConcept);
+      await tester.pump();
       final sectionsView =
           tester.widget<SectionsView>(find.byType(SectionsView));
       expect(sectionsView.sections, testConcept.sections);
@@ -95,6 +96,7 @@ void main() {
     testWidgets('passes false to SectionsView when no challenges',
         (tester) async {
       await pumpTestWidget(tester, concept: testConcept);
+      await tester.pump();
       final sectionsView =
           tester.widget<SectionsView>(find.byType(SectionsView));
       expect(sectionsView.hasChallenges, false);
@@ -108,6 +110,7 @@ void main() {
         challengeIds: ['1'],
       );
       await pumpTestWidget(tester, concept: conceptWithChallenges);
+      await tester.pump();
       final sectionsView =
           tester.widget<SectionsView>(find.byType(SectionsView));
       expect(sectionsView.hasChallenges, true);

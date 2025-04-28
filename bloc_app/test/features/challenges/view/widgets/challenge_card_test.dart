@@ -34,9 +34,7 @@ void main() {
   testWidgets('ChallengeCard displays question and options', (tester) async {
     await tester.pumpApp(
       locale: const Locale('de'),
-      widget: Material(
-        child: ChallengeCard(challenge: challenge),
-      ),
+      widget: ChallengeCard(challenge: challenge),
     );
 
     expect(find.text('Was ist Flutter?'), findsOneWidget);

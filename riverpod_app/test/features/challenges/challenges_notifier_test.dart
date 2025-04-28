@@ -75,7 +75,7 @@ void main() {
     return container.listen<AsyncValue<List<Challenge>>>(
       challengesNotifierProvider(conceptId),
       (_, next) => states.add(next),
-      fireImmediately: true, // Capture the initial loading state
+      fireImmediately: true,
     );
   }
 
