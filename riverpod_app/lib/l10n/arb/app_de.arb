@@ -1,9 +1,5 @@
 {
     "@@locale": "de",
-    "counterAppBarTitle": "Zähler",
-    "@counterAppBarTitle": {
-        "description": "Text, der in der AppBar der Zähler-Seite angezeigt wird"
-    },
     "conceptsViewTitle": "Konzepte",
     "@conceptsViewTitle": {
         "description": "Text, der in der AppBar des Konzepte-Bildschirms angezeigt wird"
