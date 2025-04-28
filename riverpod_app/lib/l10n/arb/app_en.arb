@@ -1,9 +1,5 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
     "conceptsViewTitle": "Concepts",
     "@conceptsViewTitle": {
         "description": "Text shown in the AppBar of the Concepts screen"
