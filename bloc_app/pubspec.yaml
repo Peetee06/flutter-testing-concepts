@@ -39,7 +39,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   json_serializable: ^6.9.5
-  mockito: ^5.4.5
+  mockito: ^5.4.6
   retrofit_generator: ^9.1.9
   very_good_analysis: ^7.0.0
 
