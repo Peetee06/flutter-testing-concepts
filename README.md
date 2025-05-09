@@ -92,21 +92,23 @@ This section highlights specific testing scenarios demonstrated within the repos
 * **Unit Testing (Cubits) 🧩:** Examples of testing business logic within Cubits, including state emissions and dependency mocking.
   * [Concept Details Cubit Test](bloc_app/test/features/concept/cubit/concept_cubit_test.dart)
 * **Getting Started - Simple Widget Test:**
-  * [Common Widgets Test](bloc_app/test/common/widgets/app_bar_test.dart): Check if a simple widget displays the correct text.
-* **Widget Testing (Pages/Widgets) 🖼️:** Demonstrations of testing UI components, interactions (like button taps), and how widgets react to state changes.
-  * [Concepts Page Test](bloc_app/test/features/concepts/view/concepts_page_test.dart) (Includes testing loading states, list views, and finding specific widgets)
-  * [Concept Details Page Test](bloc_app/test/features/concept/view/concept_page_test.dart) (Includes testing widget presence based on state)
-  * [Testing `onPressed` Callbacks](bloc_app/test/features/challenges/challenge/view/widgets/answer_button_test.dart) (Verify button taps trigger actions)
+  * [Challenge Card Test](bloc_app/test/features/challenges/view/widgets/challenge_card_test.dart): Check if a simple widget displays the correct text.
+* **Widget Testing (Views/Widgets) 🖼️:** Demonstrations of testing UI components, interactions (like button taps), and how widgets react to state changes.
+  * [Concepts View Test](bloc_app/test/features/concepts/view/concepts_view_test.dart) (Includes testing loading states, list views, and finding specific widgets)
+  * [Concept View Test](bloc_app/test/features/concept/view/concept_view_test.dart) (Includes testing widget presence based on state)
+  * [Testing `onPressed` Callbacks](bloc_app/test/features/challenges/view/widgets/challenges_list_test.dart) (Verify button taps trigger actions)
 * **Routing (go_router) 🗺️:** How to test navigation logic managed by `go_router`. Essential for multi-screen apps.
   * [GoRouter Configuration Test](bloc_app/test/routing/go_router_test.dart)
   * [Concept Route Test](bloc_app/test/features/concept/concept_route_test.dart) (Testing specific route presentation and interaction)
+  *  [Testing Typed Routes Navigation](bloc_app/test/features/challenges/view/widgets/challenges_list_test.dart) (Verify button tap triggers navigation)
 * **Mocking 🎭:** Usage of `mocktail` for creating mock ("fake") dependencies (like API clients or repositories) in tests. Crucial for isolating the code you want to test.
   * [Mock Definitions](bloc_app/test/mocks.dart)
   * (See various unit and widget tests for usage examples, e.g., Cubit tests)
 * **Setup and Teardown ⚙️:** Examples of using `setUp`, `tearDown`, `setUpAll`, and `tearDownAll` for setting up test conditions and cleaning up afterward.
-  * (Visible in most `_test.dart` files, e.g., [Concepts Page Test](bloc_app/test/features/concepts/view/concepts_page_test.dart))
+  * (Visible in most `_test.dart` files, e.g., [Concepts View Test](bloc_app/test/features/concepts/view/concepts_view_test.dart))
 * **Integration Testing 🔗🚀:** End-to-end tests covering user flows across multiple screens, simulating real user interaction. These are great for verifying critical paths in your app.
   * [App Integration Test](bloc_app/integration_test/app_test.dart)
+  * [Integration Test Specific Mocks](bloc_app/integration_test/mocks.dart) and required [build.yaml adjustments](bloc_app/build.yaml) to allow code generation for mocks
 
 ### `riverpod_app` (Riverpod)
 
