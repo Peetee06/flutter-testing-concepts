@@ -21,12 +21,12 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^3.0.0
   freezed_annotation: ^3.0.0
-  go_router: ^15.1.1
+  go_router: ^17.0.1
   intl: ^0.20.2
   json_annotation: ^4.9.0
   retrofit: ^4.9.0
   riverpod_annotation: ^3.0.0
-  smooth_page_indicator: ^1.2.1
+  smooth_page_indicator: ^2.0.1
 
 dev_dependencies:
   analyzer: ^8.0.0
@@ -43,7 +43,7 @@ dev_dependencies:
   # Unpin once this issue is resolved: https://github.com/trevorwang/retrofit.dart/issues/876
   retrofit_generator: 10.2.0
   riverpod_generator: ^3.0.0
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^10.0.0
 
 flutter:
   uses-material-design: true
