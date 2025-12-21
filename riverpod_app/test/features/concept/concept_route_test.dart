@@ -6,7 +6,6 @@ import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/routing/go_router.dart';
 
 import '../../helpers/pump_app.dart';
-import 'fake_concept_notifier.dart';
 
 void main() {
   group(ConceptRoute, () {
@@ -31,8 +30,8 @@ void main() {
           initialLocation: const ConceptRoute(id: 'test-id').location,
         ),
         overrides: [
-          conceptProvider(concept.id).overrideWith(
-            () => FakeConceptNotifier(concept: concept),
+          conceptProvider(concept.id).overrideWithBuild(
+            (_, __) => concept,
           ),
         ],
       );

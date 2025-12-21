@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/features/concept/concept_notifier.dart';
 import 'package:riverpod_app/features/concept/view/concept_view.dart';
 import 'package:riverpod_app/features/concept/view/widgets/sections_view.dart';
 
 import '../../../helpers/helpers.dart';
-import '../../concept/fake_concept_notifier.dart';
 
 void main() {
   const testConcept = Concept(
@@ -25,14 +27,14 @@ void main() {
   Future<void> pumpTestWidget(
     WidgetTester tester, {
     required Concept concept,
-    FutureBehavior? behavior,
+    FutureOr<Concept> Function(Ref, ConceptNotifier)? build,
     Locale locale = const Locale('de'),
   }) async {
     await tester.pumpApp(
       widget: ConceptView(id: concept.id),
       overrides: [
-        conceptProvider(concept.id).overrideWith(
-          () => FakeConceptNotifier(concept: concept, behavior: behavior),
+        conceptProvider(concept.id).overrideWithBuild(
+          (ref, notifier) => build?.call(ref, notifier) ?? concept,
         ),
       ],
       locale: locale,
@@ -51,16 +53,10 @@ void main() {
     });
 
     testWidgets('renders progress indicator while loading', (tester) async {
-      await tester.pumpApp(
-        widget: ConceptView(id: testConcept.id),
-        overrides: [
-          conceptProvider(testConcept.id).overrideWith(
-            () => FakeConceptNotifier(
-              concept: testConcept,
-              behavior: FutureBehavior(loading: true),
-            ),
-          ),
-        ],
+      await pumpTestWidget(
+        tester,
+        concept: testConcept,
+        build: (_, __) => Completer<Concept>().future,
       );
       await tester.pump();
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -69,16 +65,10 @@ void main() {
 
     testWidgets('renders error message when error occurs', (tester) async {
       final error = Exception('error');
-      await tester.pumpApp(
-        widget: ConceptView(id: testConcept.id),
-        overrides: [
-          conceptProvider(testConcept.id).overrideWith(
-            () => FakeConceptNotifier(
-              concept: testConcept,
-              behavior: FutureBehavior(error: error),
-            ),
-          ),
-        ],
+      await pumpTestWidget(
+        tester,
+        concept: testConcept,
+        build: (_, __) => throw error,
       );
       await tester.pump();
       expect(find.textContaining('error'), findsOneWidget);

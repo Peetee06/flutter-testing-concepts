@@ -6,7 +6,6 @@ import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/routing/go_router.dart';
 
 import '../../helpers/helpers.dart';
-import 'fake_challenges_notifier.dart';
 
 void main() {
   group(ChallengesRoute, () {
@@ -15,8 +14,8 @@ void main() {
       const testConceptId = 'test_concept_id';
       await tester.pumpAppWithRouter(
         overrides: [
-          challengesProvider(testConceptId).overrideWith(
-            () => FakeChallengesNotifier(challenges: <Challenge>[]),
+          challengesProvider(testConceptId).overrideWithBuild(
+            (_, __) => <Challenge>[],
           ),
         ],
         router: router(

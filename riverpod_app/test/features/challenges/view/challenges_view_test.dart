@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
 import 'package:riverpod_app/features/challenges/view/challenges_view.dart';
 import 'package:riverpod_app/features/challenges/view/widgets/challenges_list.dart';
 
 import '../../../helpers/helpers.dart';
-import '../fake_challenges_notifier.dart';
 
 void main() {
   const conceptId = 'test_concept_id';
@@ -33,17 +35,11 @@ void main() {
 
   Future<void> pumpTestWidget(
     WidgetTester tester, {
-    List<Challenge> challenges = const [],
-    FutureBehavior? behavior,
+    required FutureOr<List<Challenge>> Function(Ref, ChallengesNotifier) build,
   }) async {
     await tester.pumpApp(
       overrides: [
-        challengesProvider(conceptId).overrideWith(
-          () => FakeChallengesNotifier(
-            challenges: challenges,
-            behavior: behavior,
-          ),
-        ),
+        challengesProvider(conceptId).overrideWithBuild(build),
       ],
       widget: const ChallengesView(conceptId: conceptId),
     );
@@ -53,7 +49,7 @@ void main() {
     testWidgets('renders loading state', (WidgetTester tester) async {
       await pumpTestWidget(
         tester,
-        behavior: FutureBehavior(loading: true),
+        build: (_, __) => Completer<List<Challenge>>().future,
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.byType(AppBar), findsOneWidget);
@@ -61,7 +57,7 @@ void main() {
 
     testWidgets('renders loaded state with ChallengesList',
         (WidgetTester tester) async {
-      await pumpTestWidget(tester, challenges: mockChallenges);
+      await pumpTestWidget(tester, build: (_, __) => mockChallenges);
       await tester.pump();
 
       final challengesList =
@@ -73,7 +69,7 @@ void main() {
     testWidgets('renders error state', (WidgetTester tester) async {
       await pumpTestWidget(
         tester,
-        behavior: FutureBehavior(error: testError),
+        build: (_, __) => throw testError,
       );
       await tester.pump();
 
