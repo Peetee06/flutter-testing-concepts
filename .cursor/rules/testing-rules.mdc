@@ -240,19 +240,23 @@ For overriding, we do `provider(parameter).overrideWith(...)`. The same goes for
 
 ## Unit Tests
 
+Use the `createContainer` helper method from `helpers/helpers.dart` to create a `ProviderContainer` for testing.
+The helper uses `ProviderContainer.test()` which automatically disposes the container when the test completes and disables retry behavior.
+
 ### Testing Riverpod value providers
 
 Create a helper method that reads and returns the value of the provider.  
 Example:
 
 ```dart
+import '../helpers/helpers.dart';
+
 String getUsername({required User user}) {
-  final container = ProviderContainer(
+  final container = createContainer(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
   );
-  addTearDown(container.dispose);
   return container.read(usernameProvider);
 }
 
@@ -264,17 +268,18 @@ test('some test', () {
 
 ### Testing Riverpod future providers
 
-Create a helper method that reads and returns the value of the provider.  
+Create a helper method that reads and returns the future value of the provider.  
 Example:
 
 ```dart
+import '../helpers/helpers.dart';
+
 Future<String> getUsername({required User user}) async {
-  final container = ProviderContainer(
+  final container = createContainer(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
   );
-  addTearDown(container.dispose);
   return container.read(usernameFutureProvider.future);
 }
 
@@ -286,29 +291,54 @@ test('some test', () async {
 
 ### Testing Riverpod notifier providers
 
-Create a helper method that reads and returns a subscription on the provider.  
+Create a helper method that listens to the provider and collects state changes.  
+Use `container.listen` with a states list to track async state transitions.  
 Example:
 
 ```dart
-ProviderSubscription<UsernameController> listenToController({required User user}) {
-  final container = ProviderContainer(
+import 'package:fake_async/fake_async.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../helpers/helpers.dart';
+
+late List<AsyncValue<String>> states;
+
+setUp(() {
+  states = [];
+});
+
+ProviderSubscription<AsyncValue<String>> listenToNotifier({required User user}) {
+  final container = createContainer(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
   );
-  addTearDown(container.dispose);
-  return container.listen(usernameFutureProvider.notifier, (_, __) {});
+
+  return container.listen<AsyncValue<String>>(
+    usernameProvider,
+    (_, next) => states.add(next),
+    fireImmediately: true,
+  );
 }
 
-test('some test', () {
-  final subscription = listenToController(user: User());
-  expect(subscription.read().state.username, 'username');
-  fakeAsync((async) {
-    subscription.read().updateUsername('updated username');
-    async.flushMicrotasks();
-    expect(subscription.read().state.username, 'updated username');
-  });
+test('initial state is loading', () {
+  listenToNotifier(user: User());
+  expect(states, [const AsyncLoading<String>()]);
 });
+
+test(
+  'emits [loading, data] when build succeeds',
+  () => fakeAsync((async) {
+    listenToNotifier(user: User());
+    async.flushMicrotasks();
+
+    expect(states, [
+      isA<AsyncLoading<String>>(),
+      isA<AsyncData<String>>()
+          .having((d) => d.value, 'value', 'username'),
+    ]);
+  }),
+);
 ```
 
 ## Widget Tests
