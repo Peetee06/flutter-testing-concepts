@@ -1,6 +1,5 @@
 import 'package:bloc_app/data/repositories/challenges/challenges_repository.dart';
 import 'package:bloc_app/data/repositories/concepts/concepts_repository.dart';
-import 'package:bloc_app/features/challenges/challenges_route.dart';
 import 'package:bloc_app/features/challenges/view/challenges_view.dart';
 import 'package:bloc_app/features/concepts/concepts_route.dart';
 import 'package:bloc_app/routing/go_router.dart';

@@ -1,0 +1,11 @@
+name: flutter_testing_concepts
+description: A monorepo for Flutter testing concepts apps
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - bloc_app
+  - common
+  - riverpod_app

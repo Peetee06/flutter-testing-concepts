@@ -107,7 +107,7 @@ void main() {
       await tester.tap(find.byKey(ChallengesList.doneButtonKey));
       await tester.pumpAndSettle();
 
-      verify(router.go(ConceptsRoute().location)).called(1);
+      verify(router.go(const ConceptsRoute().location)).called(1);
     });
   });
 }

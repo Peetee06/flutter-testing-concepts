@@ -1,7 +1,6 @@
 import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/l10n/l10n.dart';
@@ -25,7 +24,7 @@ class ConceptsContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conceptsAsync = ref.watch(conceptsNotifierProvider);
+    final conceptsAsync = ref.watch(conceptsProvider);
     return switch (conceptsAsync) {
       AsyncData(:final value) => value.isEmpty
           ? Center(child: Text(context.l10n.conceptsEmpty))
@@ -59,7 +58,7 @@ class ConceptsContent extends ConsumerWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                ref.invalidate(conceptsNotifierProvider);
+                ref.invalidate(conceptsProvider);
               },
               child: Text(context.l10n.conceptsTryAgain),
             ),

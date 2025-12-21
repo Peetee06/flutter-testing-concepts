@@ -1,10 +1,10 @@
 import 'package:common/common.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_app/data/repositories/challenges_repository.dart';
 import 'package:riverpod_app/data/services/rest_client.dart';
 
+import '../../helpers/helpers.dart';
 import '../../mocks.mocks.dart';
 
 void main() {
@@ -15,12 +15,11 @@ void main() {
   });
 
   ChallengesRepository getChallengesRepository() {
-    final container = ProviderContainer(
+    final container = createContainer(
       overrides: [
         restClientProvider.overrideWithValue(mockRestClient),
       ],
     );
-    addTearDown(container.dispose);
     return container.read(challengesRepositoryProvider);
   }
 

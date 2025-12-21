@@ -35,7 +35,7 @@ class ChallengesList extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: FilledButton(
               key: doneButtonKey,
-              onPressed: () => ConceptsRoute().go(context),
+              onPressed: () => const ConceptsRoute().go(context),
               child: Text(context.l10n.challengesDoneButtonLabel),
             ),
           ),

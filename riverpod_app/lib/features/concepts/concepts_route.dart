@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_app/features/challenges/view/challenges_route.dart';
-import 'package:riverpod_app/features/concept/concept_route.dart';
+import 'package:riverpod_app/features/challenges/view/challenges_view.dart';
+import 'package:riverpod_app/features/concept/view/concept_view.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
 
 part 'concepts_route.g.dart';
+part 'package:riverpod_app/features/concept/concept_route.dart';
+part 'package:riverpod_app/features/challenges/challenges_route.dart';
 
 @TypedGoRoute<ConceptsRoute>(
   path: '/concepts',
@@ -22,7 +24,7 @@ part 'concepts_route.g.dart';
     ),
   ],
 )
-class ConceptsRoute extends GoRouteData {
+class ConceptsRoute extends GoRouteData with $ConceptsRoute {
   const ConceptsRoute();
 
   @override

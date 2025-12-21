@@ -14,7 +14,7 @@ void main() {
         await tester.pumpAppWithRouter(
           router: router(),
           overrides: [
-            conceptsNotifierProvider.overrideWith(
+            conceptsProvider.overrideWith(
               () => FakeConceptsNotifier(concepts: []),
             ),
           ],

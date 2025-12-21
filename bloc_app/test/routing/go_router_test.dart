@@ -21,7 +21,7 @@ void main() {
   });
 
   group('router', () {
-    final conceptsLocation = ConceptsRoute().location;
+    final conceptsLocation = const ConceptsRoute().location;
 
     testWidgets('uses $conceptsLocation as default initial location',
         (tester) async {

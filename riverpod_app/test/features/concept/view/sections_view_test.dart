@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
-import 'package:riverpod_app/features/challenges/view/challenges_route.dart';
 import 'package:riverpod_app/features/concept/view/widgets/section_view.dart';
 import 'package:riverpod_app/features/concept/view/widgets/sections_view.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';

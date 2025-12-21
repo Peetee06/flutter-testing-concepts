@@ -31,7 +31,7 @@ void main() {
     await tester.pumpApp(
       widget: ConceptView(id: concept.id),
       overrides: [
-        conceptNotifierProvider(concept.id).overrideWith(
+        conceptProvider(concept.id).overrideWith(
           () => FakeConceptNotifier(concept: concept, behavior: behavior),
         ),
       ],
@@ -54,7 +54,7 @@ void main() {
       await tester.pumpApp(
         widget: ConceptView(id: testConcept.id),
         overrides: [
-          conceptNotifierProvider(testConcept.id).overrideWith(
+          conceptProvider(testConcept.id).overrideWith(
             () => FakeConceptNotifier(
               concept: testConcept,
               behavior: FutureBehavior(loading: true),
@@ -72,7 +72,7 @@ void main() {
       await tester.pumpApp(
         widget: ConceptView(id: testConcept.id),
         overrides: [
-          conceptNotifierProvider(testConcept.id).overrideWith(
+          conceptProvider(testConcept.id).overrideWith(
             () => FakeConceptNotifier(
               concept: testConcept,
               behavior: FutureBehavior(error: error),

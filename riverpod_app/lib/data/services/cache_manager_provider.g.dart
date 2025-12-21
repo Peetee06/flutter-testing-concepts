@@ -6,21 +6,46 @@ part of 'cache_manager_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cacheManagerHash() => r'36ba4b5cde4a890015bbce58ca82d0900edacb54';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [cacheManager].
 @ProviderFor(cacheManager)
-final cacheManagerProvider = AutoDisposeProvider<BaseCacheManager?>.internal(
-  cacheManager,
-  name: r'cacheManagerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$cacheManagerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const cacheManagerProvider = CacheManagerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CacheManagerRef = AutoDisposeProviderRef<BaseCacheManager?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class CacheManagerProvider extends $FunctionalProvider<BaseCacheManager?,
+    BaseCacheManager?, BaseCacheManager?> with $Provider<BaseCacheManager?> {
+  const CacheManagerProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'cacheManagerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$cacheManagerHash();
+
+  @$internal
+  @override
+  $ProviderElement<BaseCacheManager?> $createElement(
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  BaseCacheManager? create(Ref ref) {
+    return cacheManager(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BaseCacheManager? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BaseCacheManager?>(value),
+    );
+  }
+}
+
+String _$cacheManagerHash() => r'36ba4b5cde4a890015bbce58ca82d0900edacb54';

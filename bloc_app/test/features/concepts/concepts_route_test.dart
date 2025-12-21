@@ -27,7 +27,7 @@ void main() {
   Future<void> pumpTestWidget(WidgetTester tester) async {
     await tester.pumpAppWithRouter(
       router: router(
-        initialLocation: ConceptsRoute().location,
+        initialLocation: const ConceptsRoute().location,
       ),
     );
   }

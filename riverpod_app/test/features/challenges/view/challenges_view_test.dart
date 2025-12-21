@@ -38,7 +38,7 @@ void main() {
   }) async {
     await tester.pumpApp(
       overrides: [
-        challengesNotifierProvider(conceptId).overrideWith(
+        challengesProvider(conceptId).overrideWith(
           () => FakeChallengesNotifier(
             challenges: challenges,
             behavior: behavior,

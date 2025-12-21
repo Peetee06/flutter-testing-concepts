@@ -1,13 +1,6 @@
-import 'package:bloc_app/data/repositories/concepts/concepts_repository.dart';
-import 'package:bloc_app/features/concept/cubit/concept_cubit.dart';
-import 'package:bloc_app/features/concept/view/concept_view.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+part of 'package:bloc_app/features/concepts/concepts_route.dart';
 
-@immutable
-class ConceptRoute extends GoRouteData {
+class ConceptRoute extends GoRouteData with $ConceptRoute {
   const ConceptRoute({required this.id});
 
   final String id;

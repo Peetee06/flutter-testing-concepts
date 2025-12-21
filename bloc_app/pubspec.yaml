@@ -6,6 +6,8 @@ publish_to: none
 environment:
   sdk: ^3.6.0
 
+resolution: workspace
+
 dependencies:
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
@@ -23,24 +25,25 @@ dependencies:
   go_router: ^15.0.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
-  retrofit: ^4.4.2
+  retrofit: ^4.9.0
   smooth_page_indicator: ^1.2.1
 
 dev_dependencies:
-  analyzer: 7.4.3
+  analyzer: ^8.0.0
   bloc_test: ^10.0.0
-  build_runner: ^2.4.15
+  build_runner: ^2.4.0
   build_verify: ^3.1.0
   file: ^7.0.0
   flutter_test:
     sdk: flutter
   freezed: ^3.0.6
-  go_router_builder: ^2.7.1
+  go_router_builder: ^4.0.0
   integration_test:
     sdk: flutter
   json_serializable: ^6.9.5
   mockito: ^5.4.6
-  retrofit_generator: ^9.1.9
+  # Unpin once this issue is resolved: https://github.com/trevorwang/retrofit.dart/issues/876
+  retrofit_generator: 10.2.0
   very_good_analysis: ^7.0.0
 
 flutter:

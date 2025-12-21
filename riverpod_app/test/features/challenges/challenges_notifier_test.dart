@@ -7,6 +7,7 @@ import 'package:riverpod_app/data/repositories/challenges_repository.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
 import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
 
+import '../../helpers/helpers.dart';
 import '../../mocks.mocks.dart';
 
 void main() {
@@ -61,7 +62,7 @@ void main() {
   ProviderSubscription<AsyncValue<List<Challenge>>> listenToNotifier(
     String conceptId,
   ) {
-    final container = ProviderContainer(
+    final container = createContainer(
       overrides: [
         challengesRepositoryProvider.overrideWithValue(
           mockChallengesRepository,
@@ -69,11 +70,10 @@ void main() {
         conceptsRepositoryProvider.overrideWithValue(mockConceptsRepository),
       ],
     );
-    addTearDown(container.dispose);
 
     states = [];
     return container.listen<AsyncValue<List<Challenge>>>(
-      challengesNotifierProvider(conceptId),
+      challengesProvider(conceptId),
       (_, next) => states.add(next),
       fireImmediately: true,
     );

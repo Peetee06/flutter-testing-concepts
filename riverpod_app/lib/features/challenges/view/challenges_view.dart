@@ -27,7 +27,7 @@ class _ChallengesBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final challengesAsync = ref.watch(challengesNotifierProvider(conceptId));
+    final challengesAsync = ref.watch(challengesProvider(conceptId));
 
     return switch (challengesAsync) {
       AsyncData(:final value) => ChallengesList(challenges: value),

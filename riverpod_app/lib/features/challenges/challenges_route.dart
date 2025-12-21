@@ -1,12 +1,11 @@
 part of 'package:riverpod_app/features/concepts/concepts_route.dart';
 
-class ConceptRoute extends GoRouteData with $ConceptRoute {
-  const ConceptRoute({required this.id});
-
+class ChallengesRoute extends GoRouteData with $ChallengesRoute {
+  const ChallengesRoute({required this.id});
   final String id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ConceptView(id: id);
+    return ChallengesView(conceptId: id);
   }
 }

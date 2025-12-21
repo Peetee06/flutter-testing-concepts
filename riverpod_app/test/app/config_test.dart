@@ -1,11 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riverpod_app/app/config.dart';
 
+import '../helpers/helpers.dart';
+
 AppConfig getAppConfig() {
-  final container = ProviderContainer();
-  addTearDown(container.dispose);
-  return container.read(appConfigProvider);
+  return createContainer().read(appConfigProvider);
 }
 
 void main() {

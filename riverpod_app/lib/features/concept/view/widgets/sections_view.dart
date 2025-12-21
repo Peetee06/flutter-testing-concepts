@@ -1,6 +1,5 @@
 import 'package:common/common.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_app/features/challenges/view/challenges_route.dart';
 import 'package:riverpod_app/features/concept/view/widgets/section_view.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/l10n/l10n.dart';

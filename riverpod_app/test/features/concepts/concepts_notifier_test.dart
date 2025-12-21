@@ -1,10 +1,10 @@
 import 'package:common/common.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
 
+import '../../helpers/helpers.dart';
 import '../../mocks.mocks.dart';
 
 void main() {
@@ -15,13 +15,12 @@ void main() {
   });
 
   Future<List<Concept>> readConcepts() async {
-    final container = ProviderContainer(
+    final container = createContainer(
       overrides: [
         conceptsRepositoryProvider.overrideWithValue(mockRepository),
       ],
     );
-    addTearDown(container.dispose);
-    return await container.read(conceptsNotifierProvider.future);
+    return await container.read(conceptsProvider.future);
   }
 
   test('returns concepts when fetch is successful', () async {
