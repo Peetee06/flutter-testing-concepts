@@ -60,8 +60,29 @@ git push -u origin HEAD
 Use the GitHub CLI to create a PR with a title matching the commit message.
 
 For the PR body, follow the template in [.github/PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md):
-- Fill in the **Description** section with a detailed explanation of the changes
+- Fill in the **Description** section following the guidelines below
 - Mark the appropriate **Type of Change** checkbox with `[x]` based on the commit type
+
+#### Description Guidelines
+
+Write a high-level summary of **what** changed, not a list of files. The diff view already shows which files changed.
+
+Good description:
+- Bullet points describing logical changes or features
+- Focus on the "what" and "why", not the "where"
+- Group related changes together
+
+Example:
+```
+- add user authentication flow
+- implement login and registration screens
+- add unit and widget tests for auth feature
+```
+
+Avoid:
+- Listing individual files that were modified
+- Repeating information visible in the diff
+- Overly technical implementation details
 
 Map the commit type to the PR type checkbox:
 - `feat` → ✨ New feature
