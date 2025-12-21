@@ -38,7 +38,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.9.5
   mockito: ^5.4.5
-  retrofit_generator: ^9.1.9
+  retrofit_generator: ^9.7.0
   riverpod_generator: ^2.6.5
   very_good_analysis: ^7.0.0
 
