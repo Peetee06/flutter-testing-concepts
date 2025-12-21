@@ -395,10 +395,10 @@ packages:
     dependency: transitive
     description:
       name: get_it
-      sha256: ae78de7c3f2304b8d81f2bb6e320833e5e81de942188542328f074978cc0efa9
+      sha256: "1d648d2dd2047d7f7450d5727ca24ee435f240385753d90b49650e3cdff32e56"
       url: "https://pub.dev"
     source: hosted
-    version: "8.3.0"
+    version: "9.2.0"
   glob:
     dependency: transitive
     description:
@@ -411,10 +411,10 @@ packages:
     dependency: transitive
     description:
       name: go_router
-      sha256: b453934c36e289cef06525734d1e676c1f91da9e22e2017d9dcab6ce0f999175
+      sha256: eff94d2a6fc79fa8b811dde79c7549808c2346037ee107a1121b4a644c745f2a
       url: "https://pub.dev"
     source: hosted
-    version: "15.1.3"
+    version: "17.0.1"
   go_router_builder:
     dependency: transitive
     description:
@@ -536,10 +536,10 @@ packages:
     dependency: transitive
     description:
       name: lean_builder
-      sha256: "4f3d70c34c52cc5034e8cc6f53d35aa3a32fb373b78fb4c29cf45cd1dcf06942"
+      sha256: "6af3cfbf34400eb14b89fe20111e5981e7083362f00ea10b9ed2a6e833250d76"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.6"
   logging:
     dependency: transitive
     description:
@@ -845,10 +845,10 @@ packages:
     dependency: transitive
     description:
       name: smooth_page_indicator
-      sha256: b21ebb8bc39cf72d11c7cfd809162a48c3800668ced1c9da3aade13a32cf6c1c
+      sha256: "4b497e9898d095de40d246db943371183fa7482492a88391cfa8415ef94d57ba"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "2.0.1"
   source_gen:
     dependency: transitive
     description:
@@ -1045,10 +1045,10 @@ packages:
     dependency: transitive
     description:
       name: very_good_analysis
-      sha256: "62d2b86d183fb81b2edc22913d9f155d26eb5cf3855173adb1f59fac85035c63"
+      sha256: "96245839dbcc45dfab1af5fa551603b5c7a282028a64746c19c547d21a7f1e3a"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.0"
+    version: "10.0.0"
   vm_service:
     dependency: transitive
     description:
@@ -1061,10 +1061,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: f52385d4f73589977c80797e60fe51014f7f2b957b5e9a62c3f6ada439889249
+      sha256: "592ab6e2892f67760543fb712ff0177f4ec76c031f02f5b4ff8d3fc5eb9fb61a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.1.4"
   web:
     dependency: transitive
     description:
