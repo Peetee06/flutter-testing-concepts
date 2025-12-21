@@ -4,6 +4,3 @@
 
 # FVM Version Cache
 .fvm/
-
-# Ignore MCP config because it might contain sensitive information
-.cursor/mcp.json

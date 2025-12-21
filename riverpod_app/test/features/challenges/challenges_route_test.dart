@@ -1,7 +1,6 @@
 import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
-import 'package:riverpod_app/features/challenges/view/challenges_route.dart';
 import 'package:riverpod_app/features/challenges/view/challenges_view.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/routing/go_router.dart';
@@ -16,7 +15,7 @@ void main() {
       const testConceptId = 'test_concept_id';
       await tester.pumpAppWithRouter(
         overrides: [
-          challengesNotifierProvider(testConceptId).overrideWith(
+          challengesProvider(testConceptId).overrideWith(
             () => FakeChallengesNotifier(challenges: <Challenge>[]),
           ),
         ],

@@ -2,83 +2,79 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AppRiverpodObserver extends ProviderObserver {
+final class AppRiverpodObserver extends ProviderObserver {
   @override
   void didUpdateProvider(
-    ProviderBase<Object?> provider,
+    ProviderObserverContext context,
     Object? previousValue,
     Object? newValue,
-    ProviderContainer container,
   ) {
     final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      '[Riverpod][$timestamp] ${context.providerName} '
       'updated:\n'
       'Previous: $previousValue\n'
       'New: $newValue',
     );
     super.didUpdateProvider(
-      provider,
+      context,
       previousValue,
       newValue,
-      container,
     );
   }
 
   @override
   void didAddProvider(
-    ProviderBase<Object?> provider,
+    ProviderObserverContext context,
     Object? value,
-    ProviderContainer container,
   ) {
     final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      '[Riverpod][$timestamp] ${context.providerName} '
       'added: $value',
     );
     super.didAddProvider(
-      provider,
+      context,
       value,
-      container,
     );
   }
 
   @override
   void didDisposeProvider(
-    ProviderBase<Object?> provider,
-    ProviderContainer container,
+    ProviderObserverContext context,
   ) {
     final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      '[Riverpod][$timestamp] ${context.providerName} '
       'disposed',
     );
     super.didDisposeProvider(
-      provider,
-      container,
+      context,
     );
   }
 
   @override
   void providerDidFail(
-    ProviderBase<Object?> provider,
+    ProviderObserverContext context,
     Object error,
     StackTrace stackTrace,
-    ProviderContainer container,
   ) {
     final timestamp = DateTime.now().toIso8601String();
     log(
-      '[Riverpod][$timestamp] ${provider.name ?? provider.runtimeType} '
+      '[Riverpod][$timestamp] ${context.providerName} '
       'error:\n'
       'Error: $error\n'
-      'Provider ID: ${provider.name ?? provider.runtimeType}',
+      'Provider ID: ${context.providerName}',
       stackTrace: stackTrace,
     );
     super.providerDidFail(
-      provider,
+      context,
       error,
       stackTrace,
-      container,
     );
   }
+}
+
+extension on ProviderObserverContext {
+  String get providerName => provider.name ?? provider.runtimeType.toString();
 }

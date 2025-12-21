@@ -27,7 +27,7 @@ class _ConceptAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final concept = ref.watch(conceptNotifierProvider(id));
+    final concept = ref.watch(conceptProvider(id));
     return switch (concept) {
       AsyncData(:final value) => AppBar(
           title: Text(
@@ -45,7 +45,7 @@ class _ConceptBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final concept = ref.watch(conceptNotifierProvider(id));
+    final concept = ref.watch(conceptProvider(id));
     return switch (concept) {
       AsyncData(:final value) => SectionsView(
           id: value.id,

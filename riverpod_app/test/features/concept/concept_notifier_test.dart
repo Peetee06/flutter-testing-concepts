@@ -1,10 +1,10 @@
 import 'package:common/common.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
 import 'package:riverpod_app/features/concept/concept_notifier.dart';
 
+import '../../helpers/helpers.dart';
 import '../../mocks.mocks.dart';
 
 void main() {
@@ -33,13 +33,12 @@ void main() {
     Future<Concept> getConcept({
       required String id,
     }) async {
-      final container = ProviderContainer(
+      final container = createContainer(
         overrides: [
           conceptsRepositoryProvider.overrideWithValue(mockRepository),
         ],
       );
-      addTearDown(container.dispose);
-      return container.read(conceptNotifierProvider(id).future);
+      return container.read(conceptProvider(id).future);
     }
 
     test('returns a concept for a valid id', () async {

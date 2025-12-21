@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
-import 'package:riverpod_app/features/concept/concept_route.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
@@ -34,7 +33,7 @@ void main() {
     );
     await tester.pumpApp(
       overrides: [
-        conceptsNotifierProvider.overrideWith(
+        conceptsProvider.overrideWith(
           () => fakeConceptsNotifier,
         ),
       ],

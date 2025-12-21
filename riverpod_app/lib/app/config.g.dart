@@ -6,21 +6,46 @@ part of 'config.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appConfigHash() => r'89539f7dfac47380884155599073a6cbd054873a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [appConfig].
 @ProviderFor(appConfig)
-final appConfigProvider = AutoDisposeProvider<AppConfig>.internal(
-  appConfig,
-  name: r'appConfigProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appConfigHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const appConfigProvider = AppConfigProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AppConfigRef = AutoDisposeProviderRef<AppConfig>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AppConfigProvider
+    extends $FunctionalProvider<AppConfig, AppConfig, AppConfig>
+    with $Provider<AppConfig> {
+  const AppConfigProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'appConfigProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$appConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<AppConfig> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AppConfig create(Ref ref) {
+    return appConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AppConfig value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AppConfig>(value),
+    );
+  }
+}
+
+String _$appConfigHash() => r'89539f7dfac47380884155599073a6cbd054873a';

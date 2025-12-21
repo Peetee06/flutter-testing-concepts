@@ -6,173 +6,94 @@ part of 'challenges_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$challengesNotifierHash() =>
-    r'85ec3d6ae08c6488543e12562565466e855f402b';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$ChallengesNotifier
-    extends BuildlessAutoDisposeAsyncNotifier<List<Challenge>> {
-  late final String conceptId;
-
-  FutureOr<List<Challenge>> build(
-    String conceptId,
-  );
-}
-
-/// See also [ChallengesNotifier].
 @ProviderFor(ChallengesNotifier)
-const challengesNotifierProvider = ChallengesNotifierFamily();
+const challengesProvider = ChallengesNotifierFamily._();
 
-/// See also [ChallengesNotifier].
-class ChallengesNotifierFamily extends Family<AsyncValue<List<Challenge>>> {
-  /// See also [ChallengesNotifier].
-  const ChallengesNotifierFamily();
-
-  /// See also [ChallengesNotifier].
-  ChallengesNotifierProvider call(
-    String conceptId,
-  ) {
-    return ChallengesNotifierProvider(
-      conceptId,
-    );
-  }
-
-  @override
-  ChallengesNotifierProvider getProviderOverride(
-    covariant ChallengesNotifierProvider provider,
-  ) {
-    return call(
-      provider.conceptId,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'challengesNotifierProvider';
-}
-
-/// See also [ChallengesNotifier].
-class ChallengesNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    ChallengesNotifier, List<Challenge>> {
-  /// See also [ChallengesNotifier].
-  ChallengesNotifierProvider(
-    String conceptId,
-  ) : this._internal(
-          () => ChallengesNotifier()..conceptId = conceptId,
-          from: challengesNotifierProvider,
-          name: r'challengesNotifierProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$challengesNotifierHash,
-          dependencies: ChallengesNotifierFamily._dependencies,
-          allTransitiveDependencies:
-              ChallengesNotifierFamily._allTransitiveDependencies,
-          conceptId: conceptId,
+final class ChallengesNotifierProvider
+    extends $AsyncNotifierProvider<ChallengesNotifier, List<Challenge>> {
+  const ChallengesNotifierProvider._(
+      {required ChallengesNotifierFamily super.from,
+      required String super.argument})
+      : super(
+          retry: null,
+          name: r'challengesProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
         );
 
-  ChallengesNotifierProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.conceptId,
-  }) : super.internal();
-
-  final String conceptId;
+  @override
+  String debugGetCreateSourceHash() => _$challengesNotifierHash();
 
   @override
-  FutureOr<List<Challenge>> runNotifierBuild(
-    covariant ChallengesNotifier notifier,
-  ) {
-    return notifier.build(
-      conceptId,
-    );
+  String toString() {
+    return r'challengesProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  Override overrideWith(ChallengesNotifier Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: ChallengesNotifierProvider._internal(
-        () => create()..conceptId = conceptId,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        conceptId: conceptId,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderElement<ChallengesNotifier, List<Challenge>>
-      createElement() {
-    return _ChallengesNotifierProviderElement(this);
-  }
+  ChallengesNotifier create() => ChallengesNotifier();
 
   @override
   bool operator ==(Object other) {
-    return other is ChallengesNotifierProvider && other.conceptId == conceptId;
+    return other is ChallengesNotifierProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, conceptId.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin ChallengesNotifierRef
-    on AutoDisposeAsyncNotifierProviderRef<List<Challenge>> {
-  /// The parameter `conceptId` of this provider.
-  String get conceptId;
-}
+String _$challengesNotifierHash() =>
+    r'85ec3d6ae08c6488543e12562565466e855f402b';
 
-class _ChallengesNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ChallengesNotifier,
-        List<Challenge>> with ChallengesNotifierRef {
-  _ChallengesNotifierProviderElement(super.provider);
+final class ChallengesNotifierFamily extends $Family
+    with
+        $ClassFamilyOverride<ChallengesNotifier, AsyncValue<List<Challenge>>,
+            List<Challenge>, FutureOr<List<Challenge>>, String> {
+  const ChallengesNotifierFamily._()
+      : super(
+          retry: null,
+          name: r'challengesProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: true,
+        );
+
+  ChallengesNotifierProvider call(
+    String conceptId,
+  ) =>
+      ChallengesNotifierProvider._(argument: conceptId, from: this);
 
   @override
-  String get conceptId => (origin as ChallengesNotifierProvider).conceptId;
+  String toString() => r'challengesProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+
+abstract class _$ChallengesNotifier extends $AsyncNotifier<List<Challenge>> {
+  late final _$args = ref.$arg as String;
+  String get conceptId => _$args;
+
+  FutureOr<List<Challenge>> build(
+    String conceptId,
+  );
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(
+      _$args,
+    );
+    final ref = this.ref as $Ref<AsyncValue<List<Challenge>>, List<Challenge>>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<List<Challenge>>, List<Challenge>>,
+        AsyncValue<List<Challenge>>,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
