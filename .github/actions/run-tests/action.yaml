@@ -41,7 +41,7 @@ runs:
 
     - name: Remove generated files from coverage report
       shell: bash
-      run: lcov --remove coverage/lcov.info '**.g.dart' -o coverage/cleaned.info --ignore-errors unused
+      run: lcov --remove coverage/lcov.info '**.freezed.dart' '**.g.dart' '**/app_localizations*.dart' -o coverage/cleaned.info --ignore-errors unused
       working-directory: ${{ inputs.working-directory }}
 
     - name: Prefix working directory to coverage paths
