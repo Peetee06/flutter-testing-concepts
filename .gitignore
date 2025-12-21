@@ -1,3 +1,6 @@
+# Workspace generated files
+/.dart_tool/
+/build/
 
 # FVM Version Cache
 .fvm/

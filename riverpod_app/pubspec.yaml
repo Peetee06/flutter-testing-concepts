@@ -6,6 +6,8 @@ publish_to: none
 environment:
   sdk: ^3.6.0
 
+resolution: workspace
+
 dependencies:
   cached_network_image: ^3.4.1
   collection: ^1.19.1
@@ -27,7 +29,7 @@ dependencies:
   smooth_page_indicator: ^1.2.1
 
 dev_dependencies:
-  analyzer: 7.3.0
+  analyzer: ^7.4.5
   build_runner: ^2.4.15
   fake_async: ^1.3.2
   flutter_test:
