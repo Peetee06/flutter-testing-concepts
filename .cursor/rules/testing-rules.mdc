@@ -115,88 +115,31 @@ overrides: [
 
 ### Notifier Providers
 
-For notifier providers we need to use fakes. If the respective fake doesn't exist yet, please create one.
-Given the following notifier provider:
+Use `overrideWithBuild` to override the build method of a notifier. This allows testing different states (loading, error, success) without creating fake classes.
 
-```dart
-@riverpod
-class UsernameController extends _$UsernameController {
-  @override
-  Future<String> build() async {
-    // fetch `username` from backend
-    return username;
-  }
+The builder's signature is `FutureOr<ReturnType> Function(Ref ref, NotifierType notifier)`.
 
-  Future<void> updateUsername(String username) {
-    // update `username˚ in backend
-    state = AsyncData(username);
-  }
-}
-```
-
-We create this fake:
-
-```dart
-class FakeUsernameController extends UsernameController {
-  FakeUsernameController({
-    required this.username,
-    this.behavior,
-  });
-
-  String username;
-  FutureBehavior? behavior;
-
-  final List<String> usernameUpdates = [];
-
-  @override
-  Future<String> build() async {
-    behavior?.simulate();
-    return username;
-  }
-
-  @override
-  Future<void> updateUsername(String username) {
-    usernameUpdates.add(username);
-  }
-
-  void updateFake({
-    String? username,
-    FutureBehavior? behavior,
-  }) {
-    if (username != null) {
-      this.username = username;
-    }
-    this.behavior = behavior;
-  }
-}
-```
+Use `_` wildcards for unused parameters.
 
 Examples:  
-With a value:
+Complete with value:
 
 ```dart
 overrides: [
-  usernameControllerProvider.overrideWith(
-    () => FakeUsernameController(
-      username: 'username',
-    ),
+  usernameControllerProvider.overrideWithBuild(
+    (_, __) => 'username',
   ),
 ];
 ```
 
-With an error:
+Complete with error:
 
 ```dart
 final error = Exception();
 // ...
 overrides: [
-  usernameControllerProvider.overrideWith(
-    () => FakeUsernameController(
-      username: 'username',
-      behavior: FutureBehavior(
-        error: error,
-      )
-    ),
+  usernameControllerProvider.overrideWithBuild(
+    (_, __) => throw error,
   ),
 ];
 // ...
@@ -207,13 +150,11 @@ With a delay:
 
 ```dart
 overrides: [
-  usernameControllerProvider.overrideWith(
-    () => FakeUsernameController(
-      username: 'username',
-      behavior: FutureBehavior(
-        delay: Future<void>.delayed(Duration(seconds: 1)),
-      )
-    ),
+  usernameControllerProvider.overrideWithBuild(
+    (_, __) async {
+      await Future<void>.delayed(const Duration(seconds: 1));
+      return 'username';
+    },
   ),
 ];
 ```
@@ -222,15 +163,30 @@ Not completing = infinitely in loading state:
 
 ```dart
 overrides: [
-  usernameControllerProvider.overrideWith(
-    () => FakeUsernameController(
-      username: 'username',
-      behavior: FutureBehavior(
-        loading: true,
-      )
-    ),
+  usernameControllerProvider.overrideWithBuild(
+    (_, __) => Completer<String>().future,
   ),
 ];
+```
+
+Testing state transitions (e.g., error then retry succeeds):
+
+Use a list of callbacks with `removeAt(0)` to ensure the build method is called the expected number of times. If called more than expected, the empty list will throw.
+
+```dart
+final buildResults = <String Function()>[
+  () => throw Exception('Error'),
+  () => 'username',
+];
+// ...
+overrides: [
+  usernameControllerProvider.overrideWithBuild(
+    (_, __) => buildResults.removeAt(0)(),
+  ),
+];
+// ...
+// first render shows error
+// trigger retry, now shows 'username'
 ```
 
 ### Testing Riverpod family providers

@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
@@ -10,10 +13,8 @@ import 'package:riverpod_app/l10n/l10n.dart';
 
 import '../../../helpers/helpers.dart';
 import '../../../mocks.mocks.dart';
-import '../fake_concepts_notifier.dart';
 
 void main() {
-  late FakeConceptsNotifier fakeConceptsNotifier;
   late MockGoRouter router;
 
   setUp(() {
@@ -23,19 +24,12 @@ void main() {
 
   Future<void> pumpConceptsView(
     WidgetTester tester, {
-    required List<Concept> concepts,
-    FutureBehavior? behavior,
+    required FutureOr<List<Concept>> Function(Ref, ConceptsNotifier) build,
     Locale locale = const Locale('de'),
   }) async {
-    fakeConceptsNotifier = FakeConceptsNotifier(
-      concepts: concepts,
-      behavior: behavior,
-    );
     await tester.pumpApp(
       overrides: [
-        conceptsProvider.overrideWith(
-          () => fakeConceptsNotifier,
-        ),
+        conceptsProvider.overrideWithBuild(build),
       ],
       locale: locale,
       widget: InheritedGoRouter(
@@ -47,13 +41,13 @@ void main() {
 
   group(ConceptsView, () {
     testWidgets('has correct localized title', (tester) async {
-      await pumpConceptsView(tester, concepts: []);
+      await pumpConceptsView(tester, build: (_, __) => <Concept>[]);
       final context = tester.element(find.byType(ConceptsView));
       expect(find.text(context.l10n.conceptsViewTitle), findsOneWidget);
     });
 
     testWidgets('renders initial state as empty', (tester) async {
-      await pumpConceptsView(tester, concepts: []);
+      await pumpConceptsView(tester, build: (_, __) => <Concept>[]);
       await tester.pumpAndSettle();
       final context = tester.element(find.byType(ConceptsView));
       expect(find.text(context.l10n.conceptsEmpty), findsOneWidget);
@@ -62,8 +56,7 @@ void main() {
     testWidgets('renders loading state', (tester) async {
       await pumpConceptsView(
         tester,
-        concepts: [],
-        behavior: FutureBehavior(loading: true),
+        build: (_, __) => Completer<List<Concept>>().future,
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
@@ -71,17 +64,19 @@ void main() {
     testWidgets(
         'renders error state and invalidates provider on try again pressed',
         (tester) async {
+      final buildResults = <List<Concept> Function()>[
+        () => throw Exception('Error'),
+        () => <Concept>[],
+      ];
       await pumpConceptsView(
         tester,
-        concepts: [],
-        behavior: FutureBehavior(error: 'Error'),
+        build: (_, __) => buildResults.removeAt(0)(),
       );
       await tester.pumpAndSettle();
       final context = tester.element(find.byType(ConceptsView));
       expect(find.textContaining('Error'), findsOneWidget);
       expect(find.text(context.l10n.conceptsTryAgain), findsOneWidget);
 
-      fakeConceptsNotifier.updateFake(concepts: []);
       await tester.tap(find.text(context.l10n.conceptsTryAgain));
       await tester.pumpAndSettle();
       expect(find.text(context.l10n.conceptsEmpty), findsOneWidget);
@@ -115,7 +110,7 @@ void main() {
         ];
         await pumpConceptsView(
           tester,
-          concepts: concepts,
+          build: (_, __) => concepts,
           locale: config.locale,
         );
         await tester.pumpAndSettle();
@@ -143,7 +138,7 @@ void main() {
         ];
         await pumpConceptsView(
           tester,
-          concepts: concepts,
+          build: (_, __) => concepts,
         );
         await tester.pumpAndSettle();
         await tester.tap(find.text('Test Konzept'));
