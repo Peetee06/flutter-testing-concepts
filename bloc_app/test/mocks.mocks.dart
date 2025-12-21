@@ -21,25 +21,25 @@ import 'package:bloc_app/features/concepts/cubit/concepts_cubit.dart' as _i30;
 import 'package:bloc_app/features/concepts/cubit/concepts_state.dart' as _i31;
 import 'package:common/common.dart' as _i32;
 import 'package:dio/dio.dart' as _i11;
-import 'package:dio/src/adapter.dart' as _i7;
+import 'package:dio/src/adapter.dart' as _i8;
 import 'package:dio/src/cancel_token.dart' as _i23;
-import 'package:dio/src/dio_mixin.dart' as _i9;
+import 'package:dio/src/dio_mixin.dart' as _i7;
 import 'package:dio/src/options.dart' as _i6;
 import 'package:dio/src/response.dart' as _i10;
-import 'package:dio/src/transformer.dart' as _i8;
+import 'package:dio/src/transformer.dart' as _i9;
 import 'package:file/file.dart' as _i5;
-import 'package:flutter/widgets.dart' as _i13;
+import 'package:flutter/widgets.dart' as _i14;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i29;
 import 'package:flutter_cache_manager/flutter_cache_manager.dart' as _i2;
 import 'package:flutter_cache_manager/src/cache_store.dart' as _i3;
 import 'package:flutter_cache_manager/src/web/web_helper.dart' as _i4;
-import 'package:go_router/src/configuration.dart' as _i12;
-import 'package:go_router/src/delegate.dart' as _i14;
-import 'package:go_router/src/information_provider.dart' as _i15;
+import 'package:go_router/src/configuration.dart' as _i13;
+import 'package:go_router/src/delegate.dart' as _i15;
+import 'package:go_router/src/information_provider.dart' as _i16;
 import 'package:go_router/src/match.dart' as _i26;
-import 'package:go_router/src/parser.dart' as _i16;
+import 'package:go_router/src/parser.dart' as _i17;
 import 'package:go_router/src/router.dart' as _i24;
-import 'package:go_router/src/state.dart' as _i17;
+import 'package:go_router/src/state.dart' as _i12;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i25;
 
@@ -56,6 +56,7 @@ import 'package:mockito/src/dummies.dart' as _i25;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
+// ignore_for_file: invalid_use_of_internal_member
 
 class _FakeConfig_0 extends _i1.SmartFake implements _i2.Config {
   _FakeConfig_0(
@@ -117,9 +118,8 @@ class _FakeBaseOptions_5 extends _i1.SmartFake implements _i6.BaseOptions {
         );
 }
 
-class _FakeHttpClientAdapter_6 extends _i1.SmartFake
-    implements _i7.HttpClientAdapter {
-  _FakeHttpClientAdapter_6(
+class _FakeInterceptors_6 extends _i1.SmartFake implements _i7.Interceptors {
+  _FakeInterceptors_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -128,8 +128,9 @@ class _FakeHttpClientAdapter_6 extends _i1.SmartFake
         );
 }
 
-class _FakeTransformer_7 extends _i1.SmartFake implements _i8.Transformer {
-  _FakeTransformer_7(
+class _FakeHttpClientAdapter_7 extends _i1.SmartFake
+    implements _i8.HttpClientAdapter {
+  _FakeHttpClientAdapter_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -138,8 +139,8 @@ class _FakeTransformer_7 extends _i1.SmartFake implements _i8.Transformer {
         );
 }
 
-class _FakeInterceptors_8 extends _i1.SmartFake implements _i9.Interceptors {
-  _FakeInterceptors_8(
+class _FakeTransformer_8 extends _i1.SmartFake implements _i9.Transformer {
+  _FakeTransformer_8(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -168,9 +169,9 @@ class _FakeDio_10 extends _i1.SmartFake implements _i11.Dio {
         );
 }
 
-class _FakeRouteConfiguration_11 extends _i1.SmartFake
-    implements _i12.RouteConfiguration {
-  _FakeRouteConfiguration_11(
+class _FakeGoRouterState_11 extends _i1.SmartFake
+    implements _i12.GoRouterState {
+  _FakeGoRouterState_11(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -179,9 +180,9 @@ class _FakeRouteConfiguration_11 extends _i1.SmartFake
         );
 }
 
-class _FakeBackButtonDispatcher_12 extends _i1.SmartFake
-    implements _i13.BackButtonDispatcher {
-  _FakeBackButtonDispatcher_12(
+class _FakeRouteConfiguration_12 extends _i1.SmartFake
+    implements _i13.RouteConfiguration {
+  _FakeRouteConfiguration_12(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -190,9 +191,9 @@ class _FakeBackButtonDispatcher_12 extends _i1.SmartFake
         );
 }
 
-class _FakeGoRouterDelegate_13 extends _i1.SmartFake
-    implements _i14.GoRouterDelegate {
-  _FakeGoRouterDelegate_13(
+class _FakeBackButtonDispatcher_13 extends _i1.SmartFake
+    implements _i14.BackButtonDispatcher {
+  _FakeBackButtonDispatcher_13(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -201,9 +202,9 @@ class _FakeGoRouterDelegate_13 extends _i1.SmartFake
         );
 }
 
-class _FakeGoRouteInformationProvider_14 extends _i1.SmartFake
-    implements _i15.GoRouteInformationProvider {
-  _FakeGoRouteInformationProvider_14(
+class _FakeGoRouterDelegate_14 extends _i1.SmartFake
+    implements _i15.GoRouterDelegate {
+  _FakeGoRouterDelegate_14(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -212,9 +213,9 @@ class _FakeGoRouteInformationProvider_14 extends _i1.SmartFake
         );
 }
 
-class _FakeGoRouteInformationParser_15 extends _i1.SmartFake
-    implements _i16.GoRouteInformationParser {
-  _FakeGoRouteInformationParser_15(
+class _FakeGoRouteInformationProvider_15 extends _i1.SmartFake
+    implements _i16.GoRouteInformationProvider {
+  _FakeGoRouteInformationProvider_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -223,9 +224,9 @@ class _FakeGoRouteInformationParser_15 extends _i1.SmartFake
         );
 }
 
-class _FakeGoRouterState_16 extends _i1.SmartFake
-    implements _i17.GoRouterState {
-  _FakeGoRouterState_16(
+class _FakeGoRouteInformationParser_16 extends _i1.SmartFake
+    implements _i17.GoRouteInformationParser {
+  _FakeGoRouteInformationParser_16(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -234,7 +235,7 @@ class _FakeGoRouterState_16 extends _i1.SmartFake
         );
 }
 
-class _FakeResponseBody_17 extends _i1.SmartFake implements _i7.ResponseBody {
+class _FakeResponseBody_17 extends _i1.SmartFake implements _i8.ResponseBody {
   _FakeResponseBody_17(
     Object parent,
     Invocation parentInvocation,
@@ -563,56 +564,55 @@ class MockDio extends _i1.Mock implements _i11.Dio {
       ) as _i6.BaseOptions);
 
   @override
-  _i7.HttpClientAdapter get httpClientAdapter => (super.noSuchMethod(
-        Invocation.getter(#httpClientAdapter),
-        returnValue: _FakeHttpClientAdapter_6(
-          this,
-          Invocation.getter(#httpClientAdapter),
-        ),
-      ) as _i7.HttpClientAdapter);
-
-  @override
-  _i8.Transformer get transformer => (super.noSuchMethod(
-        Invocation.getter(#transformer),
-        returnValue: _FakeTransformer_7(
-          this,
-          Invocation.getter(#transformer),
-        ),
-      ) as _i8.Transformer);
-
-  @override
-  _i9.Interceptors get interceptors => (super.noSuchMethod(
+  _i7.Interceptors get interceptors => (super.noSuchMethod(
         Invocation.getter(#interceptors),
-        returnValue: _FakeInterceptors_8(
+        returnValue: _FakeInterceptors_6(
           this,
           Invocation.getter(#interceptors),
         ),
-      ) as _i9.Interceptors);
+      ) as _i7.Interceptors);
 
   @override
-  set options(_i6.BaseOptions? _options) => super.noSuchMethod(
+  _i8.HttpClientAdapter get httpClientAdapter => (super.noSuchMethod(
+        Invocation.getter(#httpClientAdapter),
+        returnValue: _FakeHttpClientAdapter_7(
+          this,
+          Invocation.getter(#httpClientAdapter),
+        ),
+      ) as _i8.HttpClientAdapter);
+
+  @override
+  _i9.Transformer get transformer => (super.noSuchMethod(
+        Invocation.getter(#transformer),
+        returnValue: _FakeTransformer_8(
+          this,
+          Invocation.getter(#transformer),
+        ),
+      ) as _i9.Transformer);
+
+  @override
+  set options(_i6.BaseOptions? value) => super.noSuchMethod(
         Invocation.setter(
           #options,
-          _options,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  set httpClientAdapter(_i7.HttpClientAdapter? _httpClientAdapter) =>
-      super.noSuchMethod(
+  set httpClientAdapter(_i8.HttpClientAdapter? value) => super.noSuchMethod(
         Invocation.setter(
           #httpClientAdapter,
-          _httpClientAdapter,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  set transformer(_i8.Transformer? _transformer) => super.noSuchMethod(
+  set transformer(_i9.Transformer? value) => super.noSuchMethod(
         Invocation.setter(
           #transformer,
-          _transformer,
+          value,
         ),
         returnValueForMissingStub: null,
       );
@@ -1260,9 +1260,9 @@ class MockDio extends _i1.Mock implements _i11.Dio {
   @override
   _i11.Dio clone({
     _i6.BaseOptions? options,
-    _i9.Interceptors? interceptors,
-    _i7.HttpClientAdapter? httpClientAdapter,
-    _i8.Transformer? transformer,
+    _i7.Interceptors? interceptors,
+    _i8.HttpClientAdapter? httpClientAdapter,
+    _i9.Transformer? transformer,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1300,51 +1300,60 @@ class MockGoRouter extends _i1.Mock implements _i24.GoRouter {
   }
 
   @override
-  _i12.RouteConfiguration get configuration => (super.noSuchMethod(
+  _i12.GoRouterState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeGoRouterState_11(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i12.GoRouterState);
+
+  @override
+  _i13.RouteConfiguration get configuration => (super.noSuchMethod(
         Invocation.getter(#configuration),
-        returnValue: _FakeRouteConfiguration_11(
+        returnValue: _FakeRouteConfiguration_12(
           this,
           Invocation.getter(#configuration),
         ),
-      ) as _i12.RouteConfiguration);
+      ) as _i13.RouteConfiguration);
 
   @override
-  _i13.BackButtonDispatcher get backButtonDispatcher => (super.noSuchMethod(
+  _i14.BackButtonDispatcher get backButtonDispatcher => (super.noSuchMethod(
         Invocation.getter(#backButtonDispatcher),
-        returnValue: _FakeBackButtonDispatcher_12(
+        returnValue: _FakeBackButtonDispatcher_13(
           this,
           Invocation.getter(#backButtonDispatcher),
         ),
-      ) as _i13.BackButtonDispatcher);
+      ) as _i14.BackButtonDispatcher);
 
   @override
-  _i14.GoRouterDelegate get routerDelegate => (super.noSuchMethod(
+  _i15.GoRouterDelegate get routerDelegate => (super.noSuchMethod(
         Invocation.getter(#routerDelegate),
-        returnValue: _FakeGoRouterDelegate_13(
+        returnValue: _FakeGoRouterDelegate_14(
           this,
           Invocation.getter(#routerDelegate),
         ),
-      ) as _i14.GoRouterDelegate);
+      ) as _i15.GoRouterDelegate);
 
   @override
-  _i15.GoRouteInformationProvider get routeInformationProvider =>
+  _i16.GoRouteInformationProvider get routeInformationProvider =>
       (super.noSuchMethod(
         Invocation.getter(#routeInformationProvider),
-        returnValue: _FakeGoRouteInformationProvider_14(
+        returnValue: _FakeGoRouteInformationProvider_15(
           this,
           Invocation.getter(#routeInformationProvider),
         ),
-      ) as _i15.GoRouteInformationProvider);
+      ) as _i16.GoRouteInformationProvider);
 
   @override
-  _i16.GoRouteInformationParser get routeInformationParser =>
+  _i17.GoRouteInformationParser get routeInformationParser =>
       (super.noSuchMethod(
         Invocation.getter(#routeInformationParser),
-        returnValue: _FakeGoRouteInformationParser_15(
+        returnValue: _FakeGoRouteInformationParser_16(
           this,
           Invocation.getter(#routeInformationParser),
         ),
-      ) as _i16.GoRouteInformationParser);
+      ) as _i17.GoRouteInformationParser);
 
   @override
   bool get overridePlatformDefaultLocation => (super.noSuchMethod(
@@ -1353,52 +1362,39 @@ class MockGoRouter extends _i1.Mock implements _i24.GoRouter {
       ) as bool);
 
   @override
-  _i17.GoRouterState get state => (super.noSuchMethod(
-        Invocation.getter(#state),
-        returnValue: _FakeGoRouterState_16(
-          this,
-          Invocation.getter(#state),
-        ),
-      ) as _i17.GoRouterState);
-
-  @override
-  set configuration(_i12.RouteConfiguration? _configuration) =>
-      super.noSuchMethod(
+  set configuration(_i13.RouteConfiguration? value) => super.noSuchMethod(
         Invocation.setter(
           #configuration,
-          _configuration,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  set routerDelegate(_i14.GoRouterDelegate? _routerDelegate) =>
-      super.noSuchMethod(
+  set routerDelegate(_i15.GoRouterDelegate? value) => super.noSuchMethod(
         Invocation.setter(
           #routerDelegate,
-          _routerDelegate,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  set routeInformationProvider(
-          _i15.GoRouteInformationProvider? _routeInformationProvider) =>
+  set routeInformationProvider(_i16.GoRouteInformationProvider? value) =>
       super.noSuchMethod(
         Invocation.setter(
           #routeInformationProvider,
-          _routeInformationProvider,
+          value,
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  set routeInformationParser(
-          _i16.GoRouteInformationParser? _routeInformationParser) =>
+  set routeInformationParser(_i17.GoRouteInformationParser? value) =>
       super.noSuchMethod(
         Invocation.setter(
           #routeInformationParser,
-          _routeInformationParser,
+          value,
         ),
         returnValueForMissingStub: null,
       );
@@ -1621,13 +1617,13 @@ class MockGoRouter extends _i1.Mock implements _i24.GoRouter {
 /// A class which mocks [HttpClientAdapter].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpClientAdapter extends _i1.Mock implements _i7.HttpClientAdapter {
+class MockHttpClientAdapter extends _i1.Mock implements _i8.HttpClientAdapter {
   MockHttpClientAdapter() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i21.Future<_i7.ResponseBody> fetch(
+  _i21.Future<_i8.ResponseBody> fetch(
     _i6.RequestOptions? options,
     _i21.Stream<_i22.Uint8List>? requestStream,
     _i21.Future<void>? cancelFuture,
@@ -1641,7 +1637,7 @@ class MockHttpClientAdapter extends _i1.Mock implements _i7.HttpClientAdapter {
             cancelFuture,
           ],
         ),
-        returnValue: _i21.Future<_i7.ResponseBody>.value(_FakeResponseBody_17(
+        returnValue: _i21.Future<_i8.ResponseBody>.value(_FakeResponseBody_17(
           this,
           Invocation.method(
             #fetch,
@@ -1652,7 +1648,7 @@ class MockHttpClientAdapter extends _i1.Mock implements _i7.HttpClientAdapter {
             ],
           ),
         )),
-      ) as _i21.Future<_i7.ResponseBody>);
+      ) as _i21.Future<_i8.ResponseBody>);
 
   @override
   void close({bool? force = false}) => super.noSuchMethod(

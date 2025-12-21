@@ -63,8 +63,7 @@ final class AppRiverpodObserver extends ProviderObserver {
     log(
       '[Riverpod][$timestamp] ${context.providerName} '
       'error:\n'
-      'Error: $error\n'
-      'Provider ID: ${context.providerName}',
+      'Error: $error',
       stackTrace: stackTrace,
     );
     super.providerDidFail(

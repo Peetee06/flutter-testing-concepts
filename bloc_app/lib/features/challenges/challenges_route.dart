@@ -1,14 +1,6 @@
-import 'package:bloc_app/data/repositories/challenges/challenges_repository.dart';
-import 'package:bloc_app/data/repositories/concepts/concepts_repository.dart';
-import 'package:bloc_app/features/challenges/cubit/challenges_cubit.dart';
-import 'package:bloc_app/features/challenges/view/challenges_view.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+part of 'package:bloc_app/features/concepts/concepts_route.dart';
 
-@immutable
-class ChallengesRoute extends GoRouteData {
+class ChallengesRoute extends GoRouteData with $ChallengesRoute {
   const ChallengesRoute({required this.id});
 
   /// The id of the concept to fetch the challenges for.

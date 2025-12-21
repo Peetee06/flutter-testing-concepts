@@ -42,7 +42,8 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.9.5
   mockito: ^5.4.6
-  retrofit_generator: ^10.0.4
+  # Unpin once this issue is resolved: https://github.com/trevorwang/retrofit.dart/issues/876
+  retrofit_generator: 10.2.0
   very_good_analysis: ^7.0.0
 
 flutter:
