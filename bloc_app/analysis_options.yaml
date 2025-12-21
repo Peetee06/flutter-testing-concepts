@@ -6,3 +6,4 @@ analyzer:
   exclude:
     - lib/**.freezed.dart
     - lib/**.g.dart
+    - lib/**/app_localizations*.dart
