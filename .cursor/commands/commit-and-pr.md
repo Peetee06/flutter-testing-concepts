@@ -1,10 +1,6 @@
-# Create PR
+# Commit and create a Pull Request
 
-Create a Pull Request with the current changes. Uses smart defaults unless the user specifies otherwise.
-
-## Instructions
-
-Follow these steps to create a Pull Request:
+Commit the changes and create a Pull Request. Uses smart defaults unless the user specifies otherwise.
 
 ### 1. Stage changes
 
