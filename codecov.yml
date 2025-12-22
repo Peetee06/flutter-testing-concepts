@@ -11,10 +11,12 @@ coverage:
       default:
         target: auto
         base: auto
+        if_not_found: success
     patch:
       default:
         target: auto
         base: auto
+        if_not_found: success
 
 flags:
   riverpod_app:
@@ -50,6 +52,8 @@ component_management:
       - type: project
         target: auto
         base: auto
+        if_not_found: success
       - type: patch
         target: auto
         base: auto
+        if_not_found: success
