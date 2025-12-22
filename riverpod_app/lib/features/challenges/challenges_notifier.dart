@@ -3,10 +3,11 @@ import 'package:common/common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/data/repositories/challenges_repository.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
+import 'package:riverpod_app/utils/retry.dart';
 
 part 'challenges_notifier.g.dart';
 
-@riverpod
+@Riverpod(retry: networkRetry)
 class ChallengesNotifier extends _$ChallengesNotifier {
   @override
   Future<List<Challenge>> build(String conceptId) async {

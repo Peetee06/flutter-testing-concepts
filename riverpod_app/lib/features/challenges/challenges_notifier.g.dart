@@ -18,7 +18,7 @@ final class ChallengesNotifierProvider
       {required ChallengesNotifierFamily super.from,
       required String super.argument})
       : super(
-          retry: null,
+          retry: networkRetry,
           name: r'challengesProvider',
           isAutoDispose: true,
           dependencies: null,
@@ -51,7 +51,7 @@ final class ChallengesNotifierProvider
 }
 
 String _$challengesNotifierHash() =>
-    r'85ec3d6ae08c6488543e12562565466e855f402b';
+    r'8c144218b667eafc5edffe989a02274c2a548017';
 
 final class ChallengesNotifierFamily extends $Family
     with
@@ -59,7 +59,7 @@ final class ChallengesNotifierFamily extends $Family
             List<Challenge>, FutureOr<List<Challenge>>, String> {
   const ChallengesNotifierFamily._()
       : super(
-          retry: null,
+          retry: networkRetry,
           name: r'challengesProvider',
           dependencies: null,
           $allTransitiveDependencies: null,

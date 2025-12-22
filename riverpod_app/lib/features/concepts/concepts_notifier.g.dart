@@ -18,7 +18,7 @@ final class ConceptsNotifierProvider
       : super(
           from: null,
           argument: null,
-          retry: null,
+          retry: networkRetry,
           name: r'conceptsProvider',
           isAutoDispose: true,
           dependencies: null,
@@ -33,7 +33,7 @@ final class ConceptsNotifierProvider
   ConceptsNotifier create() => ConceptsNotifier();
 }
 
-String _$conceptsNotifierHash() => r'7fa6554adde9f1a13dfe6396b4d06de247eddf7c';
+String _$conceptsNotifierHash() => r'43ac5d7c9702cc25e030ddb8e505ac56ed36faca';
 
 abstract class _$ConceptsNotifier extends $AsyncNotifier<List<Concept>> {
   FutureOr<List<Concept>> build();
