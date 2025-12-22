@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/app/view/app.dart';
 import 'package:riverpod_app/features/challenges/view/widgets/challenge_card.dart';
 import 'package:riverpod_app/features/challenges/view/widgets/challenges_list.dart';

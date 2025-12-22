@@ -11,6 +11,7 @@ ignore:
   - "**/*.json"
   - ".gitignore"
   - ".gitattributes"
+  - "**/integration_test/**/*"
 
 coverage:
   status:
