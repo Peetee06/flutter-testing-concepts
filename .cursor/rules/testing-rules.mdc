@@ -7,11 +7,12 @@ alwaysApply: false
 
 ## General
 
-- Use the `flutter test` command to run tests
+- Use the dart test tool to run tests
 - Use direct class references for group descriptions (e.g., `group(MyClass, () {...})`).
 - For provider instances or other objects (e.g., `usernameProvider`), use quoted strings instead (e.g., `group('usernameProvider', () {...})`), as they would otherwise display as "Instance of [...]" in test output.
 - ALWAYS write helper methods for pumping the widget under test or reading/listening to providers
 - Avoid structural or obvious comments like "Arrange, Act, Assert", "verify xyz"
+- Match against full instances instead of just properties when using freezed classes
 
 ## Mocking
 
@@ -196,8 +197,7 @@ For overriding, we do `provider(parameter).overrideWith(...)`. The same goes for
 
 ## Unit Tests
 
-Use the `createContainer` helper method from `helpers/helpers.dart` to create a `ProviderContainer` for testing.
-The helper uses `ProviderContainer.test()` which automatically disposes the container when the test completes and disables retry behavior.
+When testing riverpod providers or notifiers, use `ProviderContainer.test()` which automatically disposes the container when the test completes.
 
 ### Testing Riverpod value providers
 
@@ -205,10 +205,8 @@ Create a helper method that reads and returns the value of the provider.
 Example:
 
 ```dart
-import '../helpers/helpers.dart';
-
 String getUsername({required User user}) {
-  final container = createContainer(
+  final container = ProviderContainer.test(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
@@ -228,10 +226,8 @@ Create a helper method that reads and returns the future value of the provider.
 Example:
 
 ```dart
-import '../helpers/helpers.dart';
-
 Future<String> getUsername({required User user}) async {
-  final container = createContainer(
+  final container = ProviderContainer.test(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
@@ -255,8 +251,6 @@ Example:
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../helpers/helpers.dart';
-
 late List<AsyncValue<String>> states;
 
 setUp(() {
@@ -264,7 +258,7 @@ setUp(() {
 });
 
 ProviderSubscription<AsyncValue<String>> listenToNotifier({required User user}) {
-  final container = createContainer(
+  final container = ProviderContainer.test(
     overrides: [
       userProvider.overrideWithValue(user),
     ],
@@ -368,7 +362,6 @@ await container.read(usernameProvider.notifier).updateUsername('Updated Username
 ### Using ValueVariants
 
 ValueVariants allow you to run the same test multiple times with different input values, which enables more thorough testing with less code duplication.
-
 
 IMPORTANT: The variants need to be instantiated OUTSIDE of the test method and only its reference may be passed to the `variant` parameter and referenced inside the test.
 
