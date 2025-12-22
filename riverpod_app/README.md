@@ -17,6 +17,9 @@ The domain model is defined in the `lib/domain` folder based on the following da
 - `concept`: Displays the sections of a concept.
 - `challenges`: Displays the list of challenges for a concept.
 
+### Notifiers
+- `ChallengeProgressNotifier`: Manages the user's progress on a specific challenge, including answer selection, submission, and reset functionality. This demonstrates testing a Riverpod Notifier with mutable state and multiple methods that modify state imperatively. See [`challenge_progress_notifier_test.dart`](test/features/challenges/challenge_progress_notifier_test.dart) for the corresponding tests.
+
 ## Core Packages
 - `flutter_riverpod`: Used for state management.
 - `retrofit` and `dio`: Used for the API client.
