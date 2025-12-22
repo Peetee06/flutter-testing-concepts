@@ -111,7 +111,7 @@ void main() {
           router: router,
           locale: locale,
         );
-        expect(find.byType(FilledButton), findsOneWidget);
+        expect(find.byKey(ChallengesList.doneButtonKey), findsOneWidget);
         expect(find.text(doneText), findsOneWidget);
       },
     );

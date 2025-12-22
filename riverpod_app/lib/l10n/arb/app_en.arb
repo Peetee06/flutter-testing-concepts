@@ -37,5 +37,21 @@
     "challengesDoneButtonLabel": "Done",
     "@challengesDoneButtonLabel": {
         "description": "Label for the button to finish the challenges and return"
+    },
+    "submit": "Submit",
+    "@submit": {
+        "description": "Text for the submit button"
+    },
+    "correct": "Correct!",
+    "@correct": {
+        "description": "Text shown when the answer is correct"
+    },
+    "incorrect": "Incorrect",
+    "@incorrect": {
+        "description": "Text shown when the answer is incorrect"
+    },
+    "tryAgain": "Try Again",
+    "@tryAgain": {
+        "description": "Text for the try again button"
     }
 }
