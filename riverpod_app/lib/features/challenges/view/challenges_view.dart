@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
+import 'package:riverpod_app/features/challenges/challenges_provider.dart';
 import 'package:riverpod_app/features/challenges/view/widgets/challenges_list.dart';
 
 class ChallengesView extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_app/features/concept/concept_notifier.dart';
+import 'package:riverpod_app/features/concept/concept_provider.dart';
 import 'package:riverpod_app/features/concept/view/widgets/sections_view.dart';
 
 class ConceptView extends StatelessWidget {
