@@ -18,7 +18,7 @@ final class ConceptNotifierProvider
       {required ConceptNotifierFamily super.from,
       required String super.argument})
       : super(
-          retry: null,
+          retry: networkRetry,
           name: r'conceptProvider',
           isAutoDispose: true,
           dependencies: null,
@@ -50,7 +50,7 @@ final class ConceptNotifierProvider
   }
 }
 
-String _$conceptNotifierHash() => r'28f14a871e6e434ee6a125ccb3a0f274c8b63594';
+String _$conceptNotifierHash() => r'c872fa91910e083d9c09baf9e91e88865ce5d94b';
 
 final class ConceptNotifierFamily extends $Family
     with
@@ -58,7 +58,7 @@ final class ConceptNotifierFamily extends $Family
             FutureOr<Concept>, String> {
   const ConceptNotifierFamily._()
       : super(
-          retry: null,
+          retry: networkRetry,
           name: r'conceptProvider',
           dependencies: null,
           $allTransitiveDependencies: null,
