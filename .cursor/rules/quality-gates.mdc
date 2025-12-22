@@ -9,11 +9,11 @@ Run these checks after making any changes to Dart files.
 
 ## Dart Code Quality
 
-After modifying any `*.dart` files:
+After modifying any `*.dart` files, use the dart tool to run the following checks:
 
-1. Run `dart format .` in the affected packages to format the code
-2. Run `dart analyze` in the affected packages to check for issues
+1. Run `format` in the affected packages to format the code
+2. Run `analyze` in the affected packages to check for issues
 3. Fix all infos, warnings, and errors surfaced by these commands
-4. Run `flutter test` in the affected packages to ensure all tests pass
+4. Run `test` in the affected packages to ensure all tests pass
 5. Fix any failing tests
 6. Repeat steps 1-5 until all issues are resolved and all tests pass
