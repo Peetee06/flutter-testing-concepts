@@ -14,11 +14,10 @@ jobs:
   check-changed-files:
     runs-on: ubuntu-latest
     outputs:
-      riverpod_app_changed: ${{ steps.changed-files.outputs.riverpod_app_any_modified }}
-      bloc_app_changed: ${{ steps.changed-files.outputs.bloc_app_any_modified }}
-      common_changed: ${{ steps.changed-files.outputs.common_any_modified }}
-      common_app_files_changed: ${{ steps.changed-files.outputs.common_app_files_any_modified }}
-      common_files_changed: ${{ steps.changed-files.outputs.common_files_any_modified }}
+      should-build-riverpod-app: ${{ steps.determine-builds.outputs.should-build-riverpod-app }}
+      should-build-bloc-app: ${{ steps.determine-builds.outputs.should-build-bloc-app }}
+      should-build-common: ${{ steps.determine-builds.outputs.should-build-common }}
+      any-tests-to-run: ${{ steps.determine-builds.outputs.any-tests-to-run }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -46,9 +45,44 @@ jobs:
               - '.github/actions/upload-test-results/action.yaml'
             common:
               - 'common/**'
+      - name: Determine which packages to build
+        id: determine-builds
+        run: |
+          RIVERPOD_APP="${{ steps.changed-files.outputs.riverpod_app_any_modified }}"
+          BLOC_APP="${{ steps.changed-files.outputs.bloc_app_any_modified }}"
+          COMMON="${{ steps.changed-files.outputs.common_any_modified }}"
+          COMMON_APP_FILES="${{ steps.changed-files.outputs.common_app_files_any_modified }}"
+          COMMON_FILES="${{ steps.changed-files.outputs.common_files_any_modified }}"
+
+          # Determine if each package should be built
+          if [[ "$RIVERPOD_APP" == "true" || "$COMMON_APP_FILES" == "true" || "$COMMON_FILES" == "true" || "$COMMON" == "true" ]]; then
+            echo "should-build-riverpod-app=true" >> $GITHUB_OUTPUT
+          else
+            echo "should-build-riverpod-app=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [[ "$BLOC_APP" == "true" || "$COMMON_APP_FILES" == "true" || "$COMMON_FILES" == "true" || "$COMMON" == "true" ]]; then
+            echo "should-build-bloc-app=true" >> $GITHUB_OUTPUT
+          else
+            echo "should-build-bloc-app=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [[ "$COMMON" == "true" || "$COMMON_FILES" == "true" ]]; then
+            echo "should-build-common=true" >> $GITHUB_OUTPUT
+          else
+            echo "should-build-common=false" >> $GITHUB_OUTPUT
+          fi
+
+          # Determine if any tests will run
+          if [[ "$RIVERPOD_APP" == "true" || "$BLOC_APP" == "true" || "$COMMON" == "true" || "$COMMON_APP_FILES" == "true" || "$COMMON_FILES" == "true" ]]; then
+            echo "any-tests-to-run=true" >> $GITHUB_OUTPUT
+          else
+            echo "any-tests-to-run=false" >> $GITHUB_OUTPUT
+          fi
 
   build-riverpod-app:
     needs: check-changed-files
+    if: ${{ needs.check-changed-files.outputs.should-build-riverpod-app == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -56,10 +90,10 @@ jobs:
         uses: ./.github/actions/build-flutter-package
         with:
           working-directory: riverpod_app
-          skip-tests: ${{ needs.check-changed-files.outputs.riverpod_app_changed != 'true' && needs.check-changed-files.outputs.common_app_files_changed != 'true' && needs.check-changed-files.outputs.common_files_changed != 'true' && needs.check-changed-files.outputs.common_changed != 'true' }}
 
   build-bloc-app:
     needs: check-changed-files
+    if: ${{ needs.check-changed-files.outputs.should-build-bloc-app == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -67,10 +101,10 @@ jobs:
         uses: ./.github/actions/build-flutter-package
         with:
           working-directory: bloc_app
-          skip-tests: ${{ needs.check-changed-files.outputs.bloc_app_changed != 'true' && needs.check-changed-files.outputs.common_app_files_changed != 'true' && needs.check-changed-files.outputs.common_files_changed != 'true' && needs.check-changed-files.outputs.common_changed != 'true' }}
 
   build-common:
     needs: check-changed-files
+    if: ${{ needs.check-changed-files.outputs.should-build-common == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -78,12 +112,11 @@ jobs:
         uses: ./.github/actions/build-flutter-package
         with:
           working-directory: common
-          skip-tests: ${{ needs.check-changed-files.outputs.common_changed != 'true' && needs.check-changed-files.outputs.common_files_changed != 'true' }}
 
   check-build-results:
     runs-on: ubuntu-latest
-    needs: [build-riverpod-app, build-bloc-app, build-common]
-    # Always run this job, even if dependencies fail
+    needs: [check-changed-files, build-riverpod-app, build-bloc-app, build-common]
+    # Always run this job, even if dependencies are skipped or fail
     if: ${{ !cancelled() }}
     steps:
       - name: Check build job results
@@ -97,3 +130,8 @@ jobs:
           else
             echo "All build jobs passed."
           fi
+      - name: Empty upload to pass codecov checks
+        if: ${{ needs.check-changed-files.outputs.any-tests-to-run == 'false' }}
+        uses: codecov/codecov-action@v5
+        with:
+          run_command: empty-upload

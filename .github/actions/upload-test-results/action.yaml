@@ -2,9 +2,6 @@ name: Upload Code Coverage and Test Results to Codecov
 description: Uploads code coverage and test results to Codecov
 
 inputs:
-  token:
-    description: 'Codecov token'
-    required: false
   package-name:
     description: 'Flutter app/package name'
     required: true
@@ -14,20 +11,14 @@ inputs:
   test-results-files:
     description: 'Comma separated list of paths to the test results files'
     required: false
-  empty-upload:
-    description: 'Skip uploading reports and mark codecov checks as passed when there are no code changes that would trigger tests'
-    required: false
-    default: 'false'
 
 runs:
   using: 'composite'
 
   steps:
     - name: Upload coverage report to Codecov
-      if: ${{ inputs.empty-upload != 'true' }}
       uses: codecov/codecov-action@v5
       with:
-        token: ${{ inputs.token }}
         files: ${{ inputs.coverage-files }}
         disable_search: true
         name: ${{ inputs.package-name }}-coverage
@@ -36,20 +27,11 @@ runs:
         report_type: coverage
 
     - name: Upload test results to Codecov
-      if: ${{ inputs.empty-upload != 'true' }}
       uses: codecov/codecov-action@v5
       with:
-        token: ${{ inputs.token }}
         files: ${{ inputs.test-results-files }}
         disable_search: true
         name: ${{ inputs.package-name }}-tests
         flags: ${{ inputs.package-name }}
         fail_ci_if_error: true
         report_type: test_results
-
-    - name: Empty upload to pass codecov checks
-      if: ${{ inputs.empty-upload == 'true' }}
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ inputs.token }}
-        run_command: empty-upload
