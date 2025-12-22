@@ -211,7 +211,7 @@ String getUsername({required User user}) {
       userProvider.overrideWithValue(user),
     ],
   );
-  return container.read(usernameProvider.future);
+  return container.read(usernameProvider);
 }
 
 test('some test', () {
