@@ -10,16 +10,21 @@ inputs:
     required: true
   coverage-files:
     description: 'Comma separated list of paths to the coverage files'
-    required: true
+    required: false
   test-results-files:
     description: 'Comma separated list of paths to the test results files'
-    required: true
+    required: false
+  empty-upload:
+    description: 'Skip uploading reports and mark codecov checks as passed when there are no code changes that would trigger tests'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
 
   steps:
     - name: Upload coverage report to Codecov
+      if: ${{ inputs.empty-upload != 'true' }}
       uses: codecov/codecov-action@v5
       with:
         token: ${{ inputs.token }}
@@ -31,6 +36,7 @@ runs:
         report_type: coverage
 
     - name: Upload test results to Codecov
+      if: ${{ inputs.empty-upload != 'true' }}
       uses: codecov/codecov-action@v5
       with:
         token: ${{ inputs.token }}
@@ -40,3 +46,10 @@ runs:
         flags: ${{ inputs.package-name }}
         fail_ci_if_error: true
         report_type: test_results
+
+    - name: Empty upload to pass codecov checks
+      if: ${{ inputs.empty-upload == 'true' }}
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ inputs.token }}
+        run_command: empty-upload
