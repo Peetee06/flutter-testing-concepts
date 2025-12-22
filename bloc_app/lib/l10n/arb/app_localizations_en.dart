@@ -55,4 +55,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get challengesDoneButtonLabel => 'Done';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get correct => 'Correct!';
+
+  @override
+  String get incorrect => 'Incorrect';
+
+  @override
+  String get tryAgain => 'Try Again';
 }

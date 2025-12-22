@@ -51,5 +51,21 @@
     "challengesDoneButtonLabel": "Fertig",
     "@challengesDoneButtonLabel": {
         "description": "Text des Buttons zum Beenden des Konzepts"
+    },
+    "submit": "Absenden",
+    "@submit": {
+        "description": "Text für den Absenden-Button"
+    },
+    "correct": "Richtig!",
+    "@correct": {
+        "description": "Text, der angezeigt wird, wenn die Antwort richtig ist"
+    },
+    "incorrect": "Falsch",
+    "@incorrect": {
+        "description": "Text, der angezeigt wird, wenn die Antwort falsch ist"
+    },
+    "tryAgain": "Nochmal",
+    "@tryAgain": {
+        "description": "Text für den Nochmal-Button"
     }
 }
