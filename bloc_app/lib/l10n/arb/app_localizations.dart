@@ -157,6 +157,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get challengesDoneButtonLabel;
+
+  /// Text for the submit button
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// Text shown when the answer is correct
+  ///
+  /// In en, this message translates to:
+  /// **'Correct!'**
+  String get correct;
+
+  /// Text shown when the answer is incorrect
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect'**
+  String get incorrect;
+
+  /// Text for the try again button
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
 }
 
 class _AppLocalizationsDelegate

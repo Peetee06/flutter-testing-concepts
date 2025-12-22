@@ -79,20 +79,20 @@ void main() {
       expect(find.byType(ChallengeCard), findsNWidgets(2));
     });
 
-    testWidgets('shows back button', (tester) async {
+    testWidgets('shows done button', (tester) async {
       await pumpAppWithChallengesList(tester, challenges: challenges);
 
-      expect(find.byType(FilledButton), findsOneWidget);
-      final context = tester.element(find.byType(FilledButton));
+      expect(find.byKey(ChallengesList.doneButtonKey), findsOneWidget);
+      final context = tester.element(find.byKey(ChallengesList.doneButtonKey));
       expect(find.text(context.l10n.challengesDoneButtonLabel), findsOneWidget);
     });
 
-    testWidgets('back button is positioned at the bottom', (tester) async {
+    testWidgets('done button is positioned at the bottom', (tester) async {
       await pumpAppWithChallengesList(tester, challenges: challenges);
 
       final buttonAlign = tester.widget<Align>(
         find.ancestor(
-          of: find.byType(FilledButton),
+          of: find.byKey(ChallengesList.doneButtonKey),
           matching: find.byType(Align),
         ),
       );
