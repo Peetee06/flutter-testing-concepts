@@ -5,31 +5,21 @@ inputs:
   working-directory:
     description: 'Working directory of the Flutter package'
     required: true
-  codecov-token:
-    description: 'Codecov token for uploading results (optional for public repos)'
-    required: false
-  skip-tests:
-    description: 'Skip running tests and perform an empty codecov upload instead'
-    required: false
-    default: 'false'
 
 runs:
   using: 'composite'
   steps:
     - name: Setup Flutter package
-      if: ${{ inputs.skip-tests != 'true' }}
       uses: ./.github/actions/setup-flutter-package
       with:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Check Flutter package
-      if: ${{ inputs.skip-tests != 'true' }}
       uses: ./.github/actions/check-flutter-package
       with:
         working-directory: ${{ inputs.working-directory }}
 
     - name: Run tests
-      if: ${{ inputs.skip-tests != 'true' }}
       id: tests
       uses: ./.github/actions/run-tests
       with:
@@ -39,8 +29,6 @@ runs:
       if: ${{ !cancelled() }}
       uses: ./.github/actions/upload-test-results
       with:
-        token: ${{ inputs.codecov-token }}
         package-name: ${{ inputs.working-directory }}
         coverage-files: ${{ steps.tests.outputs.coverage-file }}
         test-results-files: ${{ steps.tests.outputs.test-results-file }}
-        empty-upload: ${{ inputs.skip-tests }}
