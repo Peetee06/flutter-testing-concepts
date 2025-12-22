@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_app/l10n/l10n.dart';
-import 'package:riverpod_app/utils/disable_retry.dart';
 
 extension PumpApp on WidgetTester {
   static const _defaultLocale = Locale('de');
@@ -19,7 +18,6 @@ extension PumpApp on WidgetTester {
   }) {
     return pumpWidget(
       ProviderScope(
-        retry: disableRetry,
         overrides: overrides,
         child: MaterialApp(
           locale: locale,
@@ -38,7 +36,6 @@ extension PumpApp on WidgetTester {
   }) {
     return pumpWidget(
       ProviderScope(
-        retry: disableRetry,
         overrides: overrides,
         child: MaterialApp.router(
           locale: locale,

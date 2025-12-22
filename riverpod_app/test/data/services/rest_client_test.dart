@@ -7,13 +7,12 @@ import 'package:riverpod_app/app/config.dart';
 import 'package:riverpod_app/data/services/interceptors/json_interceptor.dart';
 import 'package:riverpod_app/data/services/rest_client.dart';
 
-import '../../helpers/helpers.dart';
 import '../../mocks.mocks.dart';
 
 void main() {
   group('dioProvider', () {
     Dio getDio({required AppConfig config}) {
-      final container = createContainer(
+      final container = ProviderContainer.test(
         overrides: [
           appConfigProvider.overrideWithValue(config),
         ],
