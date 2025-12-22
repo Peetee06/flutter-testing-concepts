@@ -4,6 +4,13 @@ comment:
 
 ignore:
   - "**/app_localizations*.dart"
+  - "**/*.mdc"
+  - "**/*.md"
+  - "**/*.yaml"
+  - "**/*.yml"
+  - "**/*.json"
+  - ".gitignore"
+  - ".gitattributes"
 
 coverage:
   status:
