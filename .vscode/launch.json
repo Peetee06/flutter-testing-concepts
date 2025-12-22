@@ -29,6 +29,32 @@
       "type": "dart",
       "program": "bloc_app/lib/main_production.dart",
       "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+    },
+    {
+      "name": "Launch Riverpod App development",
+      "request": "launch",
+      "type": "dart",
+      "program": "riverpod_app/lib/main_development.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_development.dart"
+      ]
+    },
+    {
+      "name": "Launch Riverpod App staging",
+      "request": "launch",
+      "type": "dart",
+      "program": "riverpod_app/lib/main_staging.dart",
+      "args": ["--flavor", "staging", "--target", "lib/main_staging.dart"]
+    },
+    {
+      "name": "Launch Riverpod App production",
+      "request": "launch",
+      "type": "dart",
+      "program": "riverpod_app/lib/main_production.dart",
+      "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
     }
   ]
 }
