@@ -4,7 +4,7 @@ import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_app/features/concept/concept_notifier.dart';
+import 'package:riverpod_app/features/concept/concept_provider.dart';
 import 'package:riverpod_app/features/concept/view/concept_view.dart';
 import 'package:riverpod_app/features/concept/view/widgets/sections_view.dart';
 
@@ -27,14 +27,14 @@ void main() {
   Future<void> pumpTestWidget(
     WidgetTester tester, {
     required Concept concept,
-    FutureOr<Concept> Function(Ref, ConceptNotifier)? build,
+    FutureOr<Concept> Function(Ref)? build,
     Locale locale = const Locale('de'),
   }) async {
     await tester.pumpApp(
       widget: ConceptView(id: concept.id),
       overrides: [
-        conceptProvider(concept.id).overrideWithBuild(
-          (ref, notifier) => build?.call(ref, notifier) ?? concept,
+        conceptProvider(concept.id).overrideWith(
+          (ref) => build?.call(ref) ?? concept,
         ),
       ],
       locale: locale,
@@ -56,7 +56,7 @@ void main() {
       await pumpTestWidget(
         tester,
         concept: testConcept,
-        build: (_, __) => Completer<Concept>().future,
+        build: (_) => Completer<Concept>().future,
       );
       await tester.pump();
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -68,7 +68,7 @@ void main() {
       await pumpTestWidget(
         tester,
         concept: testConcept,
-        build: (_, __) => throw error,
+        build: (_) => throw error,
       );
       await tester.pump();
       expect(find.textContaining('error'), findsOneWidget);

@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
-import 'package:riverpod_app/features/concept/concept_notifier.dart';
+import 'package:riverpod_app/features/concept/concept_provider.dart';
 
 import '../../mocks.mocks.dart';
 
 void main() {
-  group('ConceptNotifier', () {
+  group('conceptProvider', () {
     late MockConceptsRepository mockRepository;
     final concept = Concept(
       id: '1',

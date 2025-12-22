@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_app/data/repositories/challenges_repository.dart';
 import 'package:riverpod_app/data/repositories/concepts_repository.dart';
-import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
+import 'package:riverpod_app/features/challenges/challenges_provider.dart';
 
 import '../../mocks.mocks.dart';
 
@@ -58,7 +58,7 @@ void main() {
 
   final testException = Exception('Test error');
 
-  ProviderSubscription<AsyncValue<List<Challenge>>> listenToNotifier(
+  ProviderSubscription<AsyncValue<List<Challenge>>> listenToProvider(
     String conceptId,
   ) {
     final container = ProviderContainer.test(
@@ -88,16 +88,16 @@ void main() {
         .thenAnswer((_) async => challenges);
   });
 
-  group('ChallengesNotifier', () {
+  group('challengesProvider', () {
     test('initial state is loading', () {
-      listenToNotifier('1');
+      listenToProvider('1');
       expect(states, [const AsyncLoading<List<Challenge>>()]);
     });
 
     test(
       'emits [loading, data] when build succeeds',
       () => fakeAsync((async) {
-        listenToNotifier('1');
+        listenToProvider('1');
         async.flushMicrotasks();
 
         expect(states, [
@@ -114,7 +114,7 @@ void main() {
     test(
       'emits [loading, error] when requested challenge is not found',
       () => fakeAsync((async) {
-        listenToNotifier('conceptWithMissingChallenge');
+        listenToProvider('conceptWithMissingChallenge');
         async.flushMicrotasks();
 
         expect(states, [
@@ -136,7 +136,7 @@ void main() {
       () => fakeAsync((async) {
         when(mockConceptsRepository.getConcepts()).thenAnswer((_) async => []);
 
-        listenToNotifier('missingConcept');
+        listenToProvider('missingConcept');
         async.flushMicrotasks();
 
         expect(states, [
@@ -158,7 +158,7 @@ void main() {
       () => fakeAsync((async) {
         when(mockChallengesRepository.getChallenges()).thenThrow(testException);
 
-        listenToNotifier('1');
+        listenToProvider('1');
         async.flushMicrotasks();
 
         expect(states, [
@@ -177,7 +177,7 @@ void main() {
       () => fakeAsync((async) {
         when(mockConceptsRepository.getConcepts()).thenThrow(testException);
 
-        listenToNotifier('1');
+        listenToProvider('1');
         async.flushMicrotasks();
 
         expect(states, [

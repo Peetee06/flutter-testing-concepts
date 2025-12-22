@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_app/features/concepts/concepts_notifier.dart';
+import 'package:riverpod_app/features/concepts/concepts_provider.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/features/concepts/view/concepts_view.dart';
 import 'package:riverpod_app/l10n/l10n.dart';
@@ -24,12 +24,12 @@ void main() {
 
   Future<void> pumpConceptsView(
     WidgetTester tester, {
-    required FutureOr<List<Concept>> Function(Ref, ConceptsNotifier) build,
+    required FutureOr<List<Concept>> Function(Ref) build,
     Locale locale = const Locale('de'),
   }) async {
     await tester.pumpApp(
       overrides: [
-        conceptsProvider.overrideWithBuild(build),
+        conceptsProvider.overrideWith(build),
       ],
       locale: locale,
       widget: InheritedGoRouter(
@@ -41,13 +41,13 @@ void main() {
 
   group(ConceptsView, () {
     testWidgets('has correct localized title', (tester) async {
-      await pumpConceptsView(tester, build: (_, __) => <Concept>[]);
+      await pumpConceptsView(tester, build: (_) => <Concept>[]);
       final context = tester.element(find.byType(ConceptsView));
       expect(find.text(context.l10n.conceptsViewTitle), findsOneWidget);
     });
 
     testWidgets('renders initial state as empty', (tester) async {
-      await pumpConceptsView(tester, build: (_, __) => <Concept>[]);
+      await pumpConceptsView(tester, build: (_) => <Concept>[]);
       await tester.pumpAndSettle();
       final context = tester.element(find.byType(ConceptsView));
       expect(find.text(context.l10n.conceptsEmpty), findsOneWidget);
@@ -56,7 +56,7 @@ void main() {
     testWidgets('renders loading state', (tester) async {
       await pumpConceptsView(
         tester,
-        build: (_, __) => Completer<List<Concept>>().future,
+        build: (_) => Completer<List<Concept>>().future,
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
@@ -70,7 +70,7 @@ void main() {
       ];
       await pumpConceptsView(
         tester,
-        build: (_, __) => buildResults.removeAt(0)(),
+        build: (_) => buildResults.removeAt(0)(),
       );
       await tester.pumpAndSettle();
       final context = tester.element(find.byType(ConceptsView));
@@ -110,7 +110,7 @@ void main() {
         ];
         await pumpConceptsView(
           tester,
-          build: (_, __) => concepts,
+          build: (_) => concepts,
           locale: config.locale,
         );
         await tester.pumpAndSettle();
@@ -138,7 +138,7 @@ void main() {
         ];
         await pumpConceptsView(
           tester,
-          build: (_, __) => concepts,
+          build: (_) => concepts,
         );
         await tester.pumpAndSettle();
         await tester.tap(find.text('Test Konzept'));

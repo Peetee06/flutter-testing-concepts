@@ -1,6 +1,6 @@
 import 'package:common/common.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverpod_app/features/concept/concept_notifier.dart';
+import 'package:riverpod_app/features/concept/concept_provider.dart';
 import 'package:riverpod_app/features/concept/view/concept_view.dart';
 import 'package:riverpod_app/features/concepts/concepts_route.dart';
 import 'package:riverpod_app/routing/go_router.dart';
@@ -30,8 +30,8 @@ void main() {
           initialLocation: const ConceptRoute(id: 'test-id').location,
         ),
         overrides: [
-          conceptProvider(concept.id).overrideWithBuild(
-            (_, __) => concept,
+          conceptProvider(concept.id).overrideWith(
+            (_) => concept,
           ),
         ],
       );

@@ -4,7 +4,7 @@ import 'package:common/common.dart' hide Localizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_app/features/challenges/challenges_notifier.dart';
+import 'package:riverpod_app/features/challenges/challenges_provider.dart';
 import 'package:riverpod_app/features/challenges/view/challenges_view.dart';
 import 'package:riverpod_app/features/challenges/view/widgets/challenges_list.dart';
 
@@ -35,11 +35,11 @@ void main() {
 
   Future<void> pumpTestWidget(
     WidgetTester tester, {
-    required FutureOr<List<Challenge>> Function(Ref, ChallengesNotifier) build,
+    required FutureOr<List<Challenge>> Function(Ref) build,
   }) async {
     await tester.pumpApp(
       overrides: [
-        challengesProvider(conceptId).overrideWithBuild(build),
+        challengesProvider(conceptId).overrideWith(build),
       ],
       widget: const ChallengesView(conceptId: conceptId),
     );
@@ -49,7 +49,7 @@ void main() {
     testWidgets('renders loading state', (WidgetTester tester) async {
       await pumpTestWidget(
         tester,
-        build: (_, __) => Completer<List<Challenge>>().future,
+        build: (_) => Completer<List<Challenge>>().future,
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.byType(AppBar), findsOneWidget);
@@ -57,7 +57,7 @@ void main() {
 
     testWidgets('renders loaded state with ChallengesList',
         (WidgetTester tester) async {
-      await pumpTestWidget(tester, build: (_, __) => mockChallenges);
+      await pumpTestWidget(tester, build: (_) => mockChallenges);
       await tester.pump();
 
       final challengesList =
@@ -69,7 +69,7 @@ void main() {
     testWidgets('renders error state', (WidgetTester tester) async {
       await pumpTestWidget(
         tester,
-        build: (_, __) => throw testError,
+        build: (_) => throw testError,
       );
       await tester.pump();
 

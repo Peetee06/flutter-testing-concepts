@@ -113,9 +113,9 @@ This section highlights specific testing scenarios demonstrated within the repos
 ### `riverpod_app` (Riverpod)
 
 * **Unit Testing (Providers/Notifiers) 🧩:** Examples of testing Riverpod providers and notifiers, including state emissions, dependency mocking, and asynchronous operations.
-  * [Concepts Notifier Test](riverpod_app/test/features/concepts/concepts_notifier_test.dart): Test basic asynchronous state fetching.
-  * [Concept Notifier Test](riverpod_app/test/features/concept/concept_notifier_test.dart): Test a notifier dependent on parameters (`FamilyAsyncNotifier`).
-  * [Challenges Notifier Test](riverpod_app/test/features/challenges/challenges_notifier_test.dart): Test a more complex state machine using `AsyncNotifier`.
+  * [Concepts Provider Test](riverpod_app/test/features/concepts/concepts_provider_test.dart): Test basic asynchronous state fetching with a simple provider.
+  * [Concept Provider Test](riverpod_app/test/features/concept/concept_provider_test.dart): Test a provider dependent on parameters (family provider).
+  * [Challenges Provider Test](riverpod_app/test/features/challenges/challenges_provider_test.dart): Test a more complex provider with multiple dependencies.
 * **Widget Testing (Pages/Widgets) 🖼️:** Demonstrations of testing UI components that interact with Riverpod providers, including overriding providers for test scenarios and verifying UI based on state.
   * [Concepts View Test](riverpod_app/test/features/concepts/view/concepts_view_test.dart): Test list rendering, loading/error states, and navigation triggered by provider state.
   * [Concept View Test](riverpod_app/test/features/concept/view/concept_view_test.dart): Test widget rendering based on provider state and interactions within the view.
